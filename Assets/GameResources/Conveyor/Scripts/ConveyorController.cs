@@ -1,5 +1,6 @@
 namespace Features.Conveyor
 {
+    using Features.Data;
     using UnityEngine;
     using Features.Conveyor.Data;
     using System.Collections.Generic;
@@ -32,6 +33,8 @@ namespace Features.Conveyor
         [SerializeField]
         private List<ConveyorLine> _conveyorLines = new List<ConveyorLine>();
 
+        private const string PP_KEY = "conveyorDataPPKey";
+
         private void Awake()
         {
             LoadData();
@@ -41,7 +44,12 @@ namespace Features.Conveyor
 
         private void LoadData()
         {
-            //TODO: load data
+            _level = CryptPlayerPrefs.GetInt(PP_KEY);
+        }
+
+        private void SaveData()
+        {
+            CryptPlayerPrefs.SetInt(PP_KEY, _level);
         }
 
         private void InitData()
@@ -59,6 +67,11 @@ namespace Features.Conveyor
                     conveyorElement.Init(this);
                 }
             }
+        }
+
+        private void OnDestroy()
+        {
+            SaveData();
         }
     }
 }
