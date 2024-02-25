@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa3785fc48cf9a040b7e823e4a664588, type: 3}
   m_Name: ConveyorData
   m_EditorClassIdentifier: 
-  _defaultSpeed: 2
+  _defaultSpeed: 20
   _increasePercentage: 10

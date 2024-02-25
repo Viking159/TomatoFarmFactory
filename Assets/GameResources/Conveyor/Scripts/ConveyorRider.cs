@@ -9,41 +9,37 @@ namespace Features.Conveyor
     [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
     public sealed class ConveyorRider : MonoBehaviour
     {
-        [SerializeField]
-        private float _ySpeed = 0;
-
         private ConveyorElement _currentConveyorElement = default;
         private Tween _pathTween = default;
         private Rigidbody2D _rb;
+
+        private const float SPEED_RATIO_NOMINATOR = 10f;
 
         private void Awake()
            => _rb = GetComponent<Rigidbody2D>();
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            Debug.Log("Triggered");
             if (collision.TryGetComponent(out ConveyorElement conveyorElement))
             {
                 SetConveyorElement(conveyorElement);
             }
         }
 
-        private void Update()
-        {
-            _rb.velocity = new Vector2(0, _ySpeed);
-        }
-
         private void Ride()
         {
             Stop();
-            _pathTween = _rb.DOPath(
-                new Vector2[] { _currentConveyorElement.StartPoint, _currentConveyorElement.EndPoint },
-                GetDuration(_currentConveyorElement.Speed),
-                PathType.Linear);
+            if (_currentConveyorElement != null && _currentConveyorElement.Speed > 0)
+                _pathTween = _rb.DOPath
+                    (
+                        new Vector2[] { _currentConveyorElement.StartPoint, _currentConveyorElement.EndPoint },
+                        GetDuration(_currentConveyorElement.Speed),
+                        PathType.Linear
+                    );
         }
 
         private float GetDuration(float speed)
-            => 1 / speed;
+            => SPEED_RATIO_NOMINATOR / speed;
 
 
         private void Stop()
@@ -56,7 +52,6 @@ namespace Features.Conveyor
 
         private void SetConveyorElement(ConveyorElement conveyorElement)
         {
-            Debug.Log("setting");
             ResetConveyorElement();
             _currentConveyorElement = conveyorElement;
             _currentConveyorElement.onSpeedValueChange += Ride;
