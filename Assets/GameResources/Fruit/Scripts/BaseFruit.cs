@@ -1,15 +1,15 @@
 namespace Features.Fruit
 {
+    using Features.Data;
     using Features.Fruit.Data;
     using System;
     using UnityEngine;
     using Features.Interfaces;
-    using Features.Data.BaseContainerData;
 
     /// <summary>
     /// Base fruit class
     /// </summary>
-    public class BaseFruit : MonoBehaviour, ISaleable, IConsumable
+    public class BaseFruit : AbstractStoredDataController<FruitStoredData>, ISaleable, IConsumable
     {
         /// <summary>
         /// Level change event
@@ -19,7 +19,7 @@ namespace Features.Fruit
         /// <summary>
         /// Fruit name
         /// </summary>
-        public virtual StringReadonlyData Name => _fruitData.Name;
+        public virtual string Name => _fruitStoredData.Name;
 
         /// <summary>
         /// Fruits count
@@ -29,12 +29,19 @@ namespace Features.Fruit
         /// <summary>
         /// Fruit level
         /// </summary>
-        public virtual int Level => _level;
+        public virtual int Level => _fruitStoredData.Level;
 
         [SerializeField]
         protected FruitData _fruitData = default;
-        protected int _level = 0;
+        protected FruitStoredData _fruitStoredData = default;
         protected int _count = 0;
+
+        protected const string PP_KEY = "baseFruitDataPPKey";
+
+        private void Awake()
+        {
+            InitData();
+        }
 
         public virtual void Sale()
         {
@@ -44,6 +51,28 @@ namespace Features.Fruit
         public virtual void Consume(IConsumer consumer)
         {
             Debug.Log($"{nameof(BaseFruit)}: Consume");
+        }
+
+        protected override void InitData()
+        {
+            _fruitStoredData = LoadData(GetPPKey());
+            if (_fruitStoredData == null)
+            {
+                _fruitStoredData = new FruitStoredData()
+                {
+                    Name = _fruitData.Name.DataValue,
+                    Price = _fruitData.Price.DataValue,
+                    Level = 0
+                };
+            }
+        }
+
+        protected virtual string GetPPKey()
+            => PP_KEY + _fruitData.Name.DataValue;
+
+        protected virtual void OnDestroy()
+        {
+            SaveData(GetPPKey(), _fruitStoredData);
         }
     }
 }
