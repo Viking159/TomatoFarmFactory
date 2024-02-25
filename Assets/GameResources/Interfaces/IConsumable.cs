@@ -10,7 +10,7 @@ namespace Features.Interfaces
         /// <summary>
         /// Name of consumable object
         /// </summary>
-        public StringReadonlyData Name { get; }
+        public string Name { get; }
 
         /// <summary>
         /// Objects count
