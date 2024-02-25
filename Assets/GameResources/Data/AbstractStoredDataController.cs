@@ -5,9 +5,9 @@ namespace Features.Data
     /// <summary>
     /// Abstract class for controller with serializable data
     /// </summary>
-    public abstract class AbstractStoredDataController<T> : MonoBehaviour
+    public abstract class AbstractStoredDataController<T> : MonoBehaviour where T : class
     {
-        protected abstract void SetData(T data);
+        protected abstract void InitData();
 
         protected virtual string GetData(T data)
             => JsonUtility.ToJson(data);
@@ -17,7 +17,7 @@ namespace Features.Data
             string json = CryptPlayerPrefs.GetString(key);
             if (string.IsNullOrEmpty(json))
             {
-                return default;
+                return null;
             }
             return JsonUtility.FromJson<T>(json);
         }
