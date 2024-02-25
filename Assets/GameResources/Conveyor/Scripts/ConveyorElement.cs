@@ -17,14 +17,12 @@ namespace Features.Conveyor
         /// <summary>
         /// Element start point
         /// </summary>
-        public Vector2 StartPoint => _startPoint;
-        private Vector2 _startPoint = default;
+        public Vector2 StartPoint => _startPointTranform.position;
 
         /// <summary>
         /// Element end point
         /// </summary>
-        public Vector2 EndPoint => _endPoint;
-        private Vector2 _endPoint = default;
+        public Vector2 EndPoint => _endPointTranform.position;
 
         /// <summary>
         /// Conveyor element speed
@@ -33,56 +31,33 @@ namespace Features.Conveyor
         private float _speed = default;
 
         [SerializeField]
-        private ConveyorData _conveyorData = default;
+        private Transform _startPointTranform = default;
         [SerializeField]
-        private Direction _direction = Direction.DownToTop;
+        private Transform _endPointTranform = default;
 
-        private enum Direction
-        {
-            LeftToRight,
-            RightToLeft,
-            DownToTop,
-            TopToDown
-        }
+        private ConveyorController _conveyorController = default;
 
-        private void Awake()
+        /// <summary>
+        /// Init conveyor element
+        /// </summary>
+        /// <param name="conveyorController">controller</param>
+        public void Init(ConveyorController conveyorController)
         {
-            SetPoints();
+            _conveyorController = conveyorController;
+            _conveyorController.onLevelChange += SetSpeed;
             SetSpeed();
-        }
-
-        private void SetPoints()
-        {
-            Vector3 additionalVector = Vector3.zero;
-            float additionalXValue = 0;
-            float additionalYValue = 0;
-            switch (_direction)
-            {
-                case Direction.LeftToRight:
-                    additionalXValue = -transform.lossyScale.y / 2 + transform.lossyScale.x / 2;
-                    additionalVector = new Vector3(transform.lossyScale.y / 2, 0);
-                    break;
-                case Direction.RightToLeft:
-                    additionalXValue = transform.lossyScale.y / 2 - transform.lossyScale.x / 2;
-                    additionalVector = new Vector3(-transform.lossyScale.y / 2, 0);
-                    break;
-                case Direction.DownToTop:
-                    additionalYValue = -transform.lossyScale.y / 2 + transform.lossyScale.x / 2;
-                    additionalVector = new Vector3(0, transform.lossyScale.y / 2);
-                    break;
-                case Direction.TopToDown:
-                    additionalYValue = transform.lossyScale.y / 2 - transform.lossyScale.x / 2;
-                    additionalVector = new Vector3(0, -transform.lossyScale.y / 2);
-                    break;
-            }
-            _startPoint = transform.position + new Vector3(additionalXValue, additionalYValue);
-            _endPoint = transform.position + additionalVector;
         }
 
         private void SetSpeed()
         {
-            _speed = _conveyorData.DefaultSpeed;
+            _speed = _conveyorController.Speed;
             onSpeedValueChange();
+        }
+
+        private void OnDestroy()
+        {
+            if (_conveyorController != null)
+                _conveyorController.onLevelChange -= SetSpeed;
         }
     }
 }
