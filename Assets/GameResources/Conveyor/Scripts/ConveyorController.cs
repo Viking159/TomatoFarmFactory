@@ -1,6 +1,6 @@
 namespace Features.Conveyor
 {
-    using Features.Data;
+    using Extensions.Data;
     using UnityEngine;
     using Features.Conveyor.Data;
     using System.Collections.Generic;
