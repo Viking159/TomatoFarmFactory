@@ -1,6 +1,7 @@
 namespace Features.Data
 {
     using UnityEngine;
+    using Extensions.Data;
 
     /// <summary>
     /// Abstract class for controller with serializable data

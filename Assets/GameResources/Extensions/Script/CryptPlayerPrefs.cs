@@ -1,4 +1,4 @@
-namespace Features.Data
+namespace Extensions.Data
 {
     using UnityEngine;
 
@@ -7,6 +7,8 @@ namespace Features.Data
     /// </summary>
     public static class CryptPlayerPrefs
     {
+        private static TextEncrypter _textEncrypter = new TextEncrypter();
+
         private const string BOOL_TRUE_VALUE = "1";
         private const string BOOL_FALSE_VALUE = "0";
 
@@ -15,7 +17,7 @@ namespace Features.Data
         /// </summary>
         public static void SetString(string key, string value)
         {
-            PlayerPrefs.SetString(CryptString(key), CryptString(value));
+            PlayerPrefs.SetString(EncryptString(key), EncryptString(value));
             PlayerPrefs.Save();
         }
 
@@ -24,7 +26,7 @@ namespace Features.Data
         /// </summary>
         public static void SetInt(string key, int value)
         {
-            PlayerPrefs.SetString(CryptString(key), CryptString(value.ToString()));
+            PlayerPrefs.SetString(EncryptString(key), EncryptString(value.ToString()));
             PlayerPrefs.Save();
         }
 
@@ -33,7 +35,7 @@ namespace Features.Data
         /// </summary>
         public static void SetFloat(string key, float value)
         {
-            PlayerPrefs.SetString(CryptString(key), CryptString(value.ToString()));
+            PlayerPrefs.SetString(EncryptString(key), EncryptString(value.ToString()));
             PlayerPrefs.Save();
         }
 
@@ -43,7 +45,7 @@ namespace Features.Data
         public static void SetBool(string key, bool value)
         {
 
-            PlayerPrefs.SetString(CryptString(key), CryptString(value ? BOOL_TRUE_VALUE : BOOL_FALSE_VALUE));
+            PlayerPrefs.SetString(EncryptString(key), EncryptString(value ? BOOL_TRUE_VALUE : BOOL_FALSE_VALUE));
             PlayerPrefs.Save();
         }
 
@@ -107,16 +109,10 @@ namespace Features.Data
         }
 
 
-        private static string CryptString(string text)
-        {
-            //TODO: Crypting
-            return text;
-        }
+        private static string EncryptString(string text)
+            => _textEncrypter.EncryptString(text);
 
-        private static string DecryptString(string cryptText)
-        {
-            //TODO: Decrypting
-            return cryptText;
-        }
+        private static string DecryptString(string encryptText)
+            => _textEncrypter.DecryptString(encryptText);
     }
 }
