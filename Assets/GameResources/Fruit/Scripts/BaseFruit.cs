@@ -9,38 +9,37 @@ namespace Features.Fruit
     /// <summary>
     /// Base fruit class
     /// </summary>
-    public class BaseFruit : AbstractStoredDataController<FruitStoredData>, ISaleable, IConsumable
+    public class BaseFruit : MonoBehaviour, ISaleable, IConsumable
     {
-        /// <summary>
-        /// Level change event
-        /// </summary>
-        public event Action onLevelChange = delegate { };
+        public event Action onDataInited = delegate { };
 
         /// <summary>
         /// Fruit name
         /// </summary>
-        public virtual string Name => _fruitStoredData.Name;
+        public virtual string Name => fruitStoredData.Name;
 
         /// <summary>
-        /// Fruits count
+        /// Fruit price
         /// </summary>
-        public virtual int Count => _count;
+        public virtual float Price => fruitStoredData.Price;
 
         /// <summary>
         /// Fruit level
         /// </summary>
-        public virtual int Level => _fruitStoredData.Level;
+        public virtual int Level => fruitStoredData.Level;
+       
+        /// <summary>
+        /// Fruits count
+        /// </summary>
+        public virtual int Count => count;
+        protected int count = 0;
 
-        [SerializeField]
-        protected FruitData _fruitData = default;
-        protected FruitStoredData _fruitStoredData = default;
-        protected int _count = 0;
+        protected FruitStoredData fruitStoredData = new FruitStoredData();
 
-        protected const string PP_KEY = "baseFruitDataPPKey";
-
-        private void Awake()
+        public void Init(FruitStoredData fruitStoredData)
         {
-            InitData();
+            this.fruitStoredData = fruitStoredData.Clone();
+            onDataInited();
         }
 
         public virtual void Sale()
@@ -51,28 +50,6 @@ namespace Features.Fruit
         public virtual void Consume(IConsumer consumer)
         {
             Debug.Log($"{nameof(BaseFruit)}: Consume");
-        }
-
-        protected override void InitData()
-        {
-            _fruitStoredData = LoadData(GetPPKey());
-            if (_fruitStoredData == null)
-            {
-                _fruitStoredData = new FruitStoredData()
-                {
-                    Name = _fruitData.Name.DataValue,
-                    Price = _fruitData.Price.DataValue,
-                    Level = 0
-                };
-            }
-        }
-
-        protected virtual string GetPPKey()
-            => PP_KEY + _fruitData.Name.DataValue;
-
-        protected virtual void OnDestroy()
-        {
-            SaveData(GetPPKey(), _fruitStoredData);
         }
     }
 }

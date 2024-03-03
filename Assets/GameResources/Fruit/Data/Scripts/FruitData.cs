@@ -1,10 +1,10 @@
 namespace Features.Fruit.Data
 {
+    using Extensions.UpdateableParam;
     using UnityEngine;
-    using Features.Data.BaseContainerData;
 
     /// <summary>
-    /// 
+    /// Fruit data
     /// </summary>
     [CreateAssetMenu(fileName = nameof(FruitData), menuName = "Features/Data/Fruit/" + nameof(FruitData))]
     public sealed class FruitData : ScriptableObject
@@ -12,15 +12,19 @@ namespace Features.Fruit.Data
         /// <summary>
         /// Fruit name
         /// </summary>
-        public StringReadonlyData Name => _name;
+        public string Name => _name;
         [SerializeField]
-        private StringReadonlyData _name = default;
+        private string _name = default;
 
         /// <summary>
         /// Fruit price
         /// </summary>
-        public IntReadonlyData Price => _price;
+        public float Price => _price.ParamValue;
         [SerializeField]
-        private IntReadonlyData _price = default;
+        private FloatUpdateableParam _price = default;
+
+        public int Level => _level.ParamValue;
+        [SerializeField]
+        private IntUpdateableParam _level = default;
     }
 }
