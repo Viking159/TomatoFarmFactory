@@ -11,6 +11,7 @@ namespace Extensions.UpdateableParam
         /// Value
         /// </summary>
         public T ParamValue = default;
+
         /// <summary>
         /// Growth percent value
         /// </summary>

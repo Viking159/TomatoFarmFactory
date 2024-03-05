@@ -1,6 +1,5 @@
 namespace Features.Fruit
 {
-    using Features.Data;
     using Features.Fruit.Data;
     using System;
     using UnityEngine;
@@ -11,34 +10,37 @@ namespace Features.Fruit
     /// </summary>
     public class BaseFruit : MonoBehaviour, ISaleable, IConsumable
     {
+        /// <summary>
+        /// Data init event
+        /// </summary>
         public event Action onDataInited = delegate { };
-
-        /// <summary>
-        /// Fruit name
-        /// </summary>
-        public virtual string Name => fruitStoredData.Name;
-
-        /// <summary>
-        /// Fruit price
-        /// </summary>
-        public virtual float Price => fruitStoredData.Price;
 
         /// <summary>
         /// Fruit level
         /// </summary>
-        public virtual int Level => fruitStoredData.Level;
-       
+        public virtual int Level { get; protected set; }
+
         /// <summary>
-        /// Fruits count
+        /// Is fruit data inited
         /// </summary>
-        public virtual int Count => count;
-        protected int count = 0;
+        public virtual bool IsInited { get; protected set; }
 
-        protected FruitStoredData fruitStoredData = new FruitStoredData();
+        public virtual string Name { get; protected set; }
 
-        public void Init(FruitStoredData fruitStoredData)
+        public virtual float Price { get; protected set; }
+
+        public virtual int Count { get; protected set; }
+
+        /// <summary>
+        /// Init fruit data
+        /// </summary>
+        public virtual void Init(FruitData fruitData)
         {
-            this.fruitStoredData = fruitStoredData.Clone();
+            Name = fruitData.Name;
+            Price = fruitData.Price;
+            Count = fruitData.Count;
+            Level = fruitData.Level;
+            IsInited = true;
             onDataInited();
         }
 
@@ -51,5 +53,7 @@ namespace Features.Fruit
         {
             Debug.Log($"{nameof(BaseFruit)}: Consume");
         }
+
+        
     }
 }

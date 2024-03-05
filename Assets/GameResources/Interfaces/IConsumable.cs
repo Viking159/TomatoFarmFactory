@@ -8,7 +8,7 @@ namespace Features.Interfaces
     public interface IConsumable
     {
         /// <summary>
-        /// Name of consumable object
+        /// Object name
         /// </summary>
         public string Name { get; }
 

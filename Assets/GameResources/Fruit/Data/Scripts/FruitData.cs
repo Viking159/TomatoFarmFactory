@@ -1,30 +1,41 @@
 namespace Features.Fruit.Data
 {
     using Extensions.UpdateableParam;
+    using Features.Data;
     using UnityEngine;
 
     /// <summary>
     /// Fruit data
     /// </summary>
     [CreateAssetMenu(fileName = nameof(FruitData), menuName = "Features/Data/Fruit/" + nameof(FruitData))]
-    public sealed class FruitData : ScriptableObject
+    public class FruitData : StoreableSO
     {
         /// <summary>
         /// Fruit name
         /// </summary>
-        public string Name => _name;
+        public virtual string Name => fruitName;
         [SerializeField]
-        private string _name = default;
+        protected string fruitName = default;
 
         /// <summary>
         /// Fruit price
         /// </summary>
-        public float Price => _price.ParamValue;
+        public virtual float Price => price.GetGrowthValue(level);
         [SerializeField]
-        private FloatUpdateableParam _price = default;
+        protected FloatUpdateableParam price = new FloatUpdateableParam()
+        {
+            ParamValue = 1,
+            GrowthPercent = 10
+        };
 
-        public int Level => _level.ParamValue;
-        [SerializeField]
-        private IntUpdateableParam _level = default;
+        /// <summary>
+        /// Fruits count
+        /// </summary>
+        public int Count => count.GetGrowthValue(level);
+        protected IntUpdateableParam count = new IntUpdateableParam()
+        {
+            ParamValue = 1,
+            GrowthPercent = 100
+        };
     }
 }

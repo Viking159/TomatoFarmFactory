@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a58a26be876993646be52981fe3026d4, type: 3}
   m_Name: TomatoData
   m_EditorClassIdentifier: 
-  _name: tomato
-  _price: 2
-  _level:
-    ParamValue: 0
-    GrowthPercent: 0
+  ppKey: tomatoDataKey
+  level: 0
+  fruitName: Tomato
+  price:
+    ParamValue: 1
+    GrowthPercent: 50
