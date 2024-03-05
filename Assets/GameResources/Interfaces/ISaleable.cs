@@ -6,6 +6,21 @@ namespace Features.Interfaces
     public interface ISaleable
     {
         /// <summary>
+        /// Object name
+        /// </summary>
+        public string Name { get; }
+
+        /// <summary>
+        /// Object price
+        /// </summary>
+        public float Price { get; }
+
+        /// <summary>
+        /// Object count
+        /// </summary>
+        public int Count { get; }
+
+        /// <summary>
         /// Sale object
         /// </summary>
         public void Sale();

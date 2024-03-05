@@ -1,25 +1,25 @@
 namespace Features.Conveyor.Data
 {
+    using Extensions.UpdateableParam;
+    using Features.Data;
     using UnityEngine;
 
     /// <summary>
     /// Conveyor settings data
     /// </summary>
     [CreateAssetMenu(fileName = nameof(ConveyorData), menuName = "Features/Data/Conveyor/" + nameof(ConveyorData))]
-    public sealed class ConveyorData : ScriptableObject
+    public class ConveyorData : StoreableSO
     {
         /// <summary>
-        /// Default conveyor speed
+        /// Conveyor speed
+        /// Conveyor speed
         /// </summary>
-        public float DefaultSpeed => _defaultSpeed;
+        public virtual float Speed => speed.GetGrowthValue(level);
         [SerializeField]
-        private float _defaultSpeed = 10;
-
-        /// <summary>
-        /// Speed increase per level percentage
-        /// </summary>
-        public float IncreasePercentage => _increasePercentage;
-        [SerializeField]
-        private float _increasePercentage = 10;
+        protected FloatUpdateableParam speed = new FloatUpdateableParam()
+        {
+            ParamValue = 10,
+            GrowthPercent = 10
+        };
     }
 }

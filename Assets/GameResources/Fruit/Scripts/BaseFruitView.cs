@@ -20,12 +20,9 @@ namespace Features.Fruit
         protected virtual void Awake()
         {
             image = GetComponent<Image>();
-            baseFruit.onLevelChange += OnFruitLevelChanged;
+            baseFruit.onDataInited += SetView;
             SetView();
         }
-
-        protected virtual void OnFruitLevelChanged()
-            => SetView();
 
         protected virtual void SetView()
         {
@@ -39,7 +36,7 @@ namespace Features.Fruit
         {
             if (baseFruit != null)
             {
-                baseFruit.onLevelChange -= OnFruitLevelChanged;
+                baseFruit.onDataInited -= SetView;
             }
         }
     }

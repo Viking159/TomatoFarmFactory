@@ -1,6 +1,5 @@
 namespace Features.Fruit
 {
-    using Features.Data;
     using Features.Fruit.Data;
     using System;
     using UnityEngine;
@@ -9,38 +8,40 @@ namespace Features.Fruit
     /// <summary>
     /// Base fruit class
     /// </summary>
-    public class BaseFruit : AbstractStoredDataController<FruitStoredData>, ISaleable, IConsumable
+    public class BaseFruit : MonoBehaviour, ISaleable, IConsumable
     {
         /// <summary>
-        /// Level change event
+        /// Data init event
         /// </summary>
-        public event Action onLevelChange = delegate { };
-
-        /// <summary>
-        /// Fruit name
-        /// </summary>
-        public virtual string Name => _fruitStoredData.Name;
-
-        /// <summary>
-        /// Fruits count
-        /// </summary>
-        public virtual int Count => _count;
+        public event Action onDataInited = delegate { };
 
         /// <summary>
         /// Fruit level
         /// </summary>
-        public virtual int Level => _fruitStoredData.Level;
+        public virtual int Level { get; protected set; }
 
-        [SerializeField]
-        protected FruitData _fruitData = default;
-        protected FruitStoredData _fruitStoredData = default;
-        protected int _count = 0;
+        /// <summary>
+        /// Is fruit data inited
+        /// </summary>
+        public virtual bool IsInited { get; protected set; }
 
-        protected const string PP_KEY = "baseFruitDataPPKey";
+        public virtual string Name { get; protected set; }
 
-        private void Awake()
+        public virtual float Price { get; protected set; }
+
+        public virtual int Count { get; protected set; }
+
+        /// <summary>
+        /// Init fruit data
+        /// </summary>
+        public virtual void Init(FruitData fruitData)
         {
-            InitData();
+            Name = fruitData.Name;
+            Price = fruitData.Price;
+            Count = fruitData.Count;
+            Level = fruitData.Level;
+            IsInited = true;
+            onDataInited();
         }
 
         public virtual void Sale()
@@ -53,26 +54,6 @@ namespace Features.Fruit
             Debug.Log($"{nameof(BaseFruit)}: Consume");
         }
 
-        protected override void InitData()
-        {
-            _fruitStoredData = LoadData(GetPPKey());
-            if (_fruitStoredData == null)
-            {
-                _fruitStoredData = new FruitStoredData()
-                {
-                    Name = _fruitData.Name.DataValue,
-                    Price = _fruitData.Price.DataValue,
-                    Level = 0
-                };
-            }
-        }
-
-        protected virtual string GetPPKey()
-            => PP_KEY + _fruitData.Name.DataValue;
-
-        protected virtual void OnDestroy()
-        {
-            SaveData(GetPPKey(), _fruitStoredData);
-        }
+        
     }
 }
