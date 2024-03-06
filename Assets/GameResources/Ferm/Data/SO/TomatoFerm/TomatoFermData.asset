@@ -9,7 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09737514424876342a9f38f896289717, type: 3}
-  m_Name: TomatoPriceData
+  m_Script: {fileID: 11500000, guid: 6e5f0b4e241e7b4489f36bb62cbc6ba1, type: 3}
+  m_Name: TomatoFermData
   m_EditorClassIdentifier: 
-  dataValue: 1
+  ppKey: tomatoFermDataKey
+  level: 0
+  rang: 0
+  speed:
+    ParamValue: 2
+    GrowthPercent: 50

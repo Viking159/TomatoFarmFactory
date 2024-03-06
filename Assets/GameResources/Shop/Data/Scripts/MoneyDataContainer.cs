@@ -34,7 +34,7 @@ namespace Features.Shop.Data
         private void OnMoneyCountChanged()
             => onMoneyCountChange();
 
-        void IDisposable.Dispose()
+        public virtual void Dispose()
             => moneyData.onMoneyCountChange -= OnMoneyCountChanged;
     }
 }
