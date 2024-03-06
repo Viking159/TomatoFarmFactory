@@ -22,7 +22,12 @@ namespace Features.Data
         /// Load data
         /// </summary>
         public virtual void LoadData()
-            => level = CryptPlayerPrefs.GetInt(ppKey);
+        {
+            if (CryptPlayerPrefs.HasKey(ppKey))
+            {
+                level = CryptPlayerPrefs.GetInt(ppKey);
+            }
+        }
 
         /// <summary>
         /// Save data

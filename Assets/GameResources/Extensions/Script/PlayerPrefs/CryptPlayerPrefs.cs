@@ -1,4 +1,4 @@
-namespace Extensions.Data
+namespace Features.Extensions.Data
 {
     using UnityEngine;
 
@@ -11,6 +11,9 @@ namespace Extensions.Data
 
         private const string BOOL_TRUE_VALUE = "1";
         private const string BOOL_FALSE_VALUE = "0";
+
+        public static bool HasKey(string key)
+            => PlayerPrefs.HasKey(EncryptString(key));
 
         /// <summary>
         /// Set string to PlayerPrefs
@@ -107,7 +110,6 @@ namespace Extensions.Data
             }
             return defaultValue;
         }
-
 
         private static string EncryptString(string text)
             => _textEncrypter.EncryptString(text);

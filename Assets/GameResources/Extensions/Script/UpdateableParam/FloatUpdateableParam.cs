@@ -1,7 +1,7 @@
-using System;
-
-namespace Extensions.UpdateableParam
+namespace Features.Extensions.UpdateableParam
 {
+    using System;
+
     /// <summary>
     /// Float updateable param
     /// </summary>

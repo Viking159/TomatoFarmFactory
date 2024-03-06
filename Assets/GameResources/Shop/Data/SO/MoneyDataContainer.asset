@@ -9,11 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa3785fc48cf9a040b7e823e4a664588, type: 3}
-  m_Name: ConveyorData
+  m_Script: {fileID: 11500000, guid: 50fa03c17f09fbf41b56b795e390d518, type: 3}
+  m_Name: MoneyDataContainer
   m_EditorClassIdentifier: 
-  ppKey: conveyorDataKey
-  level: 0
-  speed:
-    ParamValue: 30
-    GrowthPercent: 10
+  moneyData: {fileID: 11400000, guid: 50726c37122b13c45b3f827b3cf9bcef, type: 2}

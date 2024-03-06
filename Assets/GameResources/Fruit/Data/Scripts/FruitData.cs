@@ -20,12 +20,12 @@ namespace Features.Fruit.Data
         /// <summary>
         /// Fruit price
         /// </summary>
-        public virtual float Price => price.GetGrowthValue(level);
+        public virtual int Price => price.GetGrowthValue(level);
         [SerializeField]
-        protected FloatUpdateableParam price = new FloatUpdateableParam()
+        protected IntUpdateableParam price = new IntUpdateableParam()
         {
             ParamValue = 1,
-            GrowthPercent = 10
+            GrowthPercent = 100
         };
 
         /// <summary>

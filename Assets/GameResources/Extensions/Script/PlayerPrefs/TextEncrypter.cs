@@ -1,4 +1,4 @@
-namespace Extensions.Data
+namespace Features.Extensions.Data
 {
     using System.Text;
 
