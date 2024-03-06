@@ -36,14 +36,8 @@ namespace Features.Shop.Data
 
         public virtual void LoadData()
         {
-            if (CryptPlayerPrefs.HasKey(ppKey + nameof(coins)))
-            {
-                coins = CryptPlayerPrefs.GetInt(ppKey + nameof(coins));
-            }
-            if (CryptPlayerPrefs.HasKey(ppKey + nameof(gems)))
-            {
-                gems = CryptPlayerPrefs.GetInt(ppKey + nameof(gems));
-            }
+            coins = CryptPlayerPrefs.GetInt(ppKey + nameof(coins), coins);
+            gems = CryptPlayerPrefs.GetInt(ppKey + nameof(gems), gems);
         }
 
         public virtual void SaveData()
@@ -56,12 +50,14 @@ namespace Features.Shop.Data
         {
             coins = (int)MathF.Max(MIN_MONEY_VALUE, coinsVal);
             onMoneyCountChange();
+            SaveData();
         }
 
         public virtual void SetGems(int gemsVal)
         {
             gems = (int)MathF.Max(MIN_MONEY_VALUE, gemsVal);
             onMoneyCountChange();
+            SaveData();
         }
     }
 }

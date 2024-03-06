@@ -1,6 +1,7 @@
 namespace Features.Data
 {
     using Extensions.Data;
+    using System;
     using UnityEngine;
 
     /// <summary>
@@ -8,6 +9,11 @@ namespace Features.Data
     /// </summary>
     public abstract class StoreableSO : ScriptableObject
     {
+        /// <summary>
+        /// Data change event
+        /// </summary>
+        public event Action onDataChange = delegate { };
+
         [SerializeField]
         protected string ppKey = "defaultKey";
 
@@ -22,12 +28,7 @@ namespace Features.Data
         /// Load data
         /// </summary>
         public virtual void LoadData()
-        {
-            if (CryptPlayerPrefs.HasKey(ppKey))
-            {
-                level = CryptPlayerPrefs.GetInt(ppKey);
-            }
-        }
+            => level = CryptPlayerPrefs.GetInt(ppKey, level);
 
         /// <summary>
         /// Save data
@@ -39,6 +40,13 @@ namespace Features.Data
         /// Set level
         /// </summary>
         public virtual void SetLevel(int newValue)
-            => level = Mathf.Max(0, newValue);
+        {
+            level = Mathf.Max(0, newValue);
+            SaveData();
+            Notify();
+        }
+
+        protected virtual void Notify()
+            => onDataChange();
     }
 }
