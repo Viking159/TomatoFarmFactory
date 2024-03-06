@@ -13,7 +13,7 @@ namespace Features.Interfaces
         /// <summary>
         /// Object price
         /// </summary>
-        public float Price { get; }
+        public int Price { get; }
 
         /// <summary>
         /// Object count

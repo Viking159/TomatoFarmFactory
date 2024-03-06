@@ -27,7 +27,7 @@ namespace Features.Fruit
 
         public virtual string Name { get; protected set; }
 
-        public virtual float Price { get; protected set; }
+        public virtual int Price { get; protected set; }
 
         public virtual int Count { get; protected set; }
 
@@ -45,9 +45,8 @@ namespace Features.Fruit
         }
 
         public virtual void Sale()
-        {
-            Debug.Log($"{nameof(BaseFruit)}: Sale");
-        }
+            => Destroy(gameObject);
+
 
         public virtual void Consume(IConsumer consumer)
         {
