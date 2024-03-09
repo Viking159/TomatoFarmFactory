@@ -8,7 +8,7 @@ namespace Features.Ferm.Data
     /// Ferm data container
     /// </summary>
     [CreateAssetMenu(fileName = nameof(FermDataContainer), menuName = "Features/Data/Ferm/" + nameof(FermDataContainer))]
-    public class FermDataContainer : InitableData, IDisposable
+    public class FermDataContainer : InitableData
     {
         /// <summary>
         /// Data change event
@@ -39,7 +39,7 @@ namespace Features.Ferm.Data
         protected virtual void Notify()
             => onDataChange();
 
-        public virtual void Dispose()
+        public override void Dispose()
             => fermData.onDataChange -= Notify;
     }
 }

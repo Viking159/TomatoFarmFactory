@@ -8,7 +8,7 @@ namespace Features.Shop.Data
     /// Current money data container
     /// </summary>
     [CreateAssetMenu(fileName = nameof(MoneyDataContainer), menuName = "Features/Data/Shop/" + nameof(MoneyDataContainer))]
-    public class MoneyDataContainer : InitableData, IDisposable
+    public class MoneyDataContainer : InitableData
     {
         /// <summary>
         /// Money count change event
@@ -34,7 +34,7 @@ namespace Features.Shop.Data
         private void OnMoneyCountChanged()
             => onMoneyCountChange();
 
-        public virtual void Dispose()
+        public override void Dispose()
             => moneyData.onMoneyCountChange -= OnMoneyCountChanged;
     }
 }

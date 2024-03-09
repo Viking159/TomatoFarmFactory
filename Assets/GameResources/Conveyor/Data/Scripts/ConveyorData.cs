@@ -1,6 +1,6 @@
 namespace Features.Conveyor.Data
 {
-    using Extensions.UpdateableParam;
+    using Features.Extensions.Data.UpdateableParam;
     using Features.Data;
     using UnityEngine;
 

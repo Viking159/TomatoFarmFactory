@@ -1,4 +1,4 @@
-namespace Features.Extensions.UpdateableParam
+namespace Features.Extensions.Data.UpdateableParam
 {
     using UnityEngine;
 

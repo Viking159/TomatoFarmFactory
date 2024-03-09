@@ -1,6 +1,6 @@
 namespace Features.Fruit.Data
 {
-    using Extensions.UpdateableParam;
+    using Features.Extensions.Data.UpdateableParam;
     using Features.Data;
     using UnityEngine;
 
@@ -18,9 +18,19 @@ namespace Features.Fruit.Data
         protected string fruitName = default;
 
         /// <summary>
+        /// Fruits count
+        /// </summary>
+        public virtual int Count => count.GetGrowthValue(level);
+        protected IntUpdateableParam count = new IntUpdateableParam()
+        {
+            ParamValue = 1,
+            GrowthPercent = 100
+        };
+
+        /// <summary>
         /// Fruit price
         /// </summary>
-        public virtual int Price => price.GetGrowthValue(level);
+        public virtual int Price => price.GetGrowthValue(priceLevel);
         [SerializeField]
         protected IntUpdateableParam price = new IntUpdateableParam()
         {
@@ -28,14 +38,13 @@ namespace Features.Fruit.Data
             GrowthPercent = 100
         };
 
+        [SerializeField]
+        protected int priceLevel = default;
+
         /// <summary>
-        /// Fruits count
+        /// Set price level
         /// </summary>
-        public int Count => count.GetGrowthValue(level);
-        protected IntUpdateableParam count = new IntUpdateableParam()
-        {
-            ParamValue = 1,
-            GrowthPercent = 100
-        };
+        public virtual void SetPriceLevel(int val)
+            => priceLevel = Mathf.Max(0, val);
     }
 }

@@ -15,6 +15,7 @@ MonoBehaviour:
   ppKey: tomatoFermDataKey
   level: 0
   rang: 0
+  fermName: 
   speed:
     ParamValue: 2
     GrowthPercent: 50

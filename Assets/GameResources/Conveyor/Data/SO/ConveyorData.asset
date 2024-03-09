@@ -15,5 +15,5 @@ MonoBehaviour:
   ppKey: conveyorDataKey
   level: 0
   speed:
-    ParamValue: 30
+    ParamValue: 10
     GrowthPercent: 10
