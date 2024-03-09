@@ -2,7 +2,7 @@ namespace Features.Ferm.Data
 {
     using Features.Data;
     using UnityEngine;
-    using Features.Extensions.UpdateableParam;
+    using Features.Extensions.Data.UpdateableParam;
 
     /// <summary>
     /// Ferm data
@@ -10,6 +10,13 @@ namespace Features.Ferm.Data
     [CreateAssetMenu(fileName = nameof(FermData), menuName = "Features/Data/Ferm/" + nameof(FermData))]
     public class FermData : DoubleStoreableSO
     {
+        /// <summary>
+        /// Ferm name
+        /// </summary>
+        public string Name => fermName;
+        [SerializeField]
+        private string fermName = string.Empty;
+
         /// <summary>
         /// Speed
         /// </summary>

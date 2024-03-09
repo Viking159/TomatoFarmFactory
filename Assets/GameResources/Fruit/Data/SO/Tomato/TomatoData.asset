@@ -17,4 +17,5 @@ MonoBehaviour:
   fruitName: Tomato
   price:
     ParamValue: 1
-    GrowthPercent: 50
+    GrowthPercent: 100
+  priceLevel: 0
