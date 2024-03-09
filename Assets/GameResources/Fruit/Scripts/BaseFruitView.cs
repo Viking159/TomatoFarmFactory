@@ -7,7 +7,7 @@ namespace Features.Fruit
     /// <summary>
     /// Base fruit view
     /// </summary>
-    [RequireComponent(typeof(Image))]
+    [RequireComponent(typeof(SpriteRenderer))]
     public class BaseFruitView : MonoBehaviour
     {
         [SerializeField]
@@ -15,11 +15,11 @@ namespace Features.Fruit
         [SerializeField]
         protected SpriteLevelData spriteLevelData = default;
 
-        protected Image image = default;
+        protected SpriteRenderer spriteRenderer = default;
 
         protected virtual void Awake()
         {
-            image = GetComponent<Image>();
+            spriteRenderer = GetComponent<SpriteRenderer>();
             baseFruit.onDataInited += SetView;
             SetView();
         }
@@ -28,7 +28,7 @@ namespace Features.Fruit
         {
             if (baseFruit.Level < spriteLevelData.SpritesCount)
             {
-                image.sprite = spriteLevelData.GetSpriteByLevel(baseFruit.Level);
+                spriteRenderer.sprite = spriteLevelData.GetSpriteByLevel(baseFruit.Level);
             }
         }
 
