@@ -1,13 +1,12 @@
 namespace Features.Conveyor
 {
-    using Features.Conveyor.Data;
     using System;
     using UnityEngine;
 
     /// <summary>
     /// Element of conveyor
     /// </summary>
-    public sealed class ConveyorElement : MonoBehaviour
+    public class ConveyorElement : MonoBehaviour
     {
         /// <summary>
         /// Speed change event
@@ -15,49 +14,101 @@ namespace Features.Conveyor
         public event Action onSpeedValueChange = delegate { };
 
         /// <summary>
+        /// Rider count change event
+        /// </summary>
+        public event Action onRidersCountChange = delegate { };
+
+        /// <summary>
         /// Element start point
         /// </summary>
-        public Vector2 StartPoint => _startPointTranform.position;
+        public virtual Vector2 StartPoint => startPointTranform.position;
 
         /// <summary>
         /// Element end point
         /// </summary>
-        public Vector2 EndPoint => _endPointTranform.position;
+        public virtual Vector2 EndPoint => endPointTranform.position;
 
         /// <summary>
         /// Conveyor element speed
         /// </summary>
-        public float Speed => _speed;
-        private float _speed = default;
+        public virtual float Speed => speed;
+        protected float speed = default;
+
+        /// <summary>
+        /// Riders count
+        /// </summary>
+        public virtual int RidersCount => ridersCount;
+        [SerializeField]
+        protected int ridersCount = default;
+
+        /// <summary>
+        /// Limit riders count
+        /// </summary>
+        public virtual int LimitRidersCount => limitRidersCount;
+        [SerializeField]
+        protected int limitRidersCount = 2;
 
         [SerializeField]
-        private Transform _startPointTranform = default;
+        protected Transform startPointTranform = default;
         [SerializeField]
-        private Transform _endPointTranform = default;
+        protected Transform endPointTranform = default;
+        
 
-        private ConveyorController _conveyorController = default;
+        protected ConveyorController conveyorController = default;
 
         /// <summary>
         /// Init conveyor element
         /// </summary>
-        /// <param name="conveyorController">controller</param>
-        public void Init(ConveyorController conveyorController)
+        public virtual void Init(ConveyorController conveyorController)
         {
-            _conveyorController = conveyorController;
-            _conveyorController.onLevelChange += SetSpeed;
+            this.conveyorController = conveyorController;
+            this.conveyorController.onLevelChange += SetSpeed;
             SetSpeed();
+            SetRidersCount(0);
         }
 
-        private void SetSpeed()
+        protected virtual void SetSpeed()
         {
-            _speed = _conveyorController.Speed;
-            onSpeedValueChange();
+            speed = conveyorController.Speed;
+            NotifySpeed();
         }
 
-        private void OnDestroy()
+        protected virtual void OnTriggerEnter2D(Collider2D collision)
         {
-            if (_conveyorController != null)
-                _conveyorController.onLevelChange -= SetSpeed;
+            if (collision.GetComponent<ConveyorRider>() != null)
+            {
+                SetRidersCount(ridersCount + 1);
+            }
+        }
+
+        protected virtual void OnTriggerExit2D(Collider2D collision)
+        {
+            if (collision.GetComponent<ConveyorRider>() != null)
+            {
+                SetRidersCount(ridersCount - 1);
+            }
+        }
+
+        protected virtual void SetRidersCount(int count)
+        {
+            count = Mathf.Max(0, count);
+            if (ridersCount != count)
+            {
+                ridersCount = count;
+                NotifyRiders();
+            }
+        }
+
+        protected virtual void NotifySpeed()
+            => onSpeedValueChange();
+
+        protected virtual void NotifyRiders()
+            => onRidersCountChange();
+
+        protected virtual void OnDestroy()
+        {
+            if (conveyorController != null)
+                conveyorController.onLevelChange -= SetSpeed;
         }
     }
 }

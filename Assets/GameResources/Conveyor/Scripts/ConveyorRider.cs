@@ -2,23 +2,22 @@ namespace Features.Conveyor
 {
     using UnityEngine;
     using DG.Tweening;
+    using Features.Data;
 
     /// <summary>
     /// Object on coveyor velocity
     /// </summary>
     [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
-    public sealed class ConveyorRider : MonoBehaviour
+    public class ConveyorRider : MonoBehaviour
     {
-        private ConveyorElement _currentConveyorElement = default;
-        private Tween _pathTween = default;
-        private Rigidbody2D _rb;
+        protected ConveyorElement currentConveyorElement = default;
+        protected Tween pathTween = default;
+        protected Rigidbody2D rb;
 
-        private const float SPEED_RATIO_NOMINATOR = 10f;
+        protected virtual void Awake()
+           => rb = GetComponent<Rigidbody2D>();
 
-        private void Awake()
-           => _rb = GetComponent<Rigidbody2D>();
-
-        private void OnTriggerEnter2D(Collider2D collision)
+        protected virtual void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.TryGetComponent(out ConveyorElement conveyorElement))
             {
@@ -26,50 +25,47 @@ namespace Features.Conveyor
             }
         }
 
-        private void Ride()
+        protected virtual void Ride()
         {
             Stop();
-            if (_currentConveyorElement != null && _currentConveyorElement.Speed > 0)
-                _pathTween = _rb.DOPath
+            if (currentConveyorElement != null && currentConveyorElement.Speed > 0)
+                pathTween = rb.DOPath
                     (
-                        new Vector2[] { _currentConveyorElement.StartPoint, _currentConveyorElement.EndPoint },
-                        GetDuration(_currentConveyorElement.Speed),
+                        new Vector2[] { currentConveyorElement.StartPoint, currentConveyorElement.EndPoint },
+                        GetDuration(currentConveyorElement.Speed),
                         PathType.Linear
                     );
         }
 
-        private float GetDuration(float speed)
-            => SPEED_RATIO_NOMINATOR / speed;
+        protected virtual float GetDuration(float speed)
+            => GlobalData.SPEED_CONVERT_RATIO / speed;
 
-
-        private void Stop()
+        protected virtual void Stop()
         {
-            if (_pathTween != null)
+            if (pathTween != null)
             {
-                _pathTween.Kill();
+                pathTween.Kill();
             }
         }
 
-        private void SetConveyorElement(ConveyorElement conveyorElement)
+        protected virtual void SetConveyorElement(ConveyorElement conveyorElement)
         {
             ResetConveyorElement();
-            _currentConveyorElement = conveyorElement;
-            _currentConveyorElement.onSpeedValueChange += Ride;
+            currentConveyorElement = conveyorElement;
+            currentConveyorElement.onSpeedValueChange += Ride;
             Ride();
         }
 
-        private void ResetConveyorElement()
+        protected virtual void ResetConveyorElement()
         {
-            if (_currentConveyorElement != null)
+            Stop();
+            if (currentConveyorElement != null)
             {
-                Stop();
-                _currentConveyorElement.onSpeedValueChange -= Ride;
+                currentConveyorElement.onSpeedValueChange -= Ride;
             }
         }
 
-        private void OnDestroy()
-        {
-            ResetConveyorElement();
-        }
+        protected virtual void OnDestroy()
+            => ResetConveyorElement();
     }
 }
