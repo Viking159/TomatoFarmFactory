@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: TomatoData
   m_EditorClassIdentifier: 
   ppKey: tomatoDataKey
+  dataName: Tomato
   level: 0
-  fruitName: Tomato
   price:
     ParamValue: 1
     GrowthPercent: 100

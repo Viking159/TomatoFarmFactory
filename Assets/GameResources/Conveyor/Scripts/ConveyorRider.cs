@@ -29,12 +29,14 @@ namespace Features.Conveyor
         {
             Stop();
             if (currentConveyorElement != null && currentConveyorElement.Speed > 0)
+            {
                 pathTween = rb.DOPath
                     (
-                        new Vector2[] { currentConveyorElement.StartPoint, currentConveyorElement.EndPoint },
+                        currentConveyorElement.GetPath(),
                         GetDuration(currentConveyorElement.Speed),
                         PathType.Linear
                     );
+            } 
         }
 
         protected virtual float GetDuration(float speed)

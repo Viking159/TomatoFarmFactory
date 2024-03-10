@@ -18,7 +18,14 @@ namespace Features.Data
         protected string ppKey = "defaultKey";
 
         /// <summary>
-        /// Fruit level
+        /// Name
+        /// </summary>
+        public virtual string Name => dataName;
+        [SerializeField]
+        protected string dataName = string.Empty;
+
+        /// <summary>
+        /// Level
         /// </summary>
         public virtual int Level => level;
         [SerializeField]

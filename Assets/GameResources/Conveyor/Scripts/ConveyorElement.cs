@@ -1,6 +1,7 @@
 namespace Features.Conveyor
 {
     using System;
+    using System.Collections.Generic;
     using UnityEngine;
 
     /// <summary>
@@ -52,6 +53,8 @@ namespace Features.Conveyor
         protected Transform startPointTranform = default;
         [SerializeField]
         protected Transform endPointTranform = default;
+        [SerializeField]
+        protected List<Transform> pathPoints = new List<Transform>();
         
 
         protected ConveyorController conveyorController = default;
@@ -65,6 +68,16 @@ namespace Features.Conveyor
             this.conveyorController.onLevelChange += SetSpeed;
             SetSpeed();
             SetRidersCount(0);
+        }
+
+        public Vector2[] GetPath()
+        {
+            Vector2[] path = new Vector2[pathPoints.Count];
+            for (int i = 0; i < path.Length; i++)
+            {
+                path[i] = pathPoints[i].position;
+            }
+            return path;
         }
 
         protected virtual void SetSpeed()

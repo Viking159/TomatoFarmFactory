@@ -11,13 +11,6 @@ namespace Features.Ferm.Data
     public class FermData : DoubleStoreableSO
     {
         /// <summary>
-        /// Ferm name
-        /// </summary>
-        public string Name => fermName;
-        [SerializeField]
-        private string fermName = string.Empty;
-
-        /// <summary>
         /// Speed
         /// </summary>
         public float Speed => speed.GetGrowthValue(level);
