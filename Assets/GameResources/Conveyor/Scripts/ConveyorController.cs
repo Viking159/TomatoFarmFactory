@@ -8,7 +8,7 @@ namespace Features.Conveyor
     /// <summary>
     /// Conveyor controller
     /// </summary>
-    public sealed class ConveyorController : MonoBehaviour
+    public class ConveyorController : MonoBehaviour
     {
         /// <summary>
         /// Conveyor level change event
@@ -18,33 +18,40 @@ namespace Features.Conveyor
         /// <summary>
         /// Conveyor level
         /// </summary>
-        public int Level => _conveyorData.Level;
+        public virtual int Level => conveyorData.Level;
 
         /// <summary>
         /// Conveyor speed
         /// </summary>
-        public float Speed => _conveyorData.Speed;
+        public virtual float Speed => conveyorData.Speed;
 
         [SerializeField]
-        private ConveyorData _conveyorData = default;
+        protected ConveyorData conveyorData = default;
         [SerializeField]
-        private List<ConveyorLine> _conveyorLines = new List<ConveyorLine>();
+        protected List<ConveyorLine> conveyorLines = new List<ConveyorLine>();
 
-        private void Awake()
+        protected virtual void Awake()
         {
+            conveyorData.onDataChange += Notfity;
             InitLines();
         }
 
-        private void InitLines()
+        protected virtual void InitLines()
         {
-            for (int i = 0; i <= _conveyorData.Level; i++)
+            for (int i = 0; i <= conveyorData.Level; i++)
             {
-                foreach (ConveyorElement conveyorElement in _conveyorLines[i].conveyorElements)
+                foreach (ConveyorElement conveyorElement in conveyorLines[i].conveyorElements)
                 {
                     conveyorElement.gameObject.SetActive(true);
                     conveyorElement.Init(this);
                 }
             }
         }
+
+        protected virtual void Notfity()
+            => onLevelChange();
+
+        protected virtual void OnDestroy()
+            => conveyorData.onDataChange -= Notfity;
     }
 }

@@ -12,10 +12,7 @@ namespace Features.Data
         protected List<InitableData> initableDatas = new List<InitableData>();
 
         protected virtual void Awake()
-        {
-            DontDestroyOnLoad(gameObject);
-            InitData();
-        }
+            => InitData();
 
         protected virtual void InitData()
             => initableDatas.ForEach(data => data.Init());

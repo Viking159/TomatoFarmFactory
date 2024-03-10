@@ -1,27 +1,18 @@
 namespace Features.Ferm
 {
+    using Features.Data;
     using Features.Ferm.Data;
     using Features.Fruit;
     using Features.Fruit.Data;
-    using System;
+    using Features.Spawner;
     using System.Collections;
     using UnityEngine;
 
     /// <summary>
     /// Ferm controller
     /// </summary>
-    public class FermController : MonoBehaviour
+    public class FermController : AbstractObjectCreator
     {
-        /// <summary>
-        /// Fruit spawn event
-        /// </summary>
-        public event Action onFruitSpawned = delegate { };
-
-        /// <summary>
-        /// Progress value change event
-        /// </summary>
-        public event Action onProgressValueChange = delegate { }; 
-
         /// <summary>
         /// Ferm name
         /// </summary>
@@ -30,7 +21,7 @@ namespace Features.Ferm
         /// <summary>
         /// Fruits creation speed
         /// </summary>
-        public float Speed => fermData.Speed;
+        public override float Speed => fermData.Speed;
 
         /// <summary>
         /// Ferm level
@@ -42,29 +33,12 @@ namespace Features.Ferm
         /// </summary>
         public int Rang => fermData.Rang;
 
-        /// <summary>
-        /// Fruit creation progress (0..1)
-        /// </summary>
-        public float Progress => progress;
-
         [SerializeField]
         protected FermData fermData = default;
         [SerializeField]
         protected FruitData fruitData = default;
         [SerializeField]
         protected BaseFruit fruitPrefab = default;
-        [SerializeField]
-        protected Transform spawnPosition = default;
-        [SerializeField]
-        protected Transform fruitParent = default;
-        [SerializeField]
-        protected float awaitTime = 0.1f;
-
-        protected Coroutine spawnCoroutine = default;
-        protected float progress = default;
-
-        protected const int MAX_PROGRESS_VALUE = 1;
-        protected const int SPEED_CONVERT_RATIO = 10;
 
         protected virtual void Awake()
         {
@@ -84,38 +58,32 @@ namespace Features.Ferm
             {
                 StopCoroutine(spawnCoroutine);
             }
-            spawnCoroutine = StartCoroutine(FruitSpawner());
+            spawnCoroutine = StartCoroutine(Spawn());
         }
 
-        protected virtual IEnumerator FruitSpawner()
+        protected override IEnumerator Spawn()
         {
             float curTime;
-            float spawnTime = SPEED_CONVERT_RATIO / fermData.Speed;
+            float spawnTime = GlobalData.SPEED_CONVERT_RATIO / fermData.Speed;
             BaseFruit baseFruit;
             while (isActiveAndEnabled)
             {
                 curTime = 0;
                 while (curTime < spawnTime)
                 {
+                    while (!isSpawning)
+                    {
+                        yield return null;
+                    }
                     SetProgress(curTime / spawnTime);
-                    curTime += awaitTime;
-                    yield return new WaitForSeconds(awaitTime);
+                    curTime += Time.deltaTime;
+                    yield return null;
                 }
                 SetProgress(MAX_PROGRESS_VALUE);
                 baseFruit = Instantiate(fruitPrefab, spawnPosition);
                 baseFruit.transform.parent = fruitParent;
                 baseFruit.Init(fruitData);
-                onFruitSpawned();
-            }
-        }
-
-        protected virtual void SetProgress(float val)
-        {
-            float clampedVal = Mathf.Clamp01(val);
-            if (progress != clampedVal)
-            {
-                progress = clampedVal;
-                onProgressValueChange();
+                NotifySpawn();
             }
         }
 

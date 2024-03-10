@@ -17,5 +17,5 @@ MonoBehaviour:
   rang: 0
   fermName: 
   speed:
-    ParamValue: 2
+    ParamValue: 10
     GrowthPercent: 50
