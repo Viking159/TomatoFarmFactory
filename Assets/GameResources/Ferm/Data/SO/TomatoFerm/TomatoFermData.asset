@@ -14,8 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ppKey: tomatoFermDataKey
   dataName: Tomato ferm
-  level: 3
-  rang: 0
+  level: 19
+  maxLevel: 25
+  updateLevelPrice:
+    ParamValue: 1
+    GrowthPercent: 0
+  rang: 1
+  maxRang: 5
+  updateRangPrice:
+    ParamValue: 0
+    GrowthPercent: 0
   speed:
     ParamValue: 7
-    GrowthPercent: 30
+    GrowthPercent: 10

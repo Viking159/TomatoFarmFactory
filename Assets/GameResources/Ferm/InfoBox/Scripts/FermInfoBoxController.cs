@@ -38,7 +38,6 @@ namespace Features.Ferm.InfoBox
             if (infoBox != null)
             {
                 infoBox.onBoxClose -= DestroyInfoBox;
-                infoBox.gameObject.SetActive(false);
                 Destroy(infoBox.gameObject);
             }
         }    

@@ -5,14 +5,14 @@ namespace Features.Ferm.InfoBox
     using UnityEngine;
 
     /// <summary>
-    /// Ferm name info text
+    /// Abstract ferm info text
     /// </summary>
-    public class InfoFermNameText : BaseTextView
+    public abstract class AbstractInfoFermText : BaseTextView
     {
         [SerializeField]
         protected FermDataContainer fermDataContainer = default;
         [SerializeField]
-        protected string mask = "Name: {0}";
+        protected string mask = "Param: {0}";
 
         protected virtual void OnEnable()
         {
@@ -20,8 +20,10 @@ namespace Features.Ferm.InfoBox
             fermDataContainer.onDataChange += SetText;
         }
 
-        protected virtual void SetText()
-            => SetView(string.Format(mask, fermDataContainer.Name));
+        /// <summary>
+        /// Set ferm info text
+        /// </summary>
+        protected abstract void SetText();
 
         protected virtual void OnDisable()
             => fermDataContainer.onDataChange -= SetText;

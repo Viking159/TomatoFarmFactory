@@ -14,6 +14,7 @@ namespace Features.Fruit.Data
         /// Fruits count
         /// </summary>
         public virtual int Count => count.GetGrowthValue(level);
+        [SerializeField]
         protected IntUpdateableParam count = new IntUpdateableParam()
         {
             ParamValue = 1,
