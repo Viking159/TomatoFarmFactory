@@ -31,9 +31,29 @@ namespace Features.Ferm.Data
         public int Level => fermData.Level;
 
         /// <summary>
+        /// Max level
+        /// </summary>
+        public int MaxLevel => fermData.MaxLevel;
+
+        /// <summary>
+        /// Update level price
+        /// </summary>
+        public int UpdateLevelPrice => fermData.UpdateLevelPrice;
+
+        /// <summary>
         /// Rang
         /// </summary>
         public int Rang => fermData.Rang;
+
+        /// <summary>
+        /// Max rang
+        /// </summary>
+        public int MaxRang => fermData.MaxRang;
+
+        /// <summary>
+        /// Update rang price
+        /// </summary>
+        public int UpdateRangPrice => fermData.UpdateRangPrice;
 
         [SerializeField]
         protected FermData fermData = default;

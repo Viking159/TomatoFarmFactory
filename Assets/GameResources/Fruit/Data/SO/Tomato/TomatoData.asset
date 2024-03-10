@@ -14,7 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ppKey: tomatoDataKey
   dataName: Tomato
-  level: 0
+  level: 1
+  maxLevel: 5
+  updateLevelPrice:
+    ParamValue: 10
+    GrowthPercent: 50
+  count:
+    ParamValue: 1
+    GrowthPercent: 100
   price:
     ParamValue: 1
     GrowthPercent: 100

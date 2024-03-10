@@ -40,16 +40,24 @@ namespace Features.Ferm
         [SerializeField]
         protected BaseFruit fruitPrefab = default;
 
+        protected float spawnTime = default;
+
         protected virtual void Awake()
         {
-            SetFruitLevel();
-            fermData.onDataChange += SetFruitLevel;
+            UpdateParams();
+            fermData.onDataChange += UpdateParams;
         }
 
         protected virtual void OnEnable()
             => StartSpawn();
 
-        protected virtual void SetFruitLevel()
+        protected virtual void UpdateParams()
+        {
+            spawnTime = GlobalData.SPEED_CONVERT_RATIO / fermData.Speed;
+            SetFruitData();
+        }
+
+        protected virtual void SetFruitData()
             => fruitData.SetLevel(fermData.Rang);
 
         protected virtual void StartSpawn()
@@ -64,7 +72,6 @@ namespace Features.Ferm
         protected override IEnumerator Spawn()
         {
             float curTime;
-            float spawnTime = GlobalData.SPEED_CONVERT_RATIO / fermData.Speed;
             BaseFruit baseFruit;
             while (isActiveAndEnabled)
             {
@@ -96,6 +103,6 @@ namespace Features.Ferm
         }
 
         protected virtual void OnDestroy()
-            => fermData.onDataChange -= SetFruitLevel;
+            => fermData.onDataChange -= UpdateParams;
     }
 }

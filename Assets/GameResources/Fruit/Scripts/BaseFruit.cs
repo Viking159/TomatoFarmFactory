@@ -47,7 +47,6 @@ namespace Features.Fruit
         public virtual void Sale()
             => Destroy(gameObject);
 
-
         public virtual void Consume(IConsumer consumer)
         {
             Debug.Log($"{nameof(BaseFruit)}: Consume");

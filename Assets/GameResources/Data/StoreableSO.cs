@@ -1,6 +1,7 @@
 namespace Features.Data
 {
     using Extensions.Data;
+    using Features.Extensions.Data.UpdateableParam;
     using System;
     using UnityEngine;
 
@@ -32,6 +33,26 @@ namespace Features.Data
         protected int level = default;
 
         /// <summary>
+        /// Max level
+        /// </summary>
+        public virtual int MaxLevel => maxLevel;
+        [SerializeField]
+        protected int maxLevel = 25;
+
+        /// <summary>
+        /// Update level price
+        /// </summary>
+        public int UpdateLevelPrice => updateLevelPrice.GetGrowthValue(level);
+        [SerializeField]
+        protected IntUpdateableParam updateLevelPrice = new IntUpdateableParam
+        {
+            ParamValue = 10,
+            GrowthPercent = 50
+        };
+
+        protected const int MIN_LEVEL = 0;
+
+        /// <summary>
         /// Load data
         /// </summary>
         public virtual void LoadData()
@@ -48,9 +69,13 @@ namespace Features.Data
         /// </summary>
         public virtual void SetLevel(int newValue)
         {
-            level = Mathf.Max(0, newValue);
-            SaveData();
-            Notify();
+            int clampedValue = Mathf.Clamp(newValue, MIN_LEVEL, maxLevel);
+            if (level != clampedValue)
+            {
+                level = clampedValue;
+                SaveData();
+                Notify();
+            }
         }
 
         protected virtual void Notify()
