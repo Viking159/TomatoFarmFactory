@@ -12,7 +12,6 @@ namespace Features.Conveyor.Data
     {
         /// <summary>
         /// Conveyor speed
-        /// Conveyor speed
         /// </summary>
         public virtual float Speed => speed.GetGrowthValue(level);
         [SerializeField]

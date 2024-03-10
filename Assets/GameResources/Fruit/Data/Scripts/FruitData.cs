@@ -11,13 +11,6 @@ namespace Features.Fruit.Data
     public class FruitData : StoreableSO
     {
         /// <summary>
-        /// Fruit name
-        /// </summary>
-        public virtual string Name => fruitName;
-        [SerializeField]
-        protected string fruitName = default;
-
-        /// <summary>
         /// Fruits count
         /// </summary>
         public virtual int Count => count.GetGrowthValue(level);

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: ConveyorData
   m_EditorClassIdentifier: 
   ppKey: conveyorDataKey
+  dataName: Conveyor
   level: 0
   speed:
     ParamValue: 10

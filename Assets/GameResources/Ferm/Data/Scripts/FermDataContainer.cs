@@ -16,6 +16,11 @@ namespace Features.Ferm.Data
         public event Action onDataChange = delegate { };
 
         /// <summary>
+        /// Name
+        /// </summary>
+        public string Name => fermData.Name;
+
+        /// <summary>
         /// Speed
         /// </summary>
         public float Speed => fermData.Speed;
