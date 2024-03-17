@@ -18,8 +18,8 @@ namespace Features.Ferm.Data
         [SerializeField]
         protected FloatUpdateableParam speed = new FloatUpdateableParam()
         {
-            ParamValue = 2,
-            GrowthPercent = 50
+            ParamValue = 1.67f,
+            Ratio = 0.1999f
         };
     }
 }

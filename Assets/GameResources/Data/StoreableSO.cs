@@ -15,9 +15,6 @@ namespace Features.Data
         /// </summary>
         public event Action onDataChange = delegate { };
 
-        [SerializeField]
-        protected string ppKey = "defaultKey";
-
         /// <summary>
         /// Name
         /// </summary>
@@ -47,8 +44,11 @@ namespace Features.Data
         protected IntUpdateableParam updateLevelPrice = new IntUpdateableParam
         {
             ParamValue = 10,
-            GrowthPercent = 50
+            Ratio = 0.05f
         };
+
+        [SerializeField]
+        protected string ppKey = "defaultKey";
 
         protected const int MIN_LEVEL = 0;
 

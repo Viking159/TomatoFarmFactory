@@ -9,6 +9,6 @@ namespace Features.Extensions.Data.UpdateableParam
     public class FloatUpdateableParam : AbstractUpdateableParam<float>
     {
         public override float GetGrowthValue(int level)
-            => ParamValue * MathF.Pow(PercentToFloat(), level);
+            => ParamValue * (DEFAULT_VALUE + Ratio * level);
     }
 }

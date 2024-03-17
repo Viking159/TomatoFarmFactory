@@ -12,18 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e5f0b4e241e7b4489f36bb62cbc6ba1, type: 3}
   m_Name: TomatoFermData
   m_EditorClassIdentifier: 
-  ppKey: tomatoFermDataKey
   dataName: Tomato ferm
-  level: 19
+  level: 0
   maxLevel: 25
   updateLevelPrice:
     ParamValue: 1
-    GrowthPercent: 0
+    Ratio: 1.01
+  ppKey: tomatoFermDataKey
   rang: 1
   maxRang: 5
   updateRangPrice:
     ParamValue: 0
-    GrowthPercent: 0
+    Ratio: 0
   speed:
-    ParamValue: 7
-    GrowthPercent: 10
+    ParamValue: 1.67
+    Ratio: 0.2
