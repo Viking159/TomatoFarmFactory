@@ -18,7 +18,7 @@ namespace Features.Fruit.Data
         protected IntUpdateableParam count = new IntUpdateableParam()
         {
             ParamValue = 1,
-            GrowthPercent = 100
+            Ratio = 100
         };
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace Features.Fruit.Data
         protected IntUpdateableParam price = new IntUpdateableParam()
         {
             ParamValue = 1,
-            GrowthPercent = 100
+            Ratio = 100
         };
 
         [SerializeField]

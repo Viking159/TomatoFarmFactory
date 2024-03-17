@@ -31,7 +31,7 @@ namespace Features.Data
         protected IntUpdateableParam updateRangPrice = new IntUpdateableParam
         {
             ParamValue = 0,
-            GrowthPercent = 0
+            Ratio = 0
         };
 
         public override void LoadData()

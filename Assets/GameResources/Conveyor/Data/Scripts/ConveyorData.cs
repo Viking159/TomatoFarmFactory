@@ -17,8 +17,8 @@ namespace Features.Conveyor.Data
         [SerializeField]
         protected FloatUpdateableParam speed = new FloatUpdateableParam()
         {
-            ParamValue = 10,
-            GrowthPercent = 10
+            ParamValue = 1.67f,
+            Ratio = 0.1999f
         };
     }
 }

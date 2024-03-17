@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a58a26be876993646be52981fe3026d4, type: 3}
   m_Name: TomatoData
   m_EditorClassIdentifier: 
-  ppKey: tomatoDataKey
   dataName: Tomato
   level: 1
   maxLevel: 5
   updateLevelPrice:
     ParamValue: 10
-    GrowthPercent: 50
+    Ratio: 1.2
+  ppKey: tomatoDataKey
   count:
     ParamValue: 1
-    GrowthPercent: 100
+    Ratio: 1.01
   price:
     ParamValue: 1
-    GrowthPercent: 100
+    Ratio: 1.01
   priceLevel: 0
