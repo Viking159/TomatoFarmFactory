@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 4736637535144256675}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1399419953683894713}
@@ -117,7 +117,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1399419953683894713}
   - component: {fileID: 5928496576768166506}
-  - component: {fileID: 3597379632922823438}
+  - component: {fileID: 3800415143195876901}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -192,7 +192,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3597379632922823438
+--- !u!114 &3800415143195876901
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -201,8 +201,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 6017353271858798755}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fcf354508f699b409b3dfc749a9af7e, type: 3}
+  m_Script: {fileID: 11500000, guid: 4eb15299c34bacf408b48235e05c78d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseFruit: {fileID: 4736637535144256682}
-  spriteLevelData: {fileID: 11400000, guid: 4c1ab70146b36ff4bb85b715525a9dec, type: 2}
+  data: {fileID: 11400000, guid: d89ec0ea50e9d41428e94be37ccff648, type: 2}
+  spritesData: {fileID: 11400000, guid: 4c1ab70146b36ff4bb85b715525a9dec, type: 2}

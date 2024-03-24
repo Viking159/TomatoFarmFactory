@@ -13,7 +13,7 @@ namespace Features.UI
         [SerializeField]
         protected BaseFruit baseFruit = default;
         [SerializeField]
-        protected SpriteLevelData spriteLevelData = default;
+        protected SpritesData spriteLevelData = default;
 
         protected SpriteRenderer spriteRenderer = default;
 

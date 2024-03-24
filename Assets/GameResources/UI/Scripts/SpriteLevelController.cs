@@ -12,7 +12,7 @@ namespace Features.UI
         [SerializeField]
         protected StoreableSO levelData = default;
         [SerializeField]
-        protected SpriteLevelData spriteLevelData = default;
+        protected SpritesData spriteLevelData = default;
 
         protected SpriteRenderer spriteRenderer = default;
 
