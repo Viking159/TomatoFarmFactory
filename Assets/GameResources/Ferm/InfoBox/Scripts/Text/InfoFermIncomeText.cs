@@ -1,8 +1,6 @@
 namespace Features.Ferm.InfoBox
 {
-    using Features.Data;
     using Features.Fruit.Data;
-    using System;
     using UnityEngine;
 
     /// <summary>
@@ -12,8 +10,6 @@ namespace Features.Ferm.InfoBox
     {
         [SerializeField]
         protected FruitData fruitData = default;
-        [SerializeField]
-        protected int digitsCount = 2;
 
         protected override void OnEnable()
         {
@@ -22,7 +18,7 @@ namespace Features.Ferm.InfoBox
         }
 
         protected override void SetText()
-            => SetView(string.Format(mask, Math.Round(fruitData.Price * fruitData.Count * fermDataContainer.Speed / GlobalData.SPEED_CONVERT_RATIO, digitsCount)));
+            => SetView(string.Format(mask, fruitData.Price * fruitData.Count));
 
         protected override void OnDisable()
         {

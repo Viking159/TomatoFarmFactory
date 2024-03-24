@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: TomatoFermData
   m_EditorClassIdentifier: 
   dataName: Tomato ferm
-  level: 0
+  level: 25
   maxLevel: 25
   updateLevelPrice:
     ParamValue: 1
     Ratio: 1.01
   ppKey: tomatoFermDataKey
-  rang: 1
+  rang: 0
   maxRang: 5
   updateRangPrice:
     ParamValue: 0
