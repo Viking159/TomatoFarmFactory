@@ -51,7 +51,5 @@ namespace Features.Fruit
         {
             Debug.Log($"{nameof(BaseFruit)}: Consume");
         }
-
-        
     }
 }
