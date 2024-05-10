@@ -9,21 +9,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e5f0b4e241e7b4489f36bb62cbc6ba1, type: 3}
-  m_Name: TomatoFermData
+  m_Script: {fileID: 11500000, guid: cb68265b3a34cc44eaf2cf032c3a1754, type: 3}
+  m_Name: KetchupFabricData
   m_EditorClassIdentifier: 
-  dataName: Tomato ferm
-  level: 0
+  dataName: KetchupFabric
+  level: 5
   maxLevel: 25
   updateLevelPrice:
     ParamValue: 1
     Ratio: 1.01
-  ppKey: tomatoFermDataKey
-  rang: 2
+  ppKey: defaultKey
+  rang: 1
   maxRang: 5
   updateRangPrice:
     ParamValue: 5
     Ratio: 0.5
   speed:
     ParamValue: 1.67
-    Ratio: 0.2
+    Ratio: 0.1999
+  consumeSpeed:
+    ParamValue: 1.67
+    Ratio: 0.1

@@ -9,6 +9,9 @@ namespace Features.Spawner
     /// </summary>
     public abstract class AbstractObjectCreator : MonoBehaviour
     {
+        protected const int MIN_PROGRESS_VALUE = 0;
+        protected const int MAX_PROGRESS_VALUE = 1;
+
         /// <summary>
         /// Spawner state change event
         /// </summary>
@@ -42,14 +45,14 @@ namespace Features.Spawner
         [SerializeField]
         protected Transform spawnPosition = default;
         [SerializeField]
-        protected Transform fruitParent = default;
+        protected Transform objectParent = default;
 
         protected Coroutine spawnCoroutine = default;
 
-        protected const int MAX_PROGRESS_VALUE = 1;
+        protected float spawnTime = default;
 
         /// <summary>
-        /// Set emergency break value
+        /// Set conveyor progress state
         /// </summary>
         public virtual void SetConveyorState(bool isSpawning)
         {
@@ -57,13 +60,39 @@ namespace Features.Spawner
             {
                 this.isSpawning = isSpawning;
                 NotifySpawnState();
-            }            
+            }
         }
 
         /// <summary>
         /// Spawn objects coroutine
         /// </summary>
-        protected abstract IEnumerator Spawn();
+        protected abstract void Spawn();
+
+        /// <summary>
+        /// Set spawn time
+        /// </summary>
+        protected abstract void SetSpawnTime();
+
+        protected virtual IEnumerator CountTime()
+        {
+            float curTime;
+            while (isActiveAndEnabled)
+            {
+                curTime = 0;
+                while (curTime < spawnTime)
+                {
+                    while (!isSpawning)
+                    {
+                        yield return null;
+                    }
+                    SetProgress(curTime / spawnTime);
+                    curTime += Time.deltaTime;
+                    yield return null;
+                }
+                SetProgress(MAX_PROGRESS_VALUE);
+                Spawn();
+            }
+        }
 
         protected virtual void SetProgress(float val)
         {
@@ -83,5 +112,28 @@ namespace Features.Spawner
 
         protected virtual void NotfityProgress()
             => onProgressValueChange();
+
+        protected virtual void StartSpawn()
+        {
+            if (spawnCoroutine != null)
+            {
+                StopCoroutine(spawnCoroutine);
+            }
+            SetProgress(MIN_PROGRESS_VALUE);
+            spawnCoroutine = StartCoroutine(CountTime());
+        }
+
+        protected virtual void StopSpawn()
+        {
+            if (spawnCoroutine != null)
+            {
+                StopCoroutine(spawnCoroutine);
+            }
+            spawnCoroutine = null;
+            SetProgress(MIN_PROGRESS_VALUE);
+        }
+
+        protected virtual void OnDisable() 
+            => StopSpawn();
     }
 }

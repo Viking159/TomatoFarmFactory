@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dba99d64f46533641bdca13d0ad781e2, type: 3}
-  m_Name: TomatoFermRangSpritesDataa
+  m_Name: KetchupLevelSpritesData
   m_EditorClassIdentifier: 
   _sprites:
   - {fileID: 21300000, guid: 98d2b594456dceb4cbbe08a10923cc82, type: 3}

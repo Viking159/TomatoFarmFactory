@@ -5,7 +5,7 @@ namespace Features.Data
     using UnityEngine;
 
     /// <summary>
-    /// 
+    /// Abstract class for storeable SO with two storeable datas
     /// </summary>
     public abstract class DoubleStoreableSO : StoreableSO
     {
@@ -26,12 +26,12 @@ namespace Features.Data
         /// <summary>
         /// Update rang price
         /// </summary>
-        public int UpdateRangPrice => updateLevelPrice.GetGrowthValue(level);
+        public int UpdateRangPrice => updateLevelPrice.GetGrowthValue(rang);
         [SerializeField]
         protected IntUpdateableParam updateRangPrice = new IntUpdateableParam
         {
-            ParamValue = 0,
-            Ratio = 0
+            ParamValue = 1,
+            Ratio = 0.1f
         };
 
         public override void LoadData()

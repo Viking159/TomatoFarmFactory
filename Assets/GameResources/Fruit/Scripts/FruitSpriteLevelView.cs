@@ -3,7 +3,7 @@ namespace Features.StoreableSpriteView
     /// <summary>
     /// Fruit sprite view
     /// </summary>
-    public class FruitSpriteLevelController : LevelSpriteView
+    public class FruitSpriteLevelView : LevelSpriteView
     {
         protected override void OnEnable() 
             => SetSprite();
