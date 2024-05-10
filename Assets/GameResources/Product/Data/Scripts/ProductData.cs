@@ -2,6 +2,7 @@ namespace Features.Product.Data
 {
     using Features.Data;
     using Features.Extensions.Data.UpdateableParam;
+    using Features.Fruit.Data;
     using UnityEngine;
 
     /// <summary>
@@ -13,7 +14,7 @@ namespace Features.Product.Data
         /// <summary>
         /// Fruits count per product
         /// </summary>
-        public virtual int FruitsCount => price.GetGrowthValue(level);
+        public virtual int FruitsCount => fruitsCount.GetGrowthValue(level);
         [SerializeField]
         protected IntExponentialUpdateableParam fruitsCount = new IntExponentialUpdateableParam()
         {
@@ -24,16 +25,19 @@ namespace Features.Product.Data
         /// <summary>
         /// Product price
         /// </summary>
-        public virtual int Price => price.GetGrowthValue(priceLevel);
+        public virtual int Price => fruitData.Count * fruitData.Price * priceRatio.GetGrowthValue(priceLevel);
         [SerializeField]
-        protected IntUpdateableParam price = new IntUpdateableParam()
+        protected IntUpdateableParam priceRatio = new IntUpdateableParam()
         {
-            ParamValue = 1,
+            ParamValue = 2,
             Ratio = 1
         };
 
         [SerializeField]
         protected int priceLevel = default;
+
+        [SerializeField]
+        protected FruitData fruitData = default;
 
         /// <summary>
         /// Set price level

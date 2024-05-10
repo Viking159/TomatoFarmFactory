@@ -32,7 +32,7 @@ namespace Features.Conveyor
             {
                 pathTween = rb.DOPath
                     (
-                        currentConveyorElement.GetPath(),
+                        currentConveyorElement.GetPath(transform.position),
                         GetDuration(currentConveyorElement.Speed),
                         PathType.Linear
                     );

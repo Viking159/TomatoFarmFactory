@@ -44,7 +44,7 @@ namespace Features.Data
         protected IntUpdateableParam updateLevelPrice = new IntUpdateableParam
         {
             ParamValue = 10,
-            Ratio = 0.05f
+            Ratio = 1.05f
         };
 
         [SerializeField]

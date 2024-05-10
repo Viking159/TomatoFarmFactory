@@ -59,7 +59,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 15
   m_TargetDisplay: 0
 --- !u!114 &9159479669864145908
 MonoBehaviour:
@@ -204,7 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7636c9e61630e7e4e9d36293b3262eaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fermController: {fileID: 9159479671574218697}
+  creator: {fileID: 9159479671574218697}
 --- !u!1 &9159479670648196861
 GameObject:
   m_ObjectHideFlags: 0
@@ -665,7 +665,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isSpawning: 1
   spawnPosition: {fileID: 9159479671545502522}
-  fruitParent: {fileID: 0}
-  fermData: {fileID: 11400000, guid: df6506e3796e9a0459b9e91d43a6a2f1, type: 2}
+  objectParent: {fileID: 0}
+  data: {fileID: 11400000, guid: df6506e3796e9a0459b9e91d43a6a2f1, type: 2}
+  prefabObect: {fileID: 4736637535144256682, guid: a18fb5753713210458041d8f90e777be, type: 3}
   fruitData: {fileID: 11400000, guid: d89ec0ea50e9d41428e94be37ccff648, type: 2}
-  fruitPrefab: {fileID: 4736637535144256682, guid: a18fb5753713210458041d8f90e777be, type: 3}

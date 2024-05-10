@@ -2,37 +2,22 @@ namespace Features.Product
 {
     using Features.Interfaces;
     using Features.Product.Data;
+    using Features.Spawner;
     using System;
     using UnityEngine;
 
     /// <summary>
     /// Base product class
     /// </summary>
-    public class BaseProduct : MonoBehaviour, ISaleable
+    public class BaseProduct : AbstractInitableObject<ProductData>, ISaleable
     {
-        /// <summary>
-        /// Data init event
-        /// </summary>
-        public event Action onDataInited = delegate { };
+        public virtual string Name => data == null ? string.Empty : data.Name;
 
-        public virtual string Name => productData == null ? string.Empty : productData.Name;
+        public virtual int Price => data == null ? default : data.Price;
 
-        public virtual int Price => productData == null ? default : productData.Price;
-
-        public virtual int Count => productData == null ? default : productData.FruitsCount;
-
-        protected ProductData productData = default;
-
-        public virtual void Init(ProductData productData)
-        {
-            this.productData = productData;
-            NotifyDataInit();
-        }
+        public virtual int Count => data == null ? default : data.FruitsCount;
 
         public virtual void Sale()
             => Destroy(gameObject);
-
-        protected virtual void NotifyDataInit()
-            => onDataInited();
     }
 }

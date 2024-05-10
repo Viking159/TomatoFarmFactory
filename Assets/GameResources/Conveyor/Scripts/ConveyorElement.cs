@@ -2,6 +2,7 @@ namespace Features.Conveyor
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using UnityEngine;
 
     /// <summary>
@@ -18,16 +19,6 @@ namespace Features.Conveyor
         /// Rider count change event
         /// </summary>
         public event Action onRidersCountChange = delegate { };
-
-        /// <summary>
-        /// Element start point
-        /// </summary>
-        public virtual Vector2 StartPoint => startPointTranform.position;
-
-        /// <summary>
-        /// Element end point
-        /// </summary>
-        public virtual Vector2 EndPoint => endPointTranform.position;
 
         /// <summary>
         /// Conveyor element speed
@@ -48,15 +39,9 @@ namespace Features.Conveyor
         public virtual int LimitRidersCount => limitRidersCount;
         [SerializeField]
         protected int limitRidersCount = 2;
-
-        [SerializeField]
-        protected Transform startPointTranform = default;
-        [SerializeField]
-        protected Transform endPointTranform = default;
         [SerializeField]
         protected List<Transform> pathPoints = new List<Transform>();
         
-
         protected ConveyorController conveyorController = default;
 
         /// <summary>
@@ -70,15 +55,13 @@ namespace Features.Conveyor
             SetRidersCount(0);
         }
 
-        public Vector2[] GetPath()
-        {
-            Vector2[] path = new Vector2[pathPoints.Count];
-            for (int i = 0; i < path.Length; i++)
-            {
-                path[i] = pathPoints[i].position;
-            }
-            return path;
-        }
+        /// <summary>
+        /// Get conveoyr ride path
+        /// </summary>
+        public virtual Vector2[] GetPath(Vector3 riderPosition)
+            => pathPoints
+            .Select<Transform, Vector2>(pointTransform => pointTransform.position)
+            .ToArray();
 
         protected virtual void SetSpeed()
         {
@@ -121,7 +104,9 @@ namespace Features.Conveyor
         protected virtual void OnDestroy()
         {
             if (conveyorController != null)
+            {
                 conveyorController.onLevelChange -= SetSpeed;
+            }
         }
     }
 }

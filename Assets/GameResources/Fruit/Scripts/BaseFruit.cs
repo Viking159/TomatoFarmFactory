@@ -4,45 +4,23 @@ namespace Features.Fruit
     using System;
     using UnityEngine;
     using Features.Interfaces;
+    using Features.Spawner;
 
     /// <summary>
     /// Base fruit class
     /// </summary>
-    public class BaseFruit : MonoBehaviour, ISaleable, IConsumable
+    public class BaseFruit : AbstractInitableObject<FruitData>, ISaleable, IConsumable
     {
-        /// <summary>
-        /// Data init event
-        /// </summary>
-        public event Action onDataInited = delegate { };
-
         /// <summary>
         /// Fruit level
         /// </summary>
-        public virtual int Level { get; protected set; }
+        public virtual int Level => data == null ? default : data.Level;
 
-        /// <summary>
-        /// Is fruit data inited
-        /// </summary>
-        public virtual bool IsInited { get; protected set; }
+        public virtual string Name => data == null ? string.Empty : data.Name;
 
-        public virtual string Name { get; protected set; }
+        public virtual int Price => data == null ? default : data.Price;
 
-        public virtual int Price { get; protected set; }
-
-        public virtual int Count { get; protected set; }
-
-        /// <summary>
-        /// Init fruit data
-        /// </summary>
-        public virtual void Init(FruitData fruitData)
-        {
-            Name = fruitData.Name;
-            Price = fruitData.Price;
-            Count = fruitData.Count;
-            Level = fruitData.Level;
-            IsInited = true;
-            onDataInited();
-        }
+        public virtual int Count => data == null ? default : data.Count;
 
         public virtual void Sale()
             => Destroy(gameObject);
@@ -50,6 +28,7 @@ namespace Features.Fruit
         public virtual void Consume(IConsumer consumer)
         {
             Debug.Log($"{nameof(BaseFruit)}: Consume");
+            Destroy(gameObject);
         }
     }
 }

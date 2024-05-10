@@ -1,4 +1,4 @@
-namespace Features.Ferm
+namespace Features.Spawner
 {
     using UnityEngine;
     using UnityEngine.UI;
@@ -7,10 +7,10 @@ namespace Features.Ferm
     /// Ferm progress bar controller
     /// </summary>
     [RequireComponent(typeof(Slider))]
-    public class FermProgressBar : MonoBehaviour
+    public class CreatorProgressBar : MonoBehaviour
     {
         [SerializeField]
-        protected FermController fermController = default;
+        protected AbstractObjectCreator creator = default;
 
         protected Slider slider = default;
 
@@ -20,20 +20,20 @@ namespace Features.Ferm
         protected virtual void OnEnable()
         {
             UpdateProgressBar();
-            if (fermController != null)
+            if (creator != null)
             {
-                fermController.onProgressValueChange += UpdateProgressBar;
+                creator.onProgressValueChange += UpdateProgressBar;
             }
         }
 
         protected virtual void UpdateProgressBar()
-            => slider.value = fermController.Progress;
+            => slider.value = creator.Progress;
 
         protected virtual void OnDisable()
         {
-            if (fermController != null)
+            if (creator != null)
             {
-                fermController.onProgressValueChange -= UpdateProgressBar;
+                creator.onProgressValueChange -= UpdateProgressBar;
             }
         }
     }
