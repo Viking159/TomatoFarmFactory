@@ -13,15 +13,16 @@ namespace Features.Shop
         [SerializeField]
         protected MoneyData moneyData = default;
 
+        protected ISaleable saleable = default;
+
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            ISaleable saleable = collision.GetComponent<ISaleable>();
-            if (saleable == null)
+            saleable = collision.GetComponent<ISaleable>();
+            if (saleable != null)
             {
-                return; 
+                moneyData.SetCoins(moneyData.Coins + saleable.Price * saleable.Count);
+                saleable.Sale();
             }
-            moneyData.SetCoins(moneyData.Coins + saleable.Price * saleable.Count);
-            saleable.Sale();
         }
     }
 }

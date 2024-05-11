@@ -1,6 +1,5 @@
 namespace Features.Ferm
 {
-    using Features.Data;
     using Features.Ferm.Data;
     using Features.Fruit;
     using Features.Fruit.Data;
@@ -30,6 +29,6 @@ namespace Features.Ferm
             => fruitData.SetLevel(data.Rang);
 
         protected override void InitData()
-            => createdObject.Init(fruitData);
+            => createdObject.InitData(fruitData);
     }
 }

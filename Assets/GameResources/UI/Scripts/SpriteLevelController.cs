@@ -29,7 +29,7 @@ namespace Features.UI
         {
             if (levelData.Level < spriteLevelData.SpritesCount)
             {
-                spriteRenderer.sprite = spriteLevelData.GetSpriteByLevel(levelData.Level);
+                spriteRenderer.sprite = spriteLevelData.GetSpriteByIndex(levelData.Level);
             }
         }
 

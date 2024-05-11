@@ -7,15 +7,44 @@ namespace Features.Conveyor
     /// <summary>
     /// Object on coveyor velocity
     /// </summary>
-    [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
+    [RequireComponent(typeof(Rigidbody2D))]
     public class ConveyorRider : MonoBehaviour
     {
+        /// <summary>
+        /// Is ride paused
+        /// </summary>
+        public virtual bool IsPaused { get; protected set; } = false;
+
         protected ConveyorElement currentConveyorElement = default;
         protected Tween pathTween = default;
         protected Rigidbody2D rb;
 
         protected virtual void Awake()
            => rb = GetComponent<Rigidbody2D>();
+
+        /// <summary>
+        /// Pause riding
+        /// </summary>
+        public virtual void PauseRiding()
+        {
+            if (pathTween != null)
+            {
+                pathTween.Pause();
+                IsPaused = true;
+            }
+        }
+
+        /// <summary>
+        /// Resume riding
+        /// </summary>
+        public virtual void ResumRiding()
+        {
+            if (pathTween != null)
+            {
+                IsPaused = false;
+                pathTween.Play();
+            }
+        }
 
         protected virtual void OnTriggerEnter2D(Collider2D collision)
         {
@@ -27,7 +56,7 @@ namespace Features.Conveyor
 
         protected virtual void Ride()
         {
-            Stop();
+            KillRider();
             if (currentConveyorElement != null && currentConveyorElement.Speed > 0)
             {
                 pathTween = rb.DOPath
@@ -36,13 +65,14 @@ namespace Features.Conveyor
                         GetDuration(currentConveyorElement.Speed),
                         PathType.Linear
                     );
-            } 
+                if (IsPaused)
+                {
+                    PauseRiding();
+                }
+            }
         }
 
-        protected virtual float GetDuration(float speed)
-            => GlobalData.SPEED_CONVERT_RATIO / speed;
-
-        protected virtual void Stop()
+        protected virtual void KillRider()
         {
             if (pathTween != null)
             {
@@ -50,17 +80,20 @@ namespace Features.Conveyor
             }
         }
 
+        protected virtual float GetDuration(float speed)
+            => GlobalData.SPEED_CONVERT_RATIO / speed;
+
         protected virtual void SetConveyorElement(ConveyorElement conveyorElement)
         {
             ResetConveyorElement();
             currentConveyorElement = conveyorElement;
-            currentConveyorElement.onSpeedValueChange += Ride;
             Ride();
+            currentConveyorElement.onSpeedValueChange += Ride;
         }
 
         protected virtual void ResetConveyorElement()
         {
-            Stop();
+            KillRider();
             if (currentConveyorElement != null)
             {
                 currentConveyorElement.onSpeedValueChange -= Ride;
