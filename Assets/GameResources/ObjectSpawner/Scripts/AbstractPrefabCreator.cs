@@ -46,9 +46,9 @@ namespace Features.Spawner
 
         protected override void Spawn()
         {
+            NotifySpawnStart();
             spawnedCount++;
             createdObject = Instantiate(prefabObect, spawnPosition);
-            createdObject.transform.parent = objectParent;
             createdObject.SetSpawnNumber(spawnedCount);
             InitData();
             NotifySpawn();

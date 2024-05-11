@@ -8,7 +8,7 @@ namespace Features.Fruit
     /// <summary>
     /// Base fruit class
     /// </summary>
-    public class BaseFruit : AbstractInitableObject<FruitData>, ISaleable, IConsumable
+    public class BaseFruit : AbstractInitableObject<FruitData>, ISaleable
     {
         /// <summary>
         /// Fruit level
@@ -23,11 +23,5 @@ namespace Features.Fruit
 
         public virtual void Sale()
             => Destroy(gameObject);
-
-        public virtual void Consume(IConsumer consumer)
-        {
-            Debug.Log($"{nameof(BaseFruit)}: Consume");
-            Destroy(gameObject);
-        }
     }
 }

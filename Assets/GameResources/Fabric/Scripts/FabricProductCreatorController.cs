@@ -6,11 +6,12 @@ namespace Features.Fabric
     using Features.Spawner;
     using System;
     using UnityEngine;
+    using System.Collections;
 
     /// <summary>
-    /// Product fabric
+    /// Product creator
     /// </summary>
-    public class ProductFabricController : AbstractPrefabCreator<BaseProduct, FabricData>
+    public class FabricProductCreatorController : AbstractPrefabCreator<BaseProduct, FabricData>
     {
         /// <summary>
         /// Change active spawning state event
@@ -18,11 +19,16 @@ namespace Features.Fabric
         public event Action onActiveSpwaningStateChange = delegate { };
 
         /// <summary>
-        /// Is spawning in some progress (can be pause state, but can be resumed)
+        /// Is spawning in some progress (can be in pause state, but can be resumed)
         /// </summary>
         public bool IsActiveSpawning => isActiveSpawning;
         [SerializeField]
         protected bool isActiveSpawning = false;
+
+        /// <summary>
+        /// Required count of fruits
+        /// </summary>
+        public int RequiredFruitsCount => productData.FruitsCount;
 
         public override float Speed => data.Speed;
 
@@ -54,19 +60,23 @@ namespace Features.Fabric
         protected virtual void SetProductData()
             => productData.SetLevel(data.Rang);
 
+        protected override IEnumerator SpawnObjects()
+        {
+            while (isActiveAndEnabled && isActiveSpawning)
+            {
+                yield return CountTime();
+                Spawn();
+            }
+            SetProgress(MIN_PROGRESS_VALUE);
+            spawnCoroutine = null;
+        }
+
         protected virtual void SetConveyorStateAndActivity()
         {
             SetConveyorState(isSpawning);
-            if (isActiveSpawning)
+            if (isActiveSpawning && spawnCoroutine == null)
             {
-                if (spawnCoroutine == null)
-                {
-                    StartSpawn();
-                }
-            }
-            else
-            {
-                StopSpawn();
+                StartSpawn();
             }
         }
 

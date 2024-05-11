@@ -37,7 +37,7 @@ namespace Features.Conveyor
         protected virtual void OnCollisionObjectDisabled()
         {
             Unsubscribe();
-            conveyorRider.ResumRiding();
+            conveyorRider.ResumeRiding();
         }
 
         protected virtual void Unsubscribe()
