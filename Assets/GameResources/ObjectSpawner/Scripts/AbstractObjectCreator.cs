@@ -23,6 +23,11 @@ namespace Features.Spawner
         public event Action onObjectSpawn = delegate { };
 
         /// <summary>
+        /// Start object spawn event
+        /// </summary>
+        public event Action onObjectSpawnStart = delegate { };
+
+        /// <summary>
         /// Progress value change event
         /// </summary>
         public event Action onProgressValueChange = delegate { };
@@ -44,12 +49,11 @@ namespace Features.Spawner
 
         [SerializeField]
         protected Transform spawnPosition = default;
-        [SerializeField]
-        protected Transform objectParent = default;
 
         protected Coroutine spawnCoroutine = default;
 
         protected float spawnTime = default;
+        protected float curTime = default;
 
         /// <summary>
         /// Set conveyor progress state
@@ -64,7 +68,7 @@ namespace Features.Spawner
         }
 
         /// <summary>
-        /// Spawn objects coroutine
+        /// Spawn objects
         /// </summary>
         protected abstract void Spawn();
 
@@ -73,25 +77,30 @@ namespace Features.Spawner
         /// </summary>
         protected abstract void SetSpawnTime();
 
-        protected virtual IEnumerator CountTime()
+        protected virtual IEnumerator SpawnObjects()
         {
-            float curTime;
             while (isActiveAndEnabled)
             {
-                curTime = 0;
-                while (curTime < spawnTime)
-                {
-                    while (!isSpawning)
-                    {
-                        yield return null;
-                    }
-                    SetProgress(curTime / spawnTime);
-                    curTime += Time.deltaTime;
-                    yield return null;
-                }
-                SetProgress(MAX_PROGRESS_VALUE);
+                yield return CountTime();
                 Spawn();
             }
+        }
+
+        protected virtual IEnumerator CountTime()
+        {
+            SetProgress(MIN_PROGRESS_VALUE);
+            curTime = 0;
+            while (curTime < spawnTime)
+            {
+                while (!isSpawning)
+                {
+                    yield return null;
+                }
+                SetProgress(curTime / spawnTime);
+                curTime += Time.deltaTime;
+                yield return null;
+            }
+            SetProgress(MAX_PROGRESS_VALUE);
         }
 
         protected virtual void SetProgress(float val)
@@ -110,6 +119,9 @@ namespace Features.Spawner
         protected virtual void NotifySpawn()
             => onObjectSpawn();
 
+        protected virtual void NotifySpawnStart()
+            => onObjectSpawnStart();
+
         protected virtual void NotfityProgress()
             => onProgressValueChange();
 
@@ -120,7 +132,7 @@ namespace Features.Spawner
                 StopCoroutine(spawnCoroutine);
             }
             SetProgress(MIN_PROGRESS_VALUE);
-            spawnCoroutine = StartCoroutine(CountTime());
+            spawnCoroutine = StartCoroutine(SpawnObjects());
         }
 
         protected virtual void StopSpawn()

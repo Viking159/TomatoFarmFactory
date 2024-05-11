@@ -22,27 +22,30 @@ namespace Features.Conveyor
         protected virtual void Awake()
            => rb = GetComponent<Rigidbody2D>();
 
+        protected virtual void OnEnable()
+            => ResumeRiding();
+
+        /// <summary>
+        /// Resume riding
+        /// </summary>
+        public virtual void ResumeRiding()
+        {
+            if (pathTween != null && IsPaused)
+            {
+                IsPaused = false;
+                pathTween.Play();
+            }
+        }
+
         /// <summary>
         /// Pause riding
         /// </summary>
         public virtual void PauseRiding()
         {
-            if (pathTween != null)
+            if (pathTween != null && !IsPaused)
             {
                 pathTween.Pause();
                 IsPaused = true;
-            }
-        }
-
-        /// <summary>
-        /// Resume riding
-        /// </summary>
-        public virtual void ResumRiding()
-        {
-            if (pathTween != null)
-            {
-                IsPaused = false;
-                pathTween.Play();
             }
         }
 
@@ -60,11 +63,11 @@ namespace Features.Conveyor
             if (currentConveyorElement != null && currentConveyorElement.Speed > 0)
             {
                 pathTween = rb.DOPath
-                    (
-                        currentConveyorElement.GetPath(transform.position),
-                        GetDuration(currentConveyorElement.Speed),
-                        PathType.Linear
-                    );
+                (
+                    currentConveyorElement.GetPath(transform.position),
+                    GetDuration(currentConveyorElement.Speed),
+                    PathType.Linear
+                );
                 if (IsPaused)
                 {
                     PauseRiding();
@@ -99,6 +102,9 @@ namespace Features.Conveyor
                 currentConveyorElement.onSpeedValueChange -= Ride;
             }
         }
+
+        protected virtual void OnDisable()
+            => PauseRiding();
 
         protected virtual void OnDestroy()
             => ResetConveyorElement();
