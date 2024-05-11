@@ -1,12 +1,12 @@
-namespace Features.Fruit
+namespace Features.Product
 {
-    using Features.Fruit.Data;
+    using Features.Product.Data;
     using Features.Spawner.View;
 
     /// <summary>
-    /// Fruit sprite view
+    /// Product sprite view
     /// </summary>
-    public class FruitSpriteLevelView : AbstractSpiteView<FruitData>
+    public class ProductSpriteLevelView : AbstractSpiteView<ProductData>
     {
         protected override int GetSpriteIndex()
             => objectController.Data.Level;

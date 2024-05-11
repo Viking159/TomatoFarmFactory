@@ -71,7 +71,7 @@ namespace Features.Fabric
         }
 
         protected override void InitData()
-            => createdObject.Init(productData);
+            => createdObject.InitData(productData);
 
         protected virtual void NotifyActiveSpwaningStateChange()
             => onActiveSpwaningStateChange();

@@ -8,7 +8,7 @@ namespace Features.Fruit.Data
     /// Fruit data
     /// </summary>
     [CreateAssetMenu(fileName = nameof(FruitData), menuName = "Features/Data/Fruit/" + nameof(FruitData))]
-    public class FruitData : StoreableSO
+    public class FruitData : StoreableSOWithSprites
     {
         /// <summary>
         /// Fruits count

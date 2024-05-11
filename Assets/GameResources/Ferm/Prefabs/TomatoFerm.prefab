@@ -664,6 +664,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSpawning: 1
+  spawnerId: tomatoFerm
   spawnPosition: {fileID: 9159479671545502522}
   objectParent: {fileID: 0}
   data: {fileID: 11400000, guid: df6506e3796e9a0459b9e91d43a6a2f1, type: 2}

@@ -1,12 +1,11 @@
 namespace Features.Spawner
 {
     using System;
-    using UnityEngine;
 
     /// <summary>
     /// Abtsract object to init
     /// </summary>
-    public abstract class AbstractInitableObject<T> : MonoBehaviour
+    public abstract class AbstractInitableObject<T> : AbstractSpawnObject
     {
         /// <summary>
         /// Data init event
@@ -16,7 +15,7 @@ namespace Features.Spawner
         public T Data => data;
         protected T data = default;
 
-        public virtual void Init(T data)
+        public virtual void InitData(T data)
         {
             this.data = data;
             NotifyDataInit();

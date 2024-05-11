@@ -7,7 +7,7 @@ namespace Features.Spawner
     ///  Abstract prefab spawner
     /// </summary>
     public abstract class AbstractPrefabCreator<PREFAB_TYPE, CREATOR_DATA_TYPE> : AbstractObjectCreator 
-        where PREFAB_TYPE: Component
+        where PREFAB_TYPE: AbstractSpawnObject
         where CREATOR_DATA_TYPE: SpawnerData
     {
         /// <summary>
@@ -21,6 +21,8 @@ namespace Features.Spawner
         protected PREFAB_TYPE prefabObect = default;
 
         protected PREFAB_TYPE createdObject = default;
+
+        protected uint spawnedCount = 0;
 
         /// <summary>
         /// Init prefab data
@@ -44,8 +46,10 @@ namespace Features.Spawner
 
         protected override void Spawn()
         {
+            spawnedCount++;
             createdObject = Instantiate(prefabObect, spawnPosition);
             createdObject.transform.parent = objectParent;
+            createdObject.SetSpawnNumber(spawnedCount);
             InitData();
             NotifySpawn();
         }

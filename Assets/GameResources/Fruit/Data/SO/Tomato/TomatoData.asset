@@ -19,6 +19,7 @@ MonoBehaviour:
     ParamValue: 10
     Ratio: 1.2
   ppKey: tomatoDataKey
+  spritesData: {fileID: 11400000, guid: 4c1ab70146b36ff4bb85b715525a9dec, type: 2}
   count:
     ParamValue: 1
     Ratio: 1.01

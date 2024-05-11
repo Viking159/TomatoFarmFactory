@@ -16,18 +16,20 @@ namespace Features.Data
 
         [SerializeField]
         protected  List<Sprite> _sprites = new List<Sprite>();
+        [SerializeField]
+        protected Sprite defaultSprite = default;
 
         /// <summary>
         /// Sprite by level
         /// </summary>
-        public virtual Sprite GetSpriteByLevel(int index)
+        public virtual Sprite GetSpriteByIndex(int index)
         {
             if (index >= 0 && index < _sprites.Count)
             {
                 return _sprites[index];
             }
-            Debug.LogError($"{nameof(SpritesData)}: incorrect index value - {index}!");
-            return null;
+            Debug.LogWarning($"{nameof(SpritesData)}: incorrect index value - {index}!");
+            return defaultSprite;
         }
     }
 }

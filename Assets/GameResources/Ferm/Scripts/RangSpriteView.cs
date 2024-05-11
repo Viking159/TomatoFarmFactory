@@ -25,7 +25,7 @@ namespace Features.DoubleStoreableSpriteView
         }
 
         protected virtual void SetSprite()
-            => spriteRenderer.sprite = spritesData.GetSpriteByLevel(data.Rang);
+            => spriteRenderer.sprite = spritesData.GetSpriteByIndex(data.Rang);
 
         protected virtual void OnDisable()
             => data.onDataChange -= SetSprite;

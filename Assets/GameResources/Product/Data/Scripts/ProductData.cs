@@ -9,7 +9,7 @@ namespace Features.Product.Data
     /// Product data container
     /// </summary>
     [CreateAssetMenu(fileName = nameof(ProductData), menuName = "Features/Product/Data/" + nameof(ProductData))]
-    public class ProductData : StoreableSO
+    public class ProductData : StoreableSOWithSprites
     {
         /// <summary>
         /// Fruits count per product

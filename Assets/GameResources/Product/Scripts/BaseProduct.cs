@@ -3,8 +3,6 @@ namespace Features.Product
     using Features.Interfaces;
     using Features.Product.Data;
     using Features.Spawner;
-    using System;
-    using UnityEngine;
 
     /// <summary>
     /// Base product class

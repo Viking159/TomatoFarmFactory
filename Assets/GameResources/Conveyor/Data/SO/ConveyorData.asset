@@ -20,5 +20,5 @@ MonoBehaviour:
     Ratio: 1.01
   ppKey: conveyorDataKey
   speed:
-    ParamValue: 1.67
+    ParamValue: 3.34
     Ratio: 0.1999
