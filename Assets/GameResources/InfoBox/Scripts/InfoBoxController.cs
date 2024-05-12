@@ -1,21 +1,18 @@
-namespace Features.Ferm.InfoBox
+namespace Features.InfoBox
 {
     using UnityEngine;
     using UnityEngine.EventSystems;
+    using Features.InfoBox;
 
     /// <summary>
     /// Ferm info box controller
     /// </summary>
-    public class FermInfoBoxController : MonoBehaviour
+    public class InfoBoxController : MonoBehaviour
     {
         [SerializeField]
         protected InfoBox infoBoxPrefab = default;
-        [SerializeField]
-        protected Transform infoBoxParent = default;
 
         protected InfoBox infoBox = default;
-
-        protected const int DEFAULT_HITS_COUNT = 10;
 
         private void OnMouseUp()
         {
@@ -29,7 +26,7 @@ namespace Features.Ferm.InfoBox
         protected virtual void SpawnInfoBox()
         {
             DestroyInfoBox();
-            infoBox = Instantiate(infoBoxPrefab, infoBoxParent);
+            infoBox = Instantiate(infoBoxPrefab);
             infoBox.onBoxClose += DestroyInfoBox;
         }
 
@@ -40,7 +37,10 @@ namespace Features.Ferm.InfoBox
                 infoBox.onBoxClose -= DestroyInfoBox;
                 Destroy(infoBox.gameObject);
             }
-        }    
+        }
+
+        protected virtual void OnDestroy()
+            => DestroyInfoBox();
     }
 }
 

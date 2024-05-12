@@ -1,4 +1,4 @@
-namespace Features.Ferm.InfoBox
+namespace Features.InfoBox
 {
     using System;
     using UnityEngine;

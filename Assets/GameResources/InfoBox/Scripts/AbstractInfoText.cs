@@ -1,23 +1,24 @@
-namespace Features.Ferm.InfoBox
+namespace Features.InfoBox
 {
+    using Features.Data;
     using Features.Extensions.View;
-    using Features.Ferm.Data;
     using UnityEngine;
 
     /// <summary>
     /// Abstract ferm info text
     /// </summary>
-    public abstract class AbstractInfoFermText : BaseTextView
+    public abstract class AbstractInfoText<T> : BaseTextView
+        where T: StoreableSO
     {
         [SerializeField]
-        protected FermDataContainer fermDataContainer = default;
+        protected T data = default;
         [SerializeField]
         protected string mask = "Param: {0}";
 
         protected virtual void OnEnable()
         {
             SetText();
-            fermDataContainer.onDataChange += SetText;
+            data.onDataChange += SetText;
         }
 
         /// <summary>
@@ -26,6 +27,6 @@ namespace Features.Ferm.InfoBox
         protected abstract void SetText();
 
         protected virtual void OnDisable()
-            => fermDataContainer.onDataChange -= SetText;
+            => data.onDataChange -= SetText;
     }
 }

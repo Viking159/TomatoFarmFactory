@@ -412,8 +412,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1bb066ac1d785e45b87b30b54290974, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  infoBoxPrefab: {fileID: 1175479590959162558, guid: 3fd9a20c750d2ba408e18121c1a9e686, type: 3}
-  infoBoxParent: {fileID: 0}
+  infoBoxPrefab: {fileID: 8147672162722285251, guid: 8f11ea624b115e44f81cc90874a771ce, type: 3}
 --- !u!1 &9159479671490397299
 GameObject:
   m_ObjectHideFlags: 0
@@ -665,7 +664,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isSpawning: 1
   spawnPosition: {fileID: 9159479671545502522}
-  objectParent: {fileID: 0}
   data: {fileID: 11400000, guid: df6506e3796e9a0459b9e91d43a6a2f1, type: 2}
   prefabObect: {fileID: 416809255, guid: b1bd5a5cfe072204f9f6e4bedf796cb6, type: 3}
   fruitData: {fileID: 11400000, guid: d89ec0ea50e9d41428e94be37ccff648, type: 2}

@@ -1,4 +1,4 @@
-namespace Features.RangView
+namespace Features.InfoBox
 {
     using UnityEngine;
     using Features.Data;
@@ -6,7 +6,7 @@ namespace Features.RangView
     using UnityEngine.UI;
 
     /// <summary>
-    /// rang view controller
+    /// Rang view controller
     /// </summary>
     public class RangView : MonoBehaviour
     {

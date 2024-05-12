@@ -1,4 +1,4 @@
-namespace Features.LevelProgress
+namespace Features.InfoBox
 {
     using Features.Data;
     using UnityEngine;
