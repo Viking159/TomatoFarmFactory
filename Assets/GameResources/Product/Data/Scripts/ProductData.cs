@@ -25,7 +25,7 @@ namespace Features.Product.Data
         /// <summary>
         /// Product price
         /// </summary>
-        public virtual int Price => fruitData.Count * fruitData.Price * priceRatio.GetGrowthValue(priceLevel);
+        public virtual int Price => fruitData.Price * priceRatio.GetGrowthValue(priceLevel);
         [SerializeField]
         protected IntUpdateableParam priceRatio = new IntUpdateableParam()
         {

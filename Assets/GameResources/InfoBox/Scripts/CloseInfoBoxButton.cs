@@ -1,4 +1,4 @@
-namespace Features.Ferm.InfoBox
+namespace Features.InfoBox
 {
     using Features.Extensions.View;
     using UnityEngine;
@@ -11,9 +11,7 @@ namespace Features.Ferm.InfoBox
         [SerializeField]
         protected InfoBox infoBox = default;
 
-        protected override void OnButtonClick()
-        {
-            infoBox.CloseBox();
-        }
+        protected override void OnButtonClick() 
+            => infoBox.CloseBox();
     }
 }

@@ -826,7 +826,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5348532572040761290
 Transform:
   m_ObjectHideFlags: 0
@@ -880,8 +880,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1bb066ac1d785e45b87b30b54290974, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  infoBoxPrefab: {fileID: 1175479590959162558, guid: 3fd9a20c750d2ba408e18121c1a9e686, type: 3}
-  infoBoxParent: {fileID: 0}
+  infoBoxPrefab: {fileID: 3068069748833056089, guid: 590454cd28efb4744a03c4d038fb96c6, type: 3}
 --- !u!1 &5348532572557852829
 GameObject:
   m_ObjectHideFlags: 0
@@ -1059,7 +1058,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5348532572641411877}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.48799992, y: 2.146, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0

@@ -1,6 +1,6 @@
-namespace Features.Ferm.InfoBox
+namespace Features.InfoBox
 {
-    using Features.Ferm.Data;
+    using Features.Data;
     using UnityEngine;
 
     /// <summary>
@@ -9,7 +9,7 @@ namespace Features.Ferm.InfoBox
     public class UpdateButtonView : MonoBehaviour
     {
         [SerializeField]
-        protected FermDataContainer fermDataContainer = default;
+        protected DoubleStoreableSO data = default;
         [SerializeField]
         protected GameObject updateLevelButton = default;
         [SerializeField]
@@ -18,18 +18,18 @@ namespace Features.Ferm.InfoBox
         protected virtual void OnEnable()
         {
             SetView();
-            fermDataContainer.onDataChange += SetView;
+            data.onDataChange += SetView;
         }
 
         protected virtual void SetView()
         {
             DisableButtons();
-            if (fermDataContainer.Level < fermDataContainer.MaxLevel)
+            if (data.Level < data.MaxLevel)
             {
                 updateLevelButton.SetActive(true);
                 return;
             }
-            if (fermDataContainer.Rang < fermDataContainer.MaxRang)
+            if (data.Rang < data.MaxRang)
             {
                 updateRangButton.SetActive(true);
             }
@@ -42,6 +42,6 @@ namespace Features.Ferm.InfoBox
         }
 
         protected virtual void OnDisable()
-            => fermDataContainer.onDataChange -= SetView;
+            => data.onDataChange -= SetView;
     }
 }

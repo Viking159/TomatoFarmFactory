@@ -299,7 +299,7 @@ RectTransform:
   - {fileID: 2065654416}
   - {fileID: 148462075}
   m_Father: {fileID: 885893300}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -737,42 +737,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5925161201192884535, guid: d0bc2a95ea6e8ab4188759db2d117339, type: 3}
   m_PrefabInstance: {fileID: 397630632}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &415634572
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 415634573}
-  m_Layer: 5
-  m_Name: InfoBoxes
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
---- !u!224 &415634573
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 415634572}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 885893300}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &437548254
 GameObject:
   m_ObjectHideFlags: 0
@@ -1829,9 +1793,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 85175514}
-  - {fileID: 415634573}
   - {fileID: 2117251518}
+  - {fileID: 85175514}
   m_Father: {fileID: 447988074}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4109,7 +4072,7 @@ RectTransform:
   - {fileID: 1700141779}
   - {fileID: 603416284}
   m_Father: {fileID: 885893300}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -4126,7 +4089,7 @@ PrefabInstance:
     - target: {fileID: 5348532572040761292, guid: fa9122ed8f72ff94cb8325a6944bf1b1, type: 3}
       propertyPath: infoBoxParent
       value: 
-      objectReference: {fileID: 415634573}
+      objectReference: {fileID: 0}
     - target: {fileID: 5348532572574422908, guid: fa9122ed8f72ff94cb8325a6944bf1b1, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -4280,7 +4243,7 @@ PrefabInstance:
     - target: {fileID: 9159479670916942626, guid: 0f6414b8666e40e408d823d4bcc79f58, type: 3}
       propertyPath: infoBoxParent
       value: 
-      objectReference: {fileID: 415634573}
+      objectReference: {fileID: 0}
     - target: {fileID: 9159479671506965394, guid: 0f6414b8666e40e408d823d4bcc79f58, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

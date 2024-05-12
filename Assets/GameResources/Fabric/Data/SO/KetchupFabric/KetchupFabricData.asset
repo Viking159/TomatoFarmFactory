@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: KetchupFabricData
   m_EditorClassIdentifier: 
   dataName: KetchupFabric
-  level: 5
+  level: 0
   maxLevel: 25
   updateLevelPrice:
     ParamValue: 1
