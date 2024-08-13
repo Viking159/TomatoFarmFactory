@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ConveyorData
   m_EditorClassIdentifier: 
   dataName: Conveyor
-  level: 0
+  level: 15
   maxLevel: 25
   updateLevelPrice:
     ParamValue: 10
