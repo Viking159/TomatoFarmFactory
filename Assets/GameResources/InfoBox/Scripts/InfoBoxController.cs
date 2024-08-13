@@ -14,7 +14,7 @@ namespace Features.InfoBox
 
         protected InfoBox infoBox = default;
 
-        private void OnMouseUp()
+        protected virtual void OnMouseUp()
         {
             if (!EventSystem.current.IsPointerOverGameObject())
             {

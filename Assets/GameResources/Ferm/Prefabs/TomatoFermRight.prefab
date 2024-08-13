@@ -384,7 +384,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -625,7 +625,7 @@ GameObject:
   - component: {fileID: 9159479671574218696}
   - component: {fileID: 9159479671574218697}
   m_Layer: 0
-  m_Name: TomatoFerm
+  m_Name: TomatoFermRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -666,4 +666,7 @@ MonoBehaviour:
   spawnPosition: {fileID: 9159479671545502522}
   data: {fileID: 11400000, guid: df6506e3796e9a0459b9e91d43a6a2f1, type: 2}
   prefabObect: {fileID: 416809255, guid: b1bd5a5cfe072204f9f6e4bedf796cb6, type: 3}
+  useRandomStartAwait: 1
+  minAwait: 0
+  maxAwait: 1.5
   fruitData: {fileID: 11400000, guid: d89ec0ea50e9d41428e94be37ccff648, type: 2}

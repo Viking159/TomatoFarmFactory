@@ -24,21 +24,31 @@ namespace Features.Fabric
 
         protected Tween pathTween = default;
         protected Coroutine animationCoroutine = default;
+        protected Coroutine lateInitCoroutine = default;
 
         protected Vector3[] pathOutVectors = default;
         protected Vector3[] pathInVectors = default;
 
         protected float animationDuration = default;
 
-        protected virtual void Awake()
-            => InitPositions();
+        protected virtual void Awake() => InitPositions();
 
         protected virtual void OnEnable()
         {
+            lateInitCoroutine = StartCoroutine(LateInit());
             SetAnimationSpeed();
             fabricProductCreatorController.Data.onDataChange += SetAnimationSpeed;
             fabricFruitsConsumer.onConsume += AnimatedConsume;
             ConveyorController.onLineAddEnd += InitPositions;
+        }
+
+        /// <summary>
+        /// Wait for the next frame to wait position initialization
+        /// </summary>
+        protected virtual IEnumerator LateInit()
+        {
+            yield return null;
+            InitPositions();
         }
 
         protected virtual void InitPositions()
@@ -100,6 +110,7 @@ namespace Features.Fabric
             fabricFruitsConsumer.onConsume -= AnimatedConsume;
             fabricProductCreatorController.Data.onDataChange -= SetAnimationSpeed;
             StopAnimation();
+            StopCoroutine(lateInitCoroutine);
         }
     }
 }
