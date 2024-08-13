@@ -6,6 +6,7 @@ namespace Features.Fabric
     using System.Collections.Generic;
     using UnityEngine;
     using System.Linq;
+    using Features.Conveyor;
 
     /// <summary>
     /// Consume animated hand
@@ -37,6 +38,7 @@ namespace Features.Fabric
             SetAnimationSpeed();
             fabricProductCreatorController.Data.onDataChange += SetAnimationSpeed;
             fabricFruitsConsumer.onConsume += AnimatedConsume;
+            ConveyorController.onLineAddEnd += InitPositions;
         }
 
         protected virtual void InitPositions()
@@ -94,6 +96,7 @@ namespace Features.Fabric
 
         protected virtual void OnDisable()
         {
+            ConveyorController.onLineAddEnd -= InitPositions;
             fabricFruitsConsumer.onConsume -= AnimatedConsume;
             fabricProductCreatorController.Data.onDataChange -= SetAnimationSpeed;
             StopAnimation();

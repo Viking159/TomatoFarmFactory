@@ -1,6 +1,7 @@
 namespace Features.Spawner
 {
     using Features.Data;
+    using System.Collections;
     using UnityEngine;
 
     /// <summary>
@@ -20,7 +21,15 @@ namespace Features.Spawner
         [SerializeField]
         protected PREFAB_TYPE prefabObect = default;
 
+        [SerializeField]
+        protected bool useRandomStartAwait = true;
+        [SerializeField, Min(0)]
+        protected float minAwait = 0;
+        [SerializeField, Min(0)]
+        protected float maxAwait = 1.5f;
+
         protected PREFAB_TYPE createdObject = default;
+        protected Coroutine startSpawnCoroutine = default;
 
         protected uint spawnedCount = 0;
 
@@ -35,8 +44,13 @@ namespace Features.Spawner
             data.onDataChange += UpdateParams;
         }
 
-        protected virtual void OnEnable()
-            => StartSpawn();
+        protected virtual void OnEnable() => startSpawnCoroutine = StartCoroutine(StartSpawnWithAwait());
+
+        protected virtual IEnumerator StartSpawnWithAwait()
+        {
+            yield return new WaitForSeconds(Random.Range(minAwait, maxAwait));
+            StartSpawn();
+        }
 
         protected virtual void UpdateParams() 
             => SetSpawnTime();
@@ -52,6 +66,15 @@ namespace Features.Spawner
             createdObject.SetSpawnNumber(spawnedCount);
             InitData();
             NotifySpawn();
+        }
+
+        protected override void OnDisable()
+        {
+            base.OnDisable();
+            if (startSpawnCoroutine != null)
+            {
+                StopCoroutine(startSpawnCoroutine);
+            }
         }
 
         protected virtual void OnDestroy()

@@ -19,8 +19,8 @@ namespace Features.Fruit
 
         public void Consume(IConsumer consumer)
         {
-            conveyorRider.PauseRiding();
             conveyorRider.enabled = false;
+            conveyorRider.KillRider();
         }
     }
 }
