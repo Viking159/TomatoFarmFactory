@@ -39,8 +39,8 @@ namespace Features.ConstructPlace.Data
         /// <summary>
         /// Construction price
         /// </summary>
-        public virtual float Price => price;
+        public virtual int Price => price;
         [SerializeField]
-        protected float price = 100;
+        protected int price = 100;
     }
 }
