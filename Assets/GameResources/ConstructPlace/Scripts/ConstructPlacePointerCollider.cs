@@ -18,9 +18,14 @@ namespace Features.ConstructPlace
         {
             if (!EventSystem.current.IsPointerOverGameObject())
             {
-                moneyData.SetCoins(moneyData.Coins - constructPlaceController.ConstructPlaceData.Price);
-                constructPlaceController.ConstructPlace();
+                ConstructPlace();
             }
+        }
+
+        protected virtual void ConstructPlace()
+        {
+            moneyData.SetCoins(moneyData.Coins - constructPlaceController.ConstructPlaceData.Price);
+            constructPlaceController.ConstructPlace();
         }
     }
 }

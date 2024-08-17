@@ -64,8 +64,8 @@ namespace Features.Conveyor
         protected virtual void OnEnable()
         {
             ResumeRiding();
-            ConveyorController.onLineAddStart += OnLineAddStarted;
-            ConveyorController.onLineAddEnd += OnLineAddEnded;
+            ConveyorController.AddLineAddingStartListener(OnLineAddStarted);
+            ConveyorController.AddLineAddingEndListener(OnLineAddEnded);
         }
 
         protected virtual void OnLineAddStarted() => PauseRiding();
@@ -149,8 +149,8 @@ namespace Features.Conveyor
         protected virtual void OnDisable()
         {
             PauseRiding();
-            ConveyorController.onLineAddStart -= OnLineAddStarted;
-            ConveyorController.onLineAddEnd -= OnLineAddEnded;
+            ConveyorController.RemoveLineAddingStartListener(OnLineAddStarted);
+            ConveyorController.RemoveLineAddingEndListener(OnLineAddEnded);
         }
 
         protected virtual void OnDestroy()

@@ -3,6 +3,7 @@ namespace Features.Conveyor
     using UnityEngine;
     using System.Collections.Generic;
     using Features.Extensions.BaseDataTypes;
+    using System.Linq;
 
     /// <summary>
     /// Base conveyor line controller
@@ -20,7 +21,7 @@ namespace Features.Conveyor
         /// <summary>
         /// Conveyor lines
         /// </summary>
-        public List<ConveyorLineController> ConveyorLines => conveyorLines;
+        public IReadOnlyList<ConveyorLineController> ConveyorLines => conveyorLines;
         [SerializeField]
         protected List<ConveyorLineController> conveyorLines = new List<ConveyorLineController>();
 
