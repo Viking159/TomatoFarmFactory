@@ -23,13 +23,20 @@ namespace Features.ConstructPlace
         protected GameObject construction = default;
 
         /// <summary>
-        /// Create consturction and destroy controller
+        /// Create consturction
         /// </summary>
         public virtual void ConstructPlace()
         {
+            CreateConstruction();
+            SelfDestroy();
+        }
+
+        protected virtual void CreateConstruction()
+        {
             construction = Instantiate(constructPlaceData.ConstructPrefab, parentTranform);
             construction.transform.position = constractionPlaceTranform.position;
-            Destroy(gameObject);
         }
+
+        protected virtual void SelfDestroy() => Destroy(gameObject);
     }
 }

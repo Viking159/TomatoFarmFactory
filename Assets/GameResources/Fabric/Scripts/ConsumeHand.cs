@@ -39,7 +39,7 @@ namespace Features.Fabric
             SetAnimationSpeed();
             fabricProductCreatorController.Data.onDataChange += SetAnimationSpeed;
             fabricFruitsConsumer.onConsume += AnimatedConsume;
-            ConveyorController.onLineAddEnd += InitPositions;
+            ConveyorController.AddLineAddingEndListener(InitPositions);
         }
 
         /// <summary>
@@ -106,7 +106,7 @@ namespace Features.Fabric
 
         protected virtual void OnDisable()
         {
-            ConveyorController.onLineAddEnd -= InitPositions;
+            ConveyorController.RemoveLineAddingEndListener(InitPositions);
             fabricFruitsConsumer.onConsume -= AnimatedConsume;
             fabricProductCreatorController.Data.onDataChange -= SetAnimationSpeed;
             StopAnimation();

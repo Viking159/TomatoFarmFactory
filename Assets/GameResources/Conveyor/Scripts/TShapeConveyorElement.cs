@@ -3,6 +3,7 @@ namespace Features.Conveyor
     using System.Collections.Generic;
     using UnityEngine;
     using Features.Extensions.BaseDataTypes;
+    using System.Linq;
 
     /// <summary>
     /// T-shape element of conveyor

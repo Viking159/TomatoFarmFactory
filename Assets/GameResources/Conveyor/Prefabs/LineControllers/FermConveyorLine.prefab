@@ -62,6 +62,8 @@ MonoBehaviour:
     - {fileID: 2343128857411078085}
     - {fileID: 6889638591062112911}
     - {fileID: 6971367136057591935}
+  maxSpawnersCount: 2
+  spawners: []
   height: 1.5
 --- !u!1001 &89990774616265896
 PrefabInstance:
@@ -122,6 +124,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: TomatoFermConstructPlace (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5413666897338155505, guid: aafa0bc0418bab84eb6c2746e975ff31, type: 3}
+      propertyPath: parentTranform
+      value: 
+      objectReference: {fileID: 3770592927955229253}
+    - target: {fileID: 5413666897338155505, guid: aafa0bc0418bab84eb6c2746e975ff31, type: 3}
+      propertyPath: conveyorLineController
+      value: 
+      objectReference: {fileID: 1434644816719911793}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aafa0bc0418bab84eb6c2746e975ff31, type: 3}
 --- !u!4 &2229962571977171989 stripped
@@ -703,6 +713,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: TomatoFermConstructPlace
       objectReference: {fileID: 0}
+    - target: {fileID: 5413666897338155505, guid: aafa0bc0418bab84eb6c2746e975ff31, type: 3}
+      propertyPath: parentTranform
+      value: 
+      objectReference: {fileID: 3770592927955229253}
+    - target: {fileID: 5413666897338155505, guid: aafa0bc0418bab84eb6c2746e975ff31, type: 3}
+      propertyPath: constructPlaceData
+      value: 
+      objectReference: {fileID: 11400000, guid: 56cbed93697bf04419a667c2cf4160bc, type: 2}
+    - target: {fileID: 5413666897338155505, guid: aafa0bc0418bab84eb6c2746e975ff31, type: 3}
+      propertyPath: conveyorLineController
+      value: 
+      objectReference: {fileID: 1434644816719911793}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aafa0bc0418bab84eb6c2746e975ff31, type: 3}
 --- !u!4 &7410753114647786418 stripped

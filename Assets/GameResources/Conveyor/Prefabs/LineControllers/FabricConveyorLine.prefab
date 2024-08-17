@@ -81,6 +81,8 @@ MonoBehaviour:
     - {fileID: 8461160830793876890}
     - {fileID: 2510788407249432259}
     - {fileID: 7206842158035255298}
+  maxSpawnersCount: 3
+  spawners: []
   height: 2
 --- !u!1001 &1097103227174504190
 PrefabInstance:
@@ -616,6 +618,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5107648621015938876}
     m_Modifications:
+    - target: {fileID: 430949742784074132, guid: 567dfdd6e1c9c21459f6b0103f0f41e5, type: 3}
+      propertyPath: parentTranform
+      value: 
+      objectReference: {fileID: 5107648621015938876}
+    - target: {fileID: 430949742784074132, guid: 567dfdd6e1c9c21459f6b0103f0f41e5, type: 3}
+      propertyPath: constructPlaceData
+      value: 
+      objectReference: {fileID: 11400000, guid: 87b1104ac03d70040b4ea4fd3615870e, type: 2}
+    - target: {fileID: 430949742784074132, guid: 567dfdd6e1c9c21459f6b0103f0f41e5, type: 3}
+      propertyPath: conveyorLineController
+      value: 
+      objectReference: {fileID: 6570684587266817403}
     - target: {fileID: 5843388462326882520, guid: 567dfdd6e1c9c21459f6b0103f0f41e5, type: 3}
       propertyPath: m_RootOrder
       value: 16
@@ -1128,6 +1142,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5107648621015938876}
     m_Modifications:
+    - target: {fileID: 430949742784074132, guid: 567dfdd6e1c9c21459f6b0103f0f41e5, type: 3}
+      propertyPath: parentTranform
+      value: 
+      objectReference: {fileID: 5107648621015938876}
+    - target: {fileID: 430949742784074132, guid: 567dfdd6e1c9c21459f6b0103f0f41e5, type: 3}
+      propertyPath: constructPlaceData
+      value: 
+      objectReference: {fileID: 11400000, guid: 87b1104ac03d70040b4ea4fd3615870e, type: 2}
+    - target: {fileID: 430949742784074132, guid: 567dfdd6e1c9c21459f6b0103f0f41e5, type: 3}
+      propertyPath: conveyorLineController
+      value: 
+      objectReference: {fileID: 6570684587266817403}
     - target: {fileID: 5843388462326882520, guid: 567dfdd6e1c9c21459f6b0103f0f41e5, type: 3}
       propertyPath: m_RootOrder
       value: 18
@@ -1340,6 +1366,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5107648621015938876}
     m_Modifications:
+    - target: {fileID: 430949742784074132, guid: 567dfdd6e1c9c21459f6b0103f0f41e5, type: 3}
+      propertyPath: parentTranform
+      value: 
+      objectReference: {fileID: 5107648621015938876}
+    - target: {fileID: 430949742784074132, guid: 567dfdd6e1c9c21459f6b0103f0f41e5, type: 3}
+      propertyPath: constructPlaceData
+      value: 
+      objectReference: {fileID: 11400000, guid: 87b1104ac03d70040b4ea4fd3615870e, type: 2}
+    - target: {fileID: 430949742784074132, guid: 567dfdd6e1c9c21459f6b0103f0f41e5, type: 3}
+      propertyPath: conveyorLineController
+      value: 
+      objectReference: {fileID: 6570684587266817403}
     - target: {fileID: 5843388462326882520, guid: 567dfdd6e1c9c21459f6b0103f0f41e5, type: 3}
       propertyPath: m_RootOrder
       value: 17
