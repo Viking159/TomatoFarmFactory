@@ -16,4 +16,4 @@ MonoBehaviour:
   discription: Ketchup fabric consumes tomatos and creates ketchup
   image: {fileID: 0}
   constructPrefab: {fileID: 5348532572641411877, guid: fa9122ed8f72ff94cb8325a6944bf1b1, type: 3}
-  price: 150
+  price: 250

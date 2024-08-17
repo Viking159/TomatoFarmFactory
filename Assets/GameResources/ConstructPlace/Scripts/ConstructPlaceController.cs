@@ -8,13 +8,18 @@ namespace Features.ConstructPlace
     /// </summary>
     public class ConstructPlaceController : MonoBehaviour
     {
+        /// <summary>
+        /// Construct Place Data container
+        /// </summary>
+        public ConstructPlaceData ConstructPlaceData => constructPlaceData;
+        [SerializeField]
+        protected ConstructPlaceData constructPlaceData = default;
+
         [SerializeField]
         protected Transform parentTranform = default;
         [SerializeField]
         protected Transform constractionPlaceTranform = default;
-        [SerializeField]
-        protected ConstructPlaceData constructPlaceData = default;
-
+        
         protected GameObject construction = default;
 
         /// <summary>
