@@ -56,7 +56,7 @@ namespace Features.BuyProductionLineView
 
         protected virtual bool IsMaxLineCount() => conveyorController.ConveyorLinesControllers[lineIndex].ConveyorLines.Count >= maxLinesCount;
 
-        protected virtual bool LastLineFinished() => true || currentLineController == null
+        protected virtual bool LastLineFinished() => currentLineController == null
                 || currentLineController.Spawners.Count == currentLineController.MaxSpawnersCount;
 
         protected virtual void StopListenLineController()
