@@ -73,7 +73,18 @@ public partial class @MainInputActions : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""00deab2a-a945-47a7-9b7e-b7254475492e"",
+                    ""id"": ""c60a88b9-f28f-40dc-8cd1-eac76a3cc891"",
+                    ""path"": ""<Pointer>/delta/y"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=-0.25)"",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""db63b8c8-ffc6-4b58-8491-fdf4daf9c1b9"",
                     ""path"": ""<Mouse>/scroll/y"",
                     ""interactions"": """",
                     ""processors"": ""Scale(factor=0.4)"",
