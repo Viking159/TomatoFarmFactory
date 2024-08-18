@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 555000987854590383}
   - component: {fileID: 2133525936718340502}
   - component: {fileID: 2745517227579806308}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 1199233225668082133}
   - component: {fileID: 6681693065070782086}
   - component: {fileID: 2008729202983030103}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -430,7 +430,7 @@ GameObject:
   - component: {fileID: 7778679016739607145}
   - component: {fileID: 6771204506648692265}
   - component: {fileID: 785815506794511819}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PriceText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -522,7 +522,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3036473246895621297}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PriceView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -563,7 +563,7 @@ GameObject:
   - component: {fileID: 7588861710560885607}
   - component: {fileID: 2318997020322756830}
   - component: {fileID: 4027203197104536192}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
