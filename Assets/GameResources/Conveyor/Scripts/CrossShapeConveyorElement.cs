@@ -13,9 +13,6 @@ namespace Features.Conveyor
 
         [SerializeField]
         protected Transform startPoint3 = default;
-        protected List<ConveyorRider> riders = new List<ConveyorRider>();
-
-        protected int riderIndex = 0;
 
         protected override void OnTriggerEnter2D(Collider2D collision)
         {
@@ -39,14 +36,9 @@ namespace Features.Conveyor
         protected override void OnTriggerExit2D(Collider2D collision)
         {
             base.OnTriggerExit2D(collision);
-            riderIndex = riders.IndexOf(rider);
-            if (rider != null && riderIndex != -1 && (collision.enabled || collision.gameObject == null || !collision.gameObject.activeInHierarchy))
+            if (rider != null && riderIndex != -1 && collision.enabled && !riders.IsNullOrEmpty())
             {
-                riders.RemoveAt(riderIndex);
-                if (!riders.IsNullOrEmpty())
-                {
-                    riders[0].ResumeRiding(PauseWeight.CROSSROAD);
-                }
+                riders[0].ResumeRiding(PauseWeight.CROSSROAD);
             }
         }
 

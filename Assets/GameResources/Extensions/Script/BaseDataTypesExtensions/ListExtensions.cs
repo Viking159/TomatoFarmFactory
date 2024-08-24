@@ -15,6 +15,19 @@ namespace Features.Extensions.BaseDataTypes
         private const int PREVIOUS_INDEX = 1;
         private const int BEFORE_LAST_INDEX = 2;
 
+        public static int IndexOf<T>(this IReadOnlyList<T> list, T element)
+            where T : UnityEngine.Object
+        {
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (list[i].GetInstanceID() == element.GetInstanceID())
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
         public static T BeforeLast<T>(this IReadOnlyList<T> list)
         {
             if (list.IsNullOrEmpty() || list.Count <= PREVIOUS_INDEX)

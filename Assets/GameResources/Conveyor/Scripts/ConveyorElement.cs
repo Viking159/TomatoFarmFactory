@@ -24,6 +24,16 @@ namespace Features.Conveyor
         public event Action onRidersCountChange = delegate { };
 
         /// <summary>
+        /// Is valid controller
+        /// </summary>
+        public virtual bool ValidController => lineController != null;
+
+        /// <summary>
+        /// Element index in line elements list
+        /// </summary>
+        public int Index => ValidController ? lineController.ConveyorLine.conveyorElements.IndexOf(this) : -1;
+
+        /// <summary>
         /// Conveyor element speed
         /// </summary>
         public virtual float Speed => speed;
@@ -42,21 +52,33 @@ namespace Features.Conveyor
         public virtual int LimitRidersCount => limitRidersCount;
         [SerializeField]
         protected int limitRidersCount = 2;
+
+        /// <summary>
+        /// Elemenet's line controller
+        /// </summary>
+        public ConveyorLineController LineController => lineController;
+        protected ConveyorLineController lineController = default;
+
         [SerializeField]
         protected List<Transform> pathPoints = new List<Transform>();
-        
+
+        protected List<ConveyorRider> riders = new List<ConveyorRider>();
         protected ConveyorController conveyorController = default;
+        
         protected ConveyorRider rider = default;
+
+        protected int riderIndex = 0;
 
         /// <summary>
         /// Init conveyor element
         /// </summary>
-        public virtual void Init(ConveyorController conveyorController)
+        public virtual void Init(ConveyorLineController lineController)
         {
-            this.conveyorController = conveyorController;
-            this.conveyorController.onLevelChange += SetSpeed;
+            this.lineController = lineController;
+            conveyorController = lineController.LinesController.ConveyorController;
+            conveyorController.onLevelChange += SetSpeed;
             SetSpeed();
-            SetRidersCount(0);
+            SetRidersCount(riders.Count);
         }
 
         /// <summary>
@@ -93,7 +115,7 @@ namespace Features.Conveyor
             }
             path.Add(pathPoints.Last().position);
             return path;
-        }    
+        }
 
         protected virtual void SetSpeed()
         {
@@ -104,8 +126,9 @@ namespace Features.Conveyor
         protected virtual void OnTriggerEnter2D(Collider2D collision)
         {
             rider = collision.GetComponent<ConveyorRider>();
-            if (rider != null)
+            if (rider != null && !riders.Contains(rider))
             {
+                riders.Add(rider);
                 SetRidersCount(ridersCount + 1);
                 rider.SetConveyorElement(this);
                 rider.ResumeRiding(PauseWeight.CONVEYOR_ELEMENT);
@@ -115,8 +138,10 @@ namespace Features.Conveyor
         protected virtual void OnTriggerExit2D(Collider2D collision)
         {
             rider = collision.GetComponent<ConveyorRider>();
-            if (rider != null)
+            riderIndex = riders.IndexOf(rider);
+            if (rider != null && riderIndex != -1 && collision.enabled)
             {
+                riders.RemoveAt(riderIndex);
                 SetRidersCount(ridersCount - 1);
             }
         }
@@ -136,6 +161,12 @@ namespace Features.Conveyor
 
         protected virtual void NotifyRiders()
             => onRidersCountChange();
+
+        protected virtual void OnDisable()
+        {
+            riders = new List<ConveyorRider>();
+            SetRidersCount(0);
+        }
 
         protected virtual void OnDestroy()
         {

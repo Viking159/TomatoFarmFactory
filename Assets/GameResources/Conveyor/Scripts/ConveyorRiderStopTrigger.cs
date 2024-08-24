@@ -2,6 +2,7 @@ namespace Features.Conveyor
 {
     using Features.Extensions.BaseDataTypes;
     using System;
+    using System.Linq;
     using UnityEngine;
 
     /// <summary>
@@ -44,15 +45,34 @@ namespace Features.Conveyor
         /// </summary>
         protected virtual bool ValidStopCondition(ConveyorRider collisionConveyorRider)
         {
-            if (conveyorRider.IsPaused && collisionConveyorRider.IsPaused)
+            if (conveyorRider.CurrentConveyorElement != collisionConveyorRider.CurrentConveyorElement 
+                && ValidConveyorControllers(conveyorRider.CurrentConveyorElement) && ValidConveyorControllers(collisionConveyorRider.CurrentConveyorElement))
             {
-                return false;
+                return ValidConveyorElementsPosition(conveyorRider.CurrentConveyorElement, collisionConveyorRider.CurrentConveyorElement);
             }
             if (conveyorRider.IsPathInited)
             {
                 return ValidConveyorCondition(conveyorRider.PathStartPoint, conveyorRider.PathFinalPoint, collisionConveyorRider);
             }
+            Debug.LogError($"{nameof(ConveyorRiderStopTrigger)}: Valid stop condition error");
             return false;
+        }
+
+        protected virtual bool ValidConveyorControllers(ConveyorElement conveyorElement)
+            => conveyorElement != null && conveyorElement.ValidController
+            && conveyorElement.LineController.ValidController && conveyorElement.LineController.LinesController.ValidController;
+
+        protected virtual bool ValidConveyorElementsPosition(ConveyorElement riderElement, ConveyorElement collisionElement)
+        {
+            if (riderElement.LineController.LinesController == collisionElement.LineController.LinesController)
+            {
+                if (riderElement.LineController == collisionElement.LineController)
+                {
+                    return riderElement.Index > collisionElement.Index;
+                }
+                return riderElement.LineController.Index > collisionElement.LineController.Index;
+            }
+            return riderElement.LineController.LinesController.Index > collisionElement.LineController.LinesController.Index;
         }
 
         protected virtual bool ValidConveyorCondition(Vector3 startPoint, Vector3 endPoint, ConveyorRider collisionConveyorRider)

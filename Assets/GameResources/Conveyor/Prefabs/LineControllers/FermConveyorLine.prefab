@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &3770592927955229253
 Transform:
@@ -72,6 +72,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3770592927955229253}
     m_Modifications:
+    - target: {fileID: 1100119089790470042, guid: aafa0bc0418bab84eb6c2746e975ff31, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2291730799172217928, guid: aafa0bc0418bab84eb6c2746e975ff31, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 2291730799198548154, guid: aafa0bc0418bab84eb6c2746e975ff31, type: 3}
       propertyPath: parentTranform
       value: 
@@ -124,6 +132,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: TomatoFermConstructPlace (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2291730799198548158, guid: aafa0bc0418bab84eb6c2746e975ff31, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2291730799632874578, guid: aafa0bc0418bab84eb6c2746e975ff31, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2291730799902275976, guid: aafa0bc0418bab84eb6c2746e975ff31, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2644752136387416834, guid: aafa0bc0418bab84eb6c2746e975ff31, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5089982383917515584, guid: aafa0bc0418bab84eb6c2746e975ff31, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 5413666897338155505, guid: aafa0bc0418bab84eb6c2746e975ff31, type: 3}
       propertyPath: parentTranform
       value: 
@@ -132,6 +160,14 @@ PrefabInstance:
       propertyPath: conveyorLineController
       value: 
       objectReference: {fileID: 1434644816719911793}
+    - target: {fileID: 6203227350686209665, guid: aafa0bc0418bab84eb6c2746e975ff31, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6991945658832423731, guid: aafa0bc0418bab84eb6c2746e975ff31, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aafa0bc0418bab84eb6c2746e975ff31, type: 3}
 --- !u!4 &2229962571977171989 stripped
@@ -146,6 +182,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3770592927955229253}
     m_Modifications:
+    - target: {fileID: 2771948648732353016, guid: f977d3a5ccbb1ac4ab32757ae9d8f536, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6317815236788139563, guid: f977d3a5ccbb1ac4ab32757ae9d8f536, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 7945851552215508070, guid: f977d3a5ccbb1ac4ab32757ae9d8f536, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -657,6 +701,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3770592927955229253}
     m_Modifications:
+    - target: {fileID: 1100119089790470042, guid: aafa0bc0418bab84eb6c2746e975ff31, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2291730799172217928, guid: aafa0bc0418bab84eb6c2746e975ff31, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 2291730799198548154, guid: aafa0bc0418bab84eb6c2746e975ff31, type: 3}
       propertyPath: parentTranform
       value: 
@@ -713,6 +765,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: TomatoFermConstructPlace
       objectReference: {fileID: 0}
+    - target: {fileID: 2291730799198548158, guid: aafa0bc0418bab84eb6c2746e975ff31, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2291730799632874578, guid: aafa0bc0418bab84eb6c2746e975ff31, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2291730799902275976, guid: aafa0bc0418bab84eb6c2746e975ff31, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2644752136387416834, guid: aafa0bc0418bab84eb6c2746e975ff31, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5089982383917515584, guid: aafa0bc0418bab84eb6c2746e975ff31, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 5413666897338155505, guid: aafa0bc0418bab84eb6c2746e975ff31, type: 3}
       propertyPath: parentTranform
       value: 
@@ -725,6 +797,14 @@ PrefabInstance:
       propertyPath: conveyorLineController
       value: 
       objectReference: {fileID: 1434644816719911793}
+    - target: {fileID: 6203227350686209665, guid: aafa0bc0418bab84eb6c2746e975ff31, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6991945658832423731, guid: aafa0bc0418bab84eb6c2746e975ff31, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aafa0bc0418bab84eb6c2746e975ff31, type: 3}
 --- !u!4 &7410753114647786418 stripped
