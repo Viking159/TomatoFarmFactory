@@ -22,7 +22,7 @@ MonoBehaviour:
   spritesData: {fileID: 11400000, guid: e9d7dbdfa575ba54c95f6fc1a29bf114, type: 2}
   fruitsCount:
     ParamValue: 10
-    Ratio: 1.5
+    Ratio: 1.1
   priceRatio:
     ParamValue: 2
     Ratio: 1

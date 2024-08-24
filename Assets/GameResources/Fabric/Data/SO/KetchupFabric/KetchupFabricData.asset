@@ -28,5 +28,5 @@ MonoBehaviour:
     ParamValue: 1.67
     Ratio: 0.1999
   consumeSpeed:
-    ParamValue: 1.67
-    Ratio: 0.1
+    ParamValue: 2
+    Ratio: 0.4
