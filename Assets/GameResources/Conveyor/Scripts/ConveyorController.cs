@@ -44,6 +44,8 @@ namespace Features.Conveyor
         [SerializeField]
         protected List<BaseConveyorLinesController> conveyorLinesControllers = new List<BaseConveyorLinesController>();
 
+        [SerializeField]
+        protected bool awaitTimeOnLineAdd = true;
         [SerializeField, Min(0)]
         protected float addLineTimeAwait = 0.5f;
         [SerializeField]
@@ -138,7 +140,10 @@ namespace Features.Conveyor
             NotifyOnLineAddStart();
             MoveLines(conveyorLineControllerIndex, conveyorLineControllerIndex + 1);
             conveyorLinesControllers[conveyorLineControllerIndex].AddLine();
-            yield return new WaitForSeconds(addLineTimeAwait);
+            if (awaitTimeOnLineAdd)
+            {
+                yield return new WaitForSeconds(addLineTimeAwait);
+            }
             InitLinesControllers();
             NotifyOnLineAddEnd();
         }

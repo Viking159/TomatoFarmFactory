@@ -46,6 +46,7 @@ namespace Features.Conveyor
         protected List<Transform> pathPoints = new List<Transform>();
         
         protected ConveyorController conveyorController = default;
+        protected ConveyorRider rider = default;
 
         /// <summary>
         /// Init conveyor element
@@ -61,19 +62,19 @@ namespace Features.Conveyor
         /// <summary>
         /// Get conveyor ride path
         /// </summary>
-        public virtual Vector2[] GetPath(Vector3 riderPosition)
+        public virtual List<Vector2> GetPath(Vector3 riderPosition)
             => pathPoints
             .Select<Transform, Vector2>(pointTransform => pointTransform.position)
-            .ToArray();
+            .ToList();
 
         /// <summary>
         /// Get conveyor ride path from current position
         /// </summary>
-        public virtual Vector2[] GetActualPath(Vector3 riderPosition)
+        public virtual List<Vector2> GetActualPath(Vector3 riderPosition)
         {
             if (pathPoints.IsNullOrEmpty())
             {
-                return new Vector2[] { riderPosition };
+                return new List<Vector2>();
             }
             List<Vector2> path = new List<Vector2>() { riderPosition };
             int firstIndex = pathPoints.Count;
@@ -91,7 +92,7 @@ namespace Features.Conveyor
                 path.Add(pathPoints[i].position);
             }
             path.Add(pathPoints.Last().position);
-            return path.ToArray();
+            return path;
         }    
 
         protected virtual void SetSpeed()
@@ -102,15 +103,19 @@ namespace Features.Conveyor
 
         protected virtual void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.GetComponent<ConveyorRider>() != null)
+            rider = collision.GetComponent<ConveyorRider>();
+            if (rider != null)
             {
                 SetRidersCount(ridersCount + 1);
+                rider.SetConveyorElement(this);
+                rider.ResumeRiding(PauseWeight.CONVEYOR_ELEMENT);
             }
         }
 
         protected virtual void OnTriggerExit2D(Collider2D collision)
         {
-            if (collision.GetComponent<ConveyorRider>() != null)
+            rider = collision.GetComponent<ConveyorRider>();
+            if (rider != null)
             {
                 SetRidersCount(ridersCount - 1);
             }

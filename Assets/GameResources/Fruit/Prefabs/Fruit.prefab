@@ -136,6 +136,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fruit
       objectReference: {fileID: 0}
+    - target: {fileID: 4374567978988138884, guid: 8df0c39f26694d14597b275f34d5af65, type: 3}
+      propertyPath: spawnObject
+      value: 
+      objectReference: {fileID: 416809255}
+    - target: {fileID: 6867867312361171242, guid: 8df0c39f26694d14597b275f34d5af65, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7035666015527631240, guid: 8df0c39f26694d14597b275f34d5af65, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8132677581114780874, guid: 8df0c39f26694d14597b275f34d5af65, type: 3}
+      propertyPath: m_Radius
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8814566421579632800, guid: 8df0c39f26694d14597b275f34d5af65, type: 3}
+      propertyPath: spawnObject
+      value: 
+      objectReference: {fileID: 416809255}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8df0c39f26694d14597b275f34d5af65, type: 3}
 --- !u!114 &472831299400054542 stripped
@@ -184,7 +204,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fc1947085e79994585a4009ae03fdc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectNumber: 0
 --- !u!4 &4158592269491183189 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2967069311427540553, guid: 8df0c39f26694d14597b275f34d5af65, type: 3}

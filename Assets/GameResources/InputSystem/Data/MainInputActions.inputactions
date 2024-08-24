@@ -52,7 +52,18 @@
                 {
                     "name": "",
                     "id": "c60a88b9-f28f-40dc-8cd1-eac76a3cc891",
-                    "path": "<Pointer>/delta/y",
+                    "path": "<Pen>/delta/y",
+                    "interactions": "",
+                    "processors": "Scale(factor=-0.25)",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "90710abe-2a46-45a0-bb43-8c112c73178b",
+                    "path": "<Touchscreen>/delta/y",
                     "interactions": "",
                     "processors": "Scale(factor=-0.25)",
                     "groups": "",

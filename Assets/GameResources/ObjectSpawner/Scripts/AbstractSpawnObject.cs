@@ -9,27 +9,15 @@ namespace Features.Spawner
     public abstract class AbstractSpawnObject : MonoBehaviour
     {
         /// <summary>
-        /// Object disable event
+        /// Object creator
         /// </summary>
-        public event Action onObjectDisable = delegate { };
-
-        /// <summary>
-        /// Spawner id
-        /// </summary>
-        public uint ObjectNumber => objectNumber;
-        [SerializeField]
-        protected uint objectNumber = 0;
+        public AbstractObjectCreator Creator => creator;
+        protected AbstractObjectCreator creator = default;
 
         /// <summary>
         /// Init spawner data
         /// </summary>
-        public virtual void SetSpawnNumber(uint nubmer)
-            => objectNumber = nubmer;
-
-        protected virtual void NotifyOnDisable()
-            => onObjectDisable();
-
-        protected virtual void OnDisable()
-            => NotifyOnDisable();
+        public virtual void SetCreator(AbstractObjectCreator creator)
+            => this.creator = creator;
     }
 }

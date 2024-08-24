@@ -75,6 +75,14 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.5714847
       objectReference: {fileID: 0}
+    - target: {fileID: 4374567978988138884, guid: 8df0c39f26694d14597b275f34d5af65, type: 3}
+      propertyPath: spawnObject
+      value: 
+      objectReference: {fileID: 8120176042296165145}
+    - target: {fileID: 8814566421579632800, guid: 8df0c39f26694d14597b275f34d5af65, type: 3}
+      propertyPath: spawnObject
+      value: 
+      objectReference: {fileID: 8120176042296165145}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8df0c39f26694d14597b275f34d5af65, type: 3}
 --- !u!1 &7658022546032803442 stripped
@@ -112,4 +120,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87ac294b854e9e346b8bc83abf510e4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectNumber: 0
