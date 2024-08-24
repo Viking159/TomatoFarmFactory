@@ -1,7 +1,6 @@
 namespace Features.Fruit
 {
     using Features.Fruit.Data;
-    using UnityEngine;
     using Features.Interfaces;
     using Features.Spawner;
 

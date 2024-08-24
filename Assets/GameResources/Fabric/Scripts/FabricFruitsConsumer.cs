@@ -6,6 +6,8 @@ namespace Features.Fabric
     using Features.Interfaces;
     using System;
     using System.Collections;
+    using System.Threading;
+    using System.Threading.Tasks;
     using UnityEngine;
 
     /// <summary>
@@ -48,8 +50,9 @@ namespace Features.Fabric
         protected BaseFruit fruit = default;
         protected Collider2D consumbaleCollider = default;
         protected Coroutine colliderEnableCoroutine = default;
+        protected CancellationTokenSource cancellationTokenSource = default;
 
-        protected float lastConsumeTime = default;
+        protected float lastConsumeTime = -100;
 
         public virtual void Consume(IConsumable consumable)
         {
@@ -69,7 +72,6 @@ namespace Features.Fabric
         {
             consumbaleCollider = GetComponent<Collider2D>();
             SetConsumeAwaitTime();
-            lastConsumeTime = -consumeTime;
             fabricProductCreatorController.Data.onDataChange += SetConsumeAwaitTime;
         }
 
@@ -102,12 +104,35 @@ namespace Features.Fabric
 
         protected virtual void OnTriggerEnter2D(Collider2D collision)
         {
-            if (CheckLastConsumeTime() && collision.TryGetComponent(out consumableFruit))
+            if (CheckLastConsumeTime() && collision.TryGetComponent(out consumableFruit) 
+                && cancellationTokenSource == null)
             {
+                ConsumeObject();
+            }
+        }
+
+        protected async virtual void ConsumeObject()
+        {
+            cancellationTokenSource = new CancellationTokenSource();
+            Consume(consumableFruit);
+            try
+            {
+                await Task.Delay(TimeSpan.FromSeconds(consumeTime), cancellationTokenSource.Token);
                 lastConsumeTime = Time.time;
                 fabricConsumeController.ConsumeObjects(consumableFruit.Count);
-                Consume(consumableFruit);
             }
+            catch (Exception ex)
+            {
+                if (cancellationTokenSource.IsCancellationRequested)
+                {
+                    Debug.Log($"{nameof(FabricFruitsConsumer)}: cancel requested");
+                }
+                else
+                {
+                    Debug.LogError($"{nameof(FabricFruitsConsumer)}: Ex: {ex.Message}\n{ex.StackTrace}");
+                }
+            }
+            cancellationTokenSource = null;
         }
 
         protected virtual bool CheckLastConsumeTime() => Time.time - lastConsumeTime >= consumeTime;
@@ -133,6 +158,10 @@ namespace Features.Fabric
             DisableCollider();
         }
 
-        protected virtual void OnDestroy() => fabricProductCreatorController.Data.onDataChange -= SetConsumeAwaitTime;
+        protected virtual void OnDestroy()
+        {
+            cancellationTokenSource.Cancel();
+            fabricProductCreatorController.Data.onDataChange -= SetConsumeAwaitTime;
+        }
     }
 }
