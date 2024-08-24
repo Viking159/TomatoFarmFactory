@@ -2,7 +2,6 @@ namespace Features.Conveyor
 {
     using UnityEngine;
     using Features.Extensions.BaseDataTypes;
-    using System.Collections.Generic;
 
     /// <summary>
     /// Cross shape element of conveyor
@@ -13,6 +12,8 @@ namespace Features.Conveyor
 
         [SerializeField]
         protected Transform startPoint3 = default;
+        [SerializeField, Min(0)]
+        protected float speedRatio = 2;
 
         protected override void OnTriggerEnter2D(Collider2D collision)
         {
@@ -40,6 +41,12 @@ namespace Features.Conveyor
             {
                 riders[0].ResumeRiding(PauseWeight.CROSSROAD);
             }
+        }
+
+        protected override void SetSpeed()
+        {
+            speed = conveyorController.Speed * speedRatio;
+            NotifySpeed();
         }
 
         protected override void SetStartPoint(Vector3 riderPosition)

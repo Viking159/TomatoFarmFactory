@@ -160,7 +160,11 @@ namespace Features.Fabric
 
         protected virtual void OnDestroy()
         {
-            cancellationTokenSource.Cancel();
+            if (cancellationTokenSource != null)
+            {
+                cancellationTokenSource.Cancel();
+                cancellationTokenSource = null;
+            }
             fabricProductCreatorController.Data.onDataChange -= SetConsumeAwaitTime;
         }
     }
