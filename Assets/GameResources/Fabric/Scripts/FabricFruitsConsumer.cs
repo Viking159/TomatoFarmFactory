@@ -1,9 +1,11 @@
 namespace Features.Fabric
 {
+    using Features.Conveyor;
     using Features.Data;
     using Features.Fruit;
     using Features.Interfaces;
     using System;
+    using System.Collections;
     using UnityEngine;
 
     /// <summary>
@@ -12,30 +14,42 @@ namespace Features.Fabric
     [RequireComponent(typeof(Collider2D))]
     public class FabricFruitsConsumer : MonoBehaviour, IConsumer
     {
+        protected const float ENABLE_COLLIDER_AWAIT_TIME = 0.5f;
+
         /// <summary>
         /// Consume fruit event
         /// </summary>
         public event Action onConsume = delegate { };
 
         /// <summary>
+        /// Consume data change event
+        /// </summary>
+        public event Action onConsumerDataChange = delegate { };
+
+        public string Name => fabricProductCreatorController.Data.Name;
+
+        /// <summary>
         /// Consumed object
         /// </summary>
         public GameObject ConsumableObject { get; protected set; } = default;
+
+        /// <summary>
+        /// Time of consuming
+        /// </summary>
+        public float ConsumeTime => consumeTime;
+        protected float consumeTime = default;
 
         [SerializeField]
         protected FabricConsumeController fabricConsumeController = default;
         [SerializeField]
         protected FabricProductCreatorController fabricProductCreatorController = default;
-        [SerializeField]
-        protected Transform handInTranform = default;
 
         protected IConsumable consumableFruit = default;
         protected BaseFruit fruit = default;
+        protected Collider2D consumbaleCollider = default;
+        protected Coroutine colliderEnableCoroutine = default;
 
-        protected float consumeAwaitTime = default;
         protected float lastConsumeTime = default;
-
-        public string Name => fabricProductCreatorController.Data.Name;
 
         public virtual void Consume(IConsumable consumable)
         {
@@ -53,14 +67,38 @@ namespace Features.Fabric
 
         protected virtual void Awake()
         {
+            consumbaleCollider = GetComponent<Collider2D>();
             SetConsumeAwaitTime();
-            lastConsumeTime = -consumeAwaitTime;
+            lastConsumeTime = -consumeTime;
             fabricProductCreatorController.Data.onDataChange += SetConsumeAwaitTime;
         }
 
+        protected virtual void OnEnable()
+        {
+            EnableCollider();
+            ConveyorController.AddLineAddingStartListener(DisableCollider);
+            ConveyorController.AddLineAddingEndListener(EnableCollider);
+        }
+
+        protected virtual void EnableCollider() => colliderEnableCoroutine = StartCoroutine(EnableColliderWithAwait());
+
+        protected virtual IEnumerator EnableColliderWithAwait()
+        {
+            yield return new WaitForSeconds(ENABLE_COLLIDER_AWAIT_TIME);
+            consumbaleCollider.enabled = true;
+            NotifyOnCosumerDataChange();
+        }
+
         protected virtual void SetConsumeAwaitTime()
-            => consumeAwaitTime = GlobalData.SPEED_CONVERT_RATIO 
-            / fabricProductCreatorController.Data.ConsumeSpeed;
+        {
+            float newconsumeTime = GlobalData.SPEED_CONVERT_RATIO
+                       / fabricProductCreatorController.Data.ConsumeSpeed;
+            if (consumeTime != newconsumeTime)
+            {
+                consumeTime = newconsumeTime;
+                NotifyOnCosumerDataChange();
+            }
+        }
 
         protected virtual void OnTriggerEnter2D(Collider2D collision)
         {
@@ -72,13 +110,29 @@ namespace Features.Fabric
             }
         }
 
-        protected virtual bool CheckLastConsumeTime()
-            => Time.time - lastConsumeTime >= consumeAwaitTime;
+        protected virtual bool CheckLastConsumeTime() => Time.time - lastConsumeTime >= consumeTime;
 
-        protected virtual void NotifyOnConsume()
-            => onConsume();
+        protected virtual void DisableCollider()
+        {
+            if (colliderEnableCoroutine != null)
+            {
+                StopCoroutine(colliderEnableCoroutine);
+            }
+            consumbaleCollider.enabled = false;
+            NotifyOnCosumerDataChange();
+        }
 
-        protected virtual void OnDestroy()
-            => fabricProductCreatorController.Data.onDataChange -= SetConsumeAwaitTime;
+        protected virtual void NotifyOnConsume() => onConsume();
+
+        protected virtual void NotifyOnCosumerDataChange() => onConsumerDataChange();
+
+        protected virtual void OnDsiable()
+        {
+            ConveyorController.RemoveLineAddingStartListener(DisableCollider);
+            ConveyorController.RemoveLineAddingEndListener(EnableCollider);
+            DisableCollider();
+        }
+
+        protected virtual void OnDestroy() => fabricProductCreatorController.Data.onDataChange -= SetConsumeAwaitTime;
     }
 }

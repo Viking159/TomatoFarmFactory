@@ -14,42 +14,36 @@ namespace Features.Fabric
     public class ConsumeHand : MonoBehaviour
     {
         [SerializeField]
-        protected FabricProductCreatorController fabricProductCreatorController = default;
-        [SerializeField]
         protected FabricFruitsConsumer fabricFruitsConsumer = default;
         [SerializeField]
         protected List<Transform> pathOutPoints = new List<Transform>();
         [SerializeField]
         protected List<Transform> pathInPoints = new List<Transform>();
 
-        protected Tween pathTween = default;
+        protected Tween pathHandTween = default;
+        protected Tween pathObjectTween = default;
         protected Coroutine animationCoroutine = default;
-        protected Coroutine lateInitCoroutine = default;
 
         protected Vector3[] pathOutVectors = default;
         protected Vector3[] pathInVectors = default;
 
         protected float animationDuration = default;
 
-        protected virtual void Awake() => InitPositions();
-
         protected virtual void OnEnable()
         {
-            lateInitCoroutine = StartCoroutine(LateInit());
-            SetAnimationSpeed();
-            fabricProductCreatorController.Data.onDataChange += SetAnimationSpeed;
+            OnConsumerDataChanged();
+            fabricFruitsConsumer.onConsumerDataChange += OnConsumerDataChanged;
             fabricFruitsConsumer.onConsume += AnimatedConsume;
-            ConveyorController.AddLineAddingEndListener(InitPositions);
         }
 
-        /// <summary>
-        /// Wait for the next frame to wait position initialization
-        /// </summary>
-        protected virtual IEnumerator LateInit()
+        protected virtual void OnConsumerDataChanged()
         {
-            yield return null;
             InitPositions();
+            SetAnimationTime();
         }
+
+        protected virtual void SetAnimationTime()
+            => animationDuration = fabricFruitsConsumer.ConsumeTime / GlobalData.FABRIC_HAND_ANIMATION_SPEED_CONVERT_RATIO;
 
         protected virtual void InitPositions()
         {
@@ -57,34 +51,44 @@ namespace Features.Fabric
             pathInVectors = pathInPoints.Select(point => point.position).ToArray();
         }
 
-        protected virtual void SetAnimationSpeed()
-            => animationDuration = GlobalData.SPEED_CONVERT_RATIO
-            / fabricProductCreatorController.Data.ConsumeSpeed 
-            / GlobalData.FABRIC_HAND_ANIMATION_SPEED_CONVERT_RATIO;
-
         protected virtual void AnimatedConsume()
         {
-            StopAnimation();
+            StopAnimations();
             animationCoroutine = StartCoroutine(StartAnimation());
         }
 
         protected virtual IEnumerator StartAnimation()
         {
-            AnimatePath(pathOutVectors);
+            AnimateConsumableObject();
+            AnimateHandPath(pathOutVectors);
             yield return new WaitForSeconds(animationDuration);
             fabricFruitsConsumer.ConsumableObject.transform.SetParent(transform);
-            AnimatePath(pathInVectors);
+            AnimateHandPath(pathInVectors);
             yield return new WaitForSeconds(animationDuration);
             Destroy(fabricFruitsConsumer.ConsumableObject);
         }
 
-        protected virtual void AnimatePath(Vector3[] points)
+        protected virtual void AnimateConsumableObject()
         {
-            if (pathTween != null)
+            if (pathObjectTween != null)
             {
-                pathTween.Kill();
+                pathObjectTween.Kill();
             }
-            pathTween = transform.DOPath
+            pathObjectTween = fabricFruitsConsumer.ConsumableObject.transform.DOPath
+                (
+                    new Vector3[2] { fabricFruitsConsumer.ConsumableObject.transform.position, pathOutVectors.Last() },
+                    animationDuration,
+                    PathType.Linear
+                );
+        }
+
+        protected virtual void AnimateHandPath(Vector3[] points)
+        {
+            if (pathHandTween != null)
+            {
+                pathHandTween.Kill();
+            }
+            pathHandTween = transform.DOPath
             (
                 points,
                 animationDuration,
@@ -92,25 +96,26 @@ namespace Features.Fabric
             );
         }
 
-        protected virtual void StopAnimation()
+        protected virtual void StopAnimations()
         {
             if (animationCoroutine != null)
             {
                 StopCoroutine(animationCoroutine);
             }
-            if (pathTween != null)
+            if (pathHandTween != null)
             {
-                pathTween.Kill();
+                pathHandTween.Kill();
+            }
+            if (pathObjectTween != null)
+            {
+                pathObjectTween.Kill();
             }
         }
 
         protected virtual void OnDisable()
         {
-            ConveyorController.RemoveLineAddingEndListener(InitPositions);
-            fabricFruitsConsumer.onConsume -= AnimatedConsume;
-            fabricProductCreatorController.Data.onDataChange -= SetAnimationSpeed;
-            StopAnimation();
-            StopCoroutine(lateInitCoroutine);
+            fabricFruitsConsumer.onConsume -= OnConsumerDataChanged;
+            StopAnimations();
         }
     }
 }
