@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2704963687569151878
 Transform:
@@ -58,6 +58,8 @@ MonoBehaviour:
     - {fileID: 8017601807243426856}
     - {fileID: 2287152450872101603}
     - {fileID: 2037832780034636850}
+  maxSpawnersCount: 0
+  spawners: []
   height: 1.5
 --- !u!1001 &291707803936868949
 PrefabInstance:

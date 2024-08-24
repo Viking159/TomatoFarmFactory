@@ -14,6 +14,16 @@ namespace Features.Conveyor
         protected const int HALF_DENOMINATOR = 2;
 
         /// <summary>
+        /// Is valid controller
+        /// </summary>
+        public virtual bool ValidController => conveyorController != null;
+
+        /// <summary>
+        /// Conveyor part index in conveyor parts list
+        /// </summary>
+        public virtual int Index => ValidController ? conveyorController.ConveyorLinesControllers.IndexOf(this) : -1;
+
+        /// <summary>
         /// Prefab height
         /// </summary>
         public float PrefabHeight => conveyorLinePrefab.Height;
@@ -24,6 +34,12 @@ namespace Features.Conveyor
         public IReadOnlyList<ConveyorLineController> ConveyorLines => conveyorLines;
         [SerializeField]
         protected List<ConveyorLineController> conveyorLines = new List<ConveyorLineController>();
+
+        /// <summary>
+        /// Conveyor controller
+        /// </summary>
+        public ConveyorController ConveyorController => conveyorController;
+        protected ConveyorController conveyorController = default;
 
         [SerializeField]
         protected Transform lineTransform = default;
@@ -37,9 +53,10 @@ namespace Features.Conveyor
         /// </summary>
         public virtual void InitLines(ConveyorController conveyorController)
         {
+            this.conveyorController = conveyorController;
             foreach (ConveyorLineController conveyorLine in conveyorLines)
             {
-                InitLine(conveyorController, conveyorLine);
+                conveyorLine.InitConveyorLine(this);
             }
         }
 
@@ -84,14 +101,5 @@ namespace Features.Conveyor
             );
 
         protected virtual void SetFirstPosition(ConveyorLineController newElement) => newElement.transform.localPosition = startPosition;
-
-        protected virtual void InitLine(ConveyorController conveyorController, ConveyorLineController conveyorLine)
-        {
-            foreach (ConveyorElement conveyorElement in conveyorLine.ConveyorLine.conveyorElements)
-            {
-                conveyorElement.gameObject.SetActive(true);
-                conveyorElement.Init(conveyorController);
-            }
-        }
     }
 }

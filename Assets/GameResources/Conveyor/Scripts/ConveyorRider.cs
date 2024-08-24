@@ -4,7 +4,6 @@ namespace Features.Conveyor
     using DG.Tweening;
     using Features.Data;
     using System;
-    using Features.Spawner;
     using System.Collections.Generic;
     using Features.Extensions.BaseDataTypes;
     using System.Linq;
@@ -41,22 +40,27 @@ namespace Features.Conveyor
         public virtual bool IsPaused => pauseWeight != PauseWeight.NOT_PAUSED_VALUE;
 
         /// <summary>
-        /// Is riders path inited
+        /// Is rider's path inited
         /// </summary>
         public virtual bool IsPathInited => !path.IsNullOrEmpty();
 
         /// <summary>
-        /// Riders start point
+        /// Rider's start point
         /// </summary>
         public virtual Vector2 PathStartPoint => path.IsNullOrEmpty() ? Vector2.negativeInfinity : path[0];
 
         /// <summary>
-        /// Riders final point
+        /// Rider's final point
         /// </summary>
         public virtual Vector2 PathFinalPoint => path.IsNullOrEmpty() ? Vector2.negativeInfinity : path.Last();
 
-        protected ConveyorRiderTriggerController conveyorRiderCollisionController = default;
+        /// <summary>
+        /// Rider's current conveyor element
+        /// </summary>
+        public ConveyorElement CurrentConveyorElement => currentConveyorElement;
         protected ConveyorElement currentConveyorElement = default;
+
+        protected ConveyorRiderTriggerController conveyorRiderCollisionController = default;
         protected Tween pathTween = default;
         protected Rigidbody2D rb = default;
         protected Collider2D riderCollider = default;
@@ -138,7 +142,10 @@ namespace Features.Conveyor
             pauseWeight = prevPauseWeight;
             path = currentConveyorElement == null ? new List<Vector2>()
                 : currentConveyorElement.GetPath(transform.position);
-            ResumeRiding(PauseWeight.DEFAULT);
+            if (prevPauseWeight == PauseWeight.NOT_PAUSED_VALUE)
+            {
+                ResumeRiding(PauseWeight.DEFAULT);
+            }
             SetComponents(true);
         }
 

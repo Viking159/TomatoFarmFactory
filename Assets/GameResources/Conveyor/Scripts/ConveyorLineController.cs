@@ -1,5 +1,6 @@
 namespace Features.Conveyor
 {
+    using Features.Extensions.BaseDataTypes;
     using Features.Spawner;
     using System;
     using System.Collections.Generic;
@@ -14,6 +15,16 @@ namespace Features.Conveyor
         /// Add spawner to list event
         /// </summary>
         public event Action onSpawnerAdd = delegate { };
+
+        /// <summary>
+        /// Is valid controller
+        /// </summary>
+        public virtual bool ValidController => linesController != null;
+
+        /// <summary>
+        /// LineController index in line controllers list
+        /// </summary>
+        public virtual int Index => ValidController ? linesController.ConveyorLines.IndexOf(this) : -1;
 
         /// <summary>
         /// Conveyor line
@@ -37,6 +48,12 @@ namespace Features.Conveyor
         protected List<AbstractObjectCreator> spawners = new List<AbstractObjectCreator>();
 
         /// <summary>
+        /// Conveyor part lines controller
+        /// </summary>
+        public BaseConveyorLinesController LinesController => linesController;
+        protected BaseConveyorLinesController linesController = default;
+
+        /// <summary>
         /// Line height
         /// </summary>
         public float Height => height;
@@ -44,6 +61,18 @@ namespace Features.Conveyor
         protected float height = 1f;
 
         protected AbstractObjectCreator abstractObjectCreator = default;
+
+        /// <summary>
+        /// Init conveyor line elements
+        /// </summary>
+        public virtual void InitConveyorLine(BaseConveyorLinesController linesController)
+        {
+            this.linesController = linesController;
+            foreach (ConveyorElement line in conveyorLine.conveyorElements)
+            {
+                line.Init(this);
+            }
+        }
 
         /// <summary>
         /// Add spanwer in spawners list

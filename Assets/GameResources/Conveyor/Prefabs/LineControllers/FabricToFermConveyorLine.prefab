@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &61952383398595110
 Transform:
@@ -39,8 +39,8 @@ Transform:
   - {fileID: 2233684570585409369}
   - {fileID: 6195620656192751463}
   - {fileID: 2554470424982451547}
-  - {fileID: 607650527416716363}
   - {fileID: 8005112346737483106}
+  - {fileID: 607650527416716363}
   - {fileID: 5304909998852452898}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -69,9 +69,11 @@ MonoBehaviour:
     - {fileID: 2233684570585409368}
     - {fileID: 6195620656192751462}
     - {fileID: 2554470424982451546}
-    - {fileID: 607650527416716362}
     - {fileID: 8005112346737483107}
+    - {fileID: 607650527416716362}
     - {fileID: 5304909998852452899}
+  maxSpawnersCount: 0
+  spawners: []
   height: 2
 --- !u!1001 &40832711651512529
 PrefabInstance:
@@ -83,6 +85,10 @@ PrefabInstance:
     - target: {fileID: 1636906302066109492, guid: ef17fe97d5a4d4c4db92b23ce8a27f42, type: 3}
       propertyPath: m_Name
       value: LeftConveyorElement (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1636906302066109492, guid: ef17fe97d5a4d4c4db92b23ce8a27f42, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 1636906302066109496, guid: ef17fe97d5a4d4c4db92b23ce8a27f42, type: 3}
       propertyPath: m_RootOrder
@@ -128,6 +134,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 3240579903793068391, guid: ef17fe97d5a4d4c4db92b23ce8a27f42, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8185813622532750974, guid: ef17fe97d5a4d4c4db92b23ce8a27f42, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8366744679214098931, guid: ef17fe97d5a4d4c4db92b23ce8a27f42, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef17fe97d5a4d4c4db92b23ce8a27f42, type: 3}
 --- !u!114 &1596073865292545256 stripped
@@ -153,13 +171,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 61952383398595110}
     m_Modifications:
+    - target: {fileID: 680990586924178604, guid: 5b94ae7e43a2fad47b0701f4b4a132a6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 933972175645051681, guid: 5b94ae7e43a2fad47b0701f4b4a132a6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5879206186442083384, guid: 5b94ae7e43a2fad47b0701f4b4a132a6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 7771116444637305191, guid: 5b94ae7e43a2fad47b0701f4b4a132a6, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7771116444637305191, guid: 5b94ae7e43a2fad47b0701f4b4a132a6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.9999997
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7771116444637305191, guid: 5b94ae7e43a2fad47b0701f4b4a132a6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -201,6 +231,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RightConveyorElement (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 7771116444637305195, guid: 5b94ae7e43a2fad47b0701f4b4a132a6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b94ae7e43a2fad47b0701f4b4a132a6, type: 3}
 --- !u!4 &8005112346737483106 stripped
@@ -226,6 +260,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 61952383398595110}
     m_Modifications:
+    - target: {fileID: 3499779420544752892, guid: d0bc2a95ea6e8ab4188759db2d117339, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 3824903248509586289, guid: d0bc2a95ea6e8ab4188759db2d117339, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 5925161201192884535, guid: d0bc2a95ea6e8ab4188759db2d117339, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -273,6 +315,14 @@ PrefabInstance:
     - target: {fileID: 5925161201192884539, guid: d0bc2a95ea6e8ab4188759db2d117339, type: 3}
       propertyPath: m_Name
       value: UpConveyorElement (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5925161201192884539, guid: d0bc2a95ea6e8ab4188759db2d117339, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7527143779743173736, guid: d0bc2a95ea6e8ab4188759db2d117339, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0bc2a95ea6e8ab4188759db2d117339, type: 3}
@@ -347,6 +397,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: RightUpCornerConveyorElement (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1750647560898459242, guid: 3acaac1afc724b24e8e1117c655ccf4a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2451123083900412729, guid: 3acaac1afc724b24e8e1117c655ccf4a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8854178853313852333, guid: 3acaac1afc724b24e8e1117c655ccf4a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 9179782083388646432, guid: 3acaac1afc724b24e8e1117c655ccf4a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3acaac1afc724b24e8e1117c655ccf4a, type: 3}
 --- !u!4 &1578860923370523998 stripped
@@ -375,6 +441,10 @@ PrefabInstance:
     - target: {fileID: 1636906302066109492, guid: ef17fe97d5a4d4c4db92b23ce8a27f42, type: 3}
       propertyPath: m_Name
       value: LeftConveyorElement (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1636906302066109492, guid: ef17fe97d5a4d4c4db92b23ce8a27f42, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 1636906302066109496, guid: ef17fe97d5a4d4c4db92b23ce8a27f42, type: 3}
       propertyPath: m_RootOrder
@@ -420,6 +490,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 3240579903793068391, guid: ef17fe97d5a4d4c4db92b23ce8a27f42, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8185813622532750974, guid: ef17fe97d5a4d4c4db92b23ce8a27f42, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8366744679214098931, guid: ef17fe97d5a4d4c4db92b23ce8a27f42, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef17fe97d5a4d4c4db92b23ce8a27f42, type: 3}
 --- !u!4 &1766219308639083036 stripped
@@ -445,9 +527,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 61952383398595110}
     m_Modifications:
+    - target: {fileID: 1627493327389163862, guid: bfeb68e5a350c774396862cfb1c72f0f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 3231802592727979013, guid: bfeb68e5a350c774396862cfb1c72f0f, type: 3}
       propertyPath: m_Name
       value: RightDownCornerConveyorElement (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3231802592727979013, guid: bfeb68e5a350c774396862cfb1c72f0f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 3231802592727979017, guid: bfeb68e5a350c774396862cfb1c72f0f, type: 3}
       propertyPath: m_RootOrder
@@ -493,6 +583,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5473849166345881167, guid: bfeb68e5a350c774396862cfb1c72f0f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5652715974704583106, guid: bfeb68e5a350c774396862cfb1c72f0f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfeb68e5a350c774396862cfb1c72f0f, type: 3}
 --- !u!114 &2554470424982451546 stripped
@@ -521,6 +619,10 @@ PrefabInstance:
     - target: {fileID: 1636906302066109492, guid: ef17fe97d5a4d4c4db92b23ce8a27f42, type: 3}
       propertyPath: m_Name
       value: LeftConveyorElement (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1636906302066109492, guid: ef17fe97d5a4d4c4db92b23ce8a27f42, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 1636906302066109496, guid: ef17fe97d5a4d4c4db92b23ce8a27f42, type: 3}
       propertyPath: m_RootOrder
@@ -566,6 +668,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 3240579903793068391, guid: ef17fe97d5a4d4c4db92b23ce8a27f42, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8185813622532750974, guid: ef17fe97d5a4d4c4db92b23ce8a27f42, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8366744679214098931, guid: ef17fe97d5a4d4c4db92b23ce8a27f42, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef17fe97d5a4d4c4db92b23ce8a27f42, type: 3}
 --- !u!4 &704644542497792436 stripped
@@ -594,6 +708,10 @@ PrefabInstance:
     - target: {fileID: 1636906302066109492, guid: ef17fe97d5a4d4c4db92b23ce8a27f42, type: 3}
       propertyPath: m_Name
       value: LeftConveyorElement (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1636906302066109492, guid: ef17fe97d5a4d4c4db92b23ce8a27f42, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 1636906302066109496, guid: ef17fe97d5a4d4c4db92b23ce8a27f42, type: 3}
       propertyPath: m_RootOrder
@@ -639,6 +757,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 3240579903793068391, guid: ef17fe97d5a4d4c4db92b23ce8a27f42, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8185813622532750974, guid: ef17fe97d5a4d4c4db92b23ce8a27f42, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8366744679214098931, guid: ef17fe97d5a4d4c4db92b23ce8a27f42, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef17fe97d5a4d4c4db92b23ce8a27f42, type: 3}
 --- !u!114 &4585431308254936274 stripped
@@ -667,6 +797,10 @@ PrefabInstance:
     - target: {fileID: 1636906302066109492, guid: ef17fe97d5a4d4c4db92b23ce8a27f42, type: 3}
       propertyPath: m_Name
       value: LeftConveyorElement (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1636906302066109492, guid: ef17fe97d5a4d4c4db92b23ce8a27f42, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 1636906302066109496, guid: ef17fe97d5a4d4c4db92b23ce8a27f42, type: 3}
       propertyPath: m_RootOrder
@@ -712,6 +846,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 3240579903793068391, guid: ef17fe97d5a4d4c4db92b23ce8a27f42, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8185813622532750974, guid: ef17fe97d5a4d4c4db92b23ce8a27f42, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8366744679214098931, guid: ef17fe97d5a4d4c4db92b23ce8a27f42, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef17fe97d5a4d4c4db92b23ce8a27f42, type: 3}
 --- !u!4 &4378052235004329296 stripped
@@ -737,6 +883,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 61952383398595110}
     m_Modifications:
+    - target: {fileID: 3499779420544752892, guid: d0bc2a95ea6e8ab4188759db2d117339, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 3824903248509586289, guid: d0bc2a95ea6e8ab4188759db2d117339, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 5925161201192884535, guid: d0bc2a95ea6e8ab4188759db2d117339, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -785,6 +939,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: UpConveyorElement (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5925161201192884539, guid: d0bc2a95ea6e8ab4188759db2d117339, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7527143779743173736, guid: d0bc2a95ea6e8ab4188759db2d117339, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0bc2a95ea6e8ab4188759db2d117339, type: 3}
 --- !u!114 &9130875459795970542 stripped
@@ -810,9 +972,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 61952383398595110}
     m_Modifications:
+    - target: {fileID: 1627493327389163862, guid: bfeb68e5a350c774396862cfb1c72f0f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 3231802592727979013, guid: bfeb68e5a350c774396862cfb1c72f0f, type: 3}
       propertyPath: m_Name
       value: RightDownCornerConveyorElement (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3231802592727979013, guid: bfeb68e5a350c774396862cfb1c72f0f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 3231802592727979017, guid: bfeb68e5a350c774396862cfb1c72f0f, type: 3}
       propertyPath: m_RootOrder
@@ -857,6 +1027,14 @@ PrefabInstance:
     - target: {fileID: 3231802592727979017, guid: bfeb68e5a350c774396862cfb1c72f0f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473849166345881167, guid: bfeb68e5a350c774396862cfb1c72f0f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5652715974704583106, guid: bfeb68e5a350c774396862cfb1c72f0f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfeb68e5a350c774396862cfb1c72f0f, type: 3}
@@ -931,6 +1109,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: RightUpCornerConveyorElement (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1750647560898459242, guid: 3acaac1afc724b24e8e1117c655ccf4a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2451123083900412729, guid: 3acaac1afc724b24e8e1117c655ccf4a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8854178853313852333, guid: 3acaac1afc724b24e8e1117c655ccf4a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 9179782083388646432, guid: 3acaac1afc724b24e8e1117c655ccf4a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3acaac1afc724b24e8e1117c655ccf4a, type: 3}
 --- !u!4 &5304909998852452898 stripped
@@ -956,9 +1150,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 61952383398595110}
     m_Modifications:
+    - target: {fileID: 680990586924178604, guid: 5b94ae7e43a2fad47b0701f4b4a132a6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 933972175645051681, guid: 5b94ae7e43a2fad47b0701f4b4a132a6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5879206186442083384, guid: 5b94ae7e43a2fad47b0701f4b4a132a6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 7771116444637305191, guid: 5b94ae7e43a2fad47b0701f4b4a132a6, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 7771116444637305191, guid: 5b94ae7e43a2fad47b0701f4b4a132a6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1003,6 +1209,10 @@ PrefabInstance:
     - target: {fileID: 7771116444637305195, guid: 5b94ae7e43a2fad47b0701f4b4a132a6, type: 3}
       propertyPath: m_Name
       value: RightConveyorElement (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7771116444637305195, guid: 5b94ae7e43a2fad47b0701f4b4a132a6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b94ae7e43a2fad47b0701f4b4a132a6, type: 3}
