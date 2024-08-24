@@ -1,60 +1,71 @@
 namespace Features.Conveyor
 {
-    using Features.Spawner;
+    using Features.Extensions.BaseDataTypes;
+    using System;
     using UnityEngine;
 
     /// <summary>
     /// Conveyor collision on conveyor to stop
     /// </summary>
+    [RequireComponent(typeof(Collider2D))]
     public class ConveyorRiderStopTrigger : MonoBehaviour
     {
-        [SerializeField]
-        protected ConveyorRider conveyorRider = default;
-        [SerializeField]
-        protected AbstractSpawnObject spawnObject = default;
+        protected const float EPSILON = 0.1f;
 
-        protected AbstractSpawnObject collisionObject = default;
+        protected ConveyorRider conveyorRider = default;
+        protected ConveyorRider collisionConveyorRider = default;
+
+        protected int witingRiderId = default;
+
+        protected virtual void Awake() => conveyorRider = GetComponentInParent<ConveyorRider>();
 
         protected virtual void OnTriggerEnter2D(Collider2D collision)
         {
-            Unsubscribe();
-            collisionObject = collision.GetComponent<AbstractSpawnObject>();
-            if (collisionObject != null && ValidStopCondition())
+            if (collision.TryGetComponent(out collisionConveyorRider)
+                && ValidStopCondition(collisionConveyorRider))
             {
-                collisionObject.onObjectDisable += OnCollisionObjectDisabled;
-                conveyorRider.PauseRiding();
+                witingRiderId = collisionConveyorRider.GetInstanceID();
+                conveyorRider.PauseRiding(PauseWeight.RIDERS_COLLISION);
             }
         }
 
         protected virtual void OnTriggerExit2D(Collider2D collision)
         {
-            if (conveyorRider.IsPaused && collision.GetComponent<AbstractSpawnObject>() != null)
+            if (collision.TryGetComponent(out collisionConveyorRider)
+                && witingRiderId == collisionConveyorRider.GetInstanceID())
             {
-                OnCollisionObjectDisabled();
+                witingRiderId = default;
+                conveyorRider.ResumeRiding(PauseWeight.RIDERS_COLLISION);
             }
         }
 
-        protected virtual void OnCollisionObjectDisabled()
+        /// <summary>
+        /// Valid stop because of collisionConveyorRider
+        /// </summary>
+        protected virtual bool ValidStopCondition(ConveyorRider collisionConveyorRider)
         {
-            Unsubscribe();
-            conveyorRider.ResumeRiding();
-        }
-
-        protected virtual void Unsubscribe()
-        {
-            if (collisionObject != null)
+            if (conveyorRider.IsPaused && collisionConveyorRider.IsPaused)
             {
-                collisionObject.onObjectDisable -= OnCollisionObjectDisabled;
+                return false;
             }
+            if (conveyorRider.IsPathInited)
+            {
+                return ValidConveyorCondition(conveyorRider.PathStartPoint, conveyorRider.PathFinalPoint, collisionConveyorRider);
+            }
+            return false;
         }
 
-        protected virtual bool ValidStopCondition()
-            => !conveyorRider.IsPaused
-            && spawnObject.ObjectNumber > collisionObject.ObjectNumber;
-
-        protected virtual void OnDestroy()
+        protected virtual bool ValidConveyorCondition(Vector3 startPoint, Vector3 endPoint, ConveyorRider collisionConveyorRider)
         {
-            Unsubscribe();
+            if (startPoint.y.ApproximatelyCompare(endPoint.y) != 0)
+            {
+                return VilidLineConveyorPosition(startPoint, endPoint, collisionConveyorRider, (vector) => vector.y);
+            }
+            return VilidLineConveyorPosition(startPoint, endPoint, collisionConveyorRider, (vector) => vector.x);
         }
+
+        protected virtual bool VilidLineConveyorPosition(Vector3 startPoint, Vector3 endPoint, ConveyorRider collisionConveyorRider, Func<Vector2, float> func)
+            => func(startPoint).ApproximatelyCompare(func(endPoint)) 
+            == func(conveyorRider.transform.position).ApproximatelyCompare(func(collisionConveyorRider.transform.position));
     }
 }

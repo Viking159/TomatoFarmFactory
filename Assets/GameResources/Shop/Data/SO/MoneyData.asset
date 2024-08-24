@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c77472778547bf4985e5441dedc8017, type: 3}
   m_Name: MoneyData
   m_EditorClassIdentifier: 
-  coins: 0
+  coins: 5000
   gems: 0
   ppKey: coinsPpKey

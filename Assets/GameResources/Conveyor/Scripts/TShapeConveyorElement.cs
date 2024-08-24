@@ -17,7 +17,7 @@ namespace Features.Conveyor
 
         protected Vector3 startPosition = default;
 
-        public override Vector2[] GetPath(Vector3 riderPosition)
+        public override List<Vector2> GetPath(Vector3 riderPosition)
         {
             SetStartPoint(riderPosition);
             List<Vector2> points = new List<Vector2>(pathPoints.Count + 1)
@@ -25,15 +25,15 @@ namespace Features.Conveyor
                 startPosition
             };
             points.AddRange(base.GetPath(riderPosition));
-            return points.ToArray();
+            return points;
         }
 
-        public override Vector2[] GetActualPath(Vector3 riderPosition)
+        public override List<Vector2> GetActualPath(Vector3 riderPosition)
         {
             SetStartPoint(riderPosition);
             if (pathPoints.IsNullOrEmpty())
             {
-                return new Vector2[] { riderPosition };
+                return new List<Vector2>();
             }
             List<Vector2> path = new List<Vector2>() { riderPosition };
             int firstIndex = pathPoints.Count;
@@ -58,7 +58,7 @@ namespace Features.Conveyor
                 path.Add(pathPoints[i].position);
             }
             path.Add(pathPoints.Last().position);
-            return path.ToArray();
+            return path;
         }
 
         protected virtual void SetStartPoint(Vector3 riderPosition) 

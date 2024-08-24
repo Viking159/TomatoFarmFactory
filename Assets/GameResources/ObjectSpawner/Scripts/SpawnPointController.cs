@@ -17,7 +17,7 @@ namespace Features.Spawner
 
         protected ConveyorElement conveyorElement = default;
 
-        protected virtual void Awake()
+        protected virtual void Start()
         {
             InitConveyorElement();
             if (conveyorElement == null)
