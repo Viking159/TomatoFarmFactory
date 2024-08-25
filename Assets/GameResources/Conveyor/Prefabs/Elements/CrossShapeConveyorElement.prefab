@@ -155,4 +155,4 @@ MonoBehaviour:
   startPoint1: {fileID: 6949206487207699077}
   startPoint2: {fileID: 3539794541257178381}
   startPoint3: {fileID: 6043613474800251838}
-  speedRatio: 2
+  speedRatio: 1
