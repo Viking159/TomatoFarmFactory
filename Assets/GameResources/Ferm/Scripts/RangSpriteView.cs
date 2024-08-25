@@ -1,6 +1,7 @@
-namespace Features.DoubleStoreableSpriteView
+namespace Features.Ferm
 {
     using Features.Data;
+    using Features.Spawner;
     using UnityEngine;
 
     /// <summary>
@@ -10,7 +11,7 @@ namespace Features.DoubleStoreableSpriteView
     public class RangSpriteView : MonoBehaviour
     {
         [SerializeField]
-        protected DoubleStoreableSO data = default;
+        protected AbstractObjectCreator creator = default;
         [SerializeField]
         protected SpritesData spritesData = default;
         protected SpriteRenderer spriteRenderer = default;
@@ -21,13 +22,13 @@ namespace Features.DoubleStoreableSpriteView
         protected virtual void OnEnable()
         {
             SetSprite();
-            data.onDataChange += SetSprite;
+            creator.onDataChange += SetSprite;
         }
 
         protected virtual void SetSprite()
-            => spriteRenderer.sprite = spritesData.GetSpriteByIndex(data.Rang);
+            => spriteRenderer.sprite = spritesData.GetSpriteByIndex(creator.Rang);
 
         protected virtual void OnDisable()
-            => data.onDataChange -= SetSprite;
+            => creator.onDataChange -= SetSprite;
     }
 }

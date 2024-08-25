@@ -73,7 +73,7 @@ namespace Features.Fabric
         {
             consumbaleCollider = GetComponent<Collider2D>();
             SetConsumeAwaitTime();
-            fabricProductCreatorController.Data.onDataChange += SetConsumeAwaitTime;
+            fabricProductCreatorController.onDataChange += SetConsumeAwaitTime;
         }
 
         protected virtual void OnEnable()
@@ -95,7 +95,7 @@ namespace Features.Fabric
         protected virtual void SetConsumeAwaitTime()
         {
             float newconsumeTime = GlobalData.SPEED_CONVERT_RATIO
-                       / fabricProductCreatorController.Data.ConsumeSpeed;
+                       / fabricProductCreatorController.ConsumeSpeed;
             if (consumeTime != newconsumeTime)
             {
                 consumeTime = newconsumeTime;
@@ -167,7 +167,7 @@ namespace Features.Fabric
                 cancellationTokenSource.Cancel();
                 cancellationTokenSource = null;
             }
-            fabricProductCreatorController.Data.onDataChange -= SetConsumeAwaitTime;
+            fabricProductCreatorController.onDataChange -= SetConsumeAwaitTime;
         }
     }
 }

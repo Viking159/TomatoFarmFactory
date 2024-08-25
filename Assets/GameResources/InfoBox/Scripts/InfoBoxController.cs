@@ -3,6 +3,7 @@ namespace Features.InfoBox
     using UnityEngine;
     using UnityEngine.EventSystems;
     using Features.InfoBox;
+    using Features.Spawner;
 
     /// <summary>
     /// Ferm info box controller
@@ -10,9 +11,11 @@ namespace Features.InfoBox
     public class InfoBoxController : MonoBehaviour
     {
         [SerializeField]
-        protected InfoBox infoBoxPrefab = default;
+        protected AbstractObjectCreator creator = default;
+        [SerializeField]
+        protected BaseCreatorInfoBox infoBoxPrefab = default;
 
-        protected InfoBox infoBox = default;
+        protected BaseCreatorInfoBox infoBox = default;
 
         protected virtual void OnMouseUp()
         {
@@ -27,6 +30,7 @@ namespace Features.InfoBox
         {
             DestroyInfoBox();
             infoBox = Instantiate(infoBoxPrefab);
+            infoBox.InitData(creator, creator.SpawnerData);
             infoBox.onBoxClose += DestroyInfoBox;
         }
 

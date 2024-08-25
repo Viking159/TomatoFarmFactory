@@ -11,6 +11,8 @@ namespace Features.InfoBox
     public class UpdateRangButton : AbstractButtonView
     {
         [SerializeField]
+        protected BaseCreatorInfoBox baseCreatorInfoBox = default;
+        [SerializeField]
         protected DoubleStoreableSO data = default;
         [SerializeField]
         protected MoneyData moneyData = default;
@@ -21,11 +23,11 @@ namespace Features.InfoBox
             {
                 return;
             }
-            moneyData.SetCoins(moneyData.Coins - data.UpdateRangPrice);
-            data.SetRang(data.Rang + 1);
+            moneyData.SetCoins(moneyData.Coins - data.GetUpdateRangPrice(baseCreatorInfoBox.SpawnerData.Rang));
+            baseCreatorInfoBox.Creator.SetRang(baseCreatorInfoBox.SpawnerData.Rang + 1);
         }
 
         protected virtual bool CheckConditions()
-            => moneyData.Coins >= data.UpdateRangPrice;
+            => moneyData.Coins >= data.GetUpdateRangPrice(baseCreatorInfoBox.SpawnerData.Rang);
     }
 }

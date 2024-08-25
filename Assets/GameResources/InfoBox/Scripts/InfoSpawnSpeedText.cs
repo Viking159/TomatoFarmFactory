@@ -12,6 +12,8 @@ namespace Features.InfoBox
     public class InfoSpawnSpeedText : MaskedTextView
     {
         [SerializeField]
+        protected BaseCreatorInfoBox baseCreatorInfoBox = default;
+        [SerializeField]
         protected SpawnerData data = default;
         [SerializeField]
         protected int digitsCount = default;
@@ -19,13 +21,13 @@ namespace Features.InfoBox
         protected virtual void OnEnable()
         {
             SetText();
-            data.onDataChange += SetText;
+            baseCreatorInfoBox.onDataChange += SetText;
         }
 
         protected virtual void SetText()
-            => SetView(Math.Round(GlobalData.SPEED_CONVERT_RATIO/data.Speed, digitsCount));
+            => SetView(Math.Round(GlobalData.SPEED_CONVERT_RATIO/data.GetSpeed(baseCreatorInfoBox.SpawnerData.Level), digitsCount));
 
         protected virtual void OnDisable()
-            => data.onDataChange -= SetText;
+            => baseCreatorInfoBox.onDataChange -= SetText;
     }
 }

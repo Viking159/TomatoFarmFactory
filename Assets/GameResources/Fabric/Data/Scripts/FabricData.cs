@@ -10,16 +10,16 @@ namespace Features.Fabric.Data
     [CreateAssetMenu(fileName = nameof(FabricData), menuName = "Features/Fabric/Data/" + nameof(FabricData))]
     public class FabricData : SpawnerData
     {
-        /// <summary>
-        /// Fruits consuming speed
-        /// </summary>
-        public float ConsumeSpeed => consumeSpeed.GetGrowthValue(rang);
-
         [SerializeField]
         protected FloatUpdateableParam consumeSpeed = new FloatUpdateableParam()
         {
             ParamValue = 1.67f,
             Ratio = 0.1999f
         };
+
+        /// <summary>
+        /// Fruits consuming speed
+        /// </summary>
+        public float GetConsumeSpeed(int rang) => consumeSpeed.GetGrowthValue(rang);
     }
 }

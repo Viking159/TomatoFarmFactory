@@ -11,6 +11,8 @@ namespace Features.InfoBox
     public class LevelProgress : MonoBehaviour
     {
         [SerializeField]
+        protected BaseCreatorInfoBox baseCreatorInfoBox = default;
+        [SerializeField]
         protected StoreableSO data = default;
         protected Slider slider = default;
 
@@ -20,13 +22,13 @@ namespace Features.InfoBox
         protected virtual void OnEnable()
         {
             SetSlider();
-            data.onDataChange += SetSlider;
+            baseCreatorInfoBox.onDataChange += SetSlider;
         }
 
         protected virtual void SetSlider()
-            => slider.value = data.Level / (float)data.MaxLevel;
+            => slider.value = baseCreatorInfoBox.SpawnerData.Level / (float)data.MaxLevel;
 
         protected virtual void OnDisable()
-            => data.onDataChange -= SetSlider;
+            => baseCreatorInfoBox.onDataChange -= SetSlider;
     }
 }

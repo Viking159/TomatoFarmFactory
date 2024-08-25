@@ -10,15 +10,16 @@ namespace Features.Conveyor.Data
     [CreateAssetMenu(fileName = nameof(ConveyorData), menuName = "Features/Data/Conveyor/" + nameof(ConveyorData))]
     public class ConveyorData : StoreableSO
     {
-        /// <summary>
-        /// Conveyor speed
-        /// </summary>
-        public virtual float Speed => speed.GetGrowthValue(level);
         [SerializeField]
         protected FloatUpdateableParam speed = new FloatUpdateableParam()
         {
             ParamValue = 1.67f,
             Ratio = 0.1999f
         };
+
+        /// <summary>
+        /// Conveyor speed
+        /// </summary>
+        public virtual float GetSpeed(int level) => speed.GetGrowthValue(level);
     }
 }

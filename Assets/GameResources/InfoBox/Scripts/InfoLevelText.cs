@@ -1,6 +1,5 @@
 namespace Features.InfoBox
 {
-    using Features.Data;
     using Features.Extensions.View;
     using UnityEngine;
 
@@ -10,18 +9,18 @@ namespace Features.InfoBox
     public class InfoLevelText : MaskedTextView
     {
         [SerializeField]
-        protected StoreableSO data = default;
+        protected BaseCreatorInfoBox baseCreatorInfoBox = default;
 
         protected virtual void OnEnable()
         {
             SetText();
-            data.onDataChange += SetText;
+            baseCreatorInfoBox.onDataChange += SetText;
         }
 
         protected virtual void SetText()
-            => SetView(data.Level);
+            => SetView(baseCreatorInfoBox.SpawnerData.Level);
 
         protected virtual void OnDisable()
-            => data.onDataChange -= SetText;
+            => baseCreatorInfoBox.onDataChange -= SetText;
     }
 }

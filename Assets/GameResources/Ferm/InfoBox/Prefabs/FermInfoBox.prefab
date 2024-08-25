@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33d0f1f16afa8584ab5028d0cbfdad77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseCreatorInfoBox: {fileID: 1828200322396738145}
   data: {fileID: 11400000, guid: df6506e3796e9a0459b9e91d43a6a2f1, type: 2}
   updateLevelButton: {fileID: 7131934706249564389}
   updateRangButton: {fileID: 4347281028638972536}
@@ -329,7 +330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d41dc56317c15440a01d95e8021f162, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  infoBox: {fileID: 8147672162722285251}
+  infoBox: {fileID: 1828200322396738145}
 --- !u!1 &1136357280058075911
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,8 +537,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7814ee7ac7141fb4493828ee944377f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: d89ec0ea50e9d41428e94be37ccff648, type: 2}
   mask: '{0}'
+  baseCreatorInfoBox: {fileID: 1828200322396738145}
+  fruitData: {fileID: 11400000, guid: d89ec0ea50e9d41428e94be37ccff648, type: 2}
 --- !u!1 &1676257857615963142
 GameObject:
   m_ObjectHideFlags: 0
@@ -704,7 +706,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2227294992206359897}
   m_Layer: 5
-  m_Name: Price
+  m_Name: Income
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -965,6 +967,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eedd1a6449457e4d96d22cab2affb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseCreatorInfoBox: {fileID: 1828200322396738145}
   data: {fileID: 11400000, guid: df6506e3796e9a0459b9e91d43a6a2f1, type: 2}
   images:
   - {fileID: 92036990650554014}
@@ -1077,6 +1080,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e1f19397df11e2449b04a475b4a31a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseCreatorInfoBox: {fileID: 1828200322396738145}
   data: {fileID: 11400000, guid: df6506e3796e9a0459b9e91d43a6a2f1, type: 2}
 --- !u!1 &4347281028638972536
 GameObject:
@@ -1213,6 +1217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f42e002e9f52fa4aa3d44c1ea16a495, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseCreatorInfoBox: {fileID: 1828200322396738145}
   data: {fileID: 11400000, guid: df6506e3796e9a0459b9e91d43a6a2f1, type: 2}
   moneyData: {fileID: 11400000, guid: 50726c37122b13c45b3f827b3cf9bcef, type: 2}
 --- !u!1 &5236482678656986927
@@ -1385,6 +1390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mask: '{0}'
+  baseCreatorInfoBox: {fileID: 1828200322396738145}
   data: {fileID: 11400000, guid: df6506e3796e9a0459b9e91d43a6a2f1, type: 2}
 --- !u!1 &6097753391309561431
 GameObject:
@@ -1712,6 +1718,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65f5df6fe5ec33446b52c9ea4530981c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseCreatorInfoBox: {fileID: 1828200322396738145}
   data: {fileID: 11400000, guid: df6506e3796e9a0459b9e91d43a6a2f1, type: 2}
   moneyData: {fileID: 11400000, guid: 50726c37122b13c45b3f827b3cf9bcef, type: 2}
 --- !u!1 &7748932355200514782
@@ -2003,7 +2010,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mask: 'Level: {0}'
-  data: {fileID: 11400000, guid: df6506e3796e9a0459b9e91d43a6a2f1, type: 2}
+  baseCreatorInfoBox: {fileID: 1828200322396738145}
 --- !u!1 &7858027882602747796
 GameObject:
   m_ObjectHideFlags: 0
@@ -2138,7 +2145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d41dc56317c15440a01d95e8021f162, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  infoBox: {fileID: 8147672162722285251}
+  infoBox: {fileID: 1828200322396738145}
 --- !u!1 &7858027883049599546
 GameObject:
   m_ObjectHideFlags: 0
@@ -2233,6 +2240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mask: '{0} sec.'
+  baseCreatorInfoBox: {fileID: 1828200322396738145}
   data: {fileID: 11400000, guid: df6506e3796e9a0459b9e91d43a6a2f1, type: 2}
   digitsCount: 2
 --- !u!1 &7858027883613278307
@@ -2370,7 +2378,7 @@ GameObject:
   - component: {fileID: 2324150409888598690}
   - component: {fileID: 1490885410558818416}
   - component: {fileID: 7606967882667319158}
-  - component: {fileID: 8147672162722285251}
+  - component: {fileID: 1828200322396738145}
   m_Layer: 5
   m_Name: FermInfoBox
   m_TagString: Untagged
@@ -2460,7 +2468,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &8147672162722285251
+--- !u!114 &1828200322396738145
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2469,6 +2477,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 9181998410208913720}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45a3cf7adee524c478141e8ce8f4b2ed, type: 3}
+  m_Script: {fileID: 11500000, guid: 84babbec26365304e9715f7c5b36cf80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

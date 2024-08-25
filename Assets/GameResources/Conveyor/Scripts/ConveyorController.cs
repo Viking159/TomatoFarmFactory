@@ -6,6 +6,7 @@ namespace Features.Conveyor
     using System.Collections.Generic;
     using System;
     using System.Collections;
+    using Features.SaveSystem;
 
     /// <summary>
     /// Conveyor controller
@@ -14,6 +15,11 @@ namespace Features.Conveyor
     {
         protected const int MIN_LIST_INDEX = 0;
         protected const int MIN_ELEMENTS_COUNT = 1;
+
+        /// <summary>
+        /// Data change event
+        /// </summary>
+        public event Action onDataChange = delegate { };
 
         /// <summary>
         /// Start adding line event
@@ -26,23 +32,29 @@ namespace Features.Conveyor
         public event Action onLineAddEnd = delegate { };
 
         /// <summary>
-        /// Conveyor level change event
-        /// </summary>
-        public event Action onLevelChange = delegate { };
-
-        /// <summary>
         /// Conveyor level
         /// </summary>
-        public virtual int Level => conveyorData.Level;
-
+        public virtual int Level => data.Level;
+        
         /// <summary>
         /// Conveyor speed
         /// </summary>
-        public virtual float Speed => conveyorData.Speed;
+        public virtual float Speed => conveyorData.GetSpeed(data.Level);
+
+        /// <summary>
+        /// Adding line index
+        /// </summary>
+        public int AddingLineIndex { get; protected set; } = 0;
 
         public IReadOnlyList<BaseConveyorLinesController> ConveyorLinesControllers => conveyorLinesControllers;
         [SerializeField]
         protected List<BaseConveyorLinesController> conveyorLinesControllers = new List<BaseConveyorLinesController>();
+
+        /// <summary>
+        /// Data
+        /// </summary>
+        public ConveyorControllerData Data => data;
+        protected ConveyorControllerData data = new ConveyorControllerData();
 
         [SerializeField]
         protected bool awaitTimeOnLineAdd = true;
@@ -51,6 +63,7 @@ namespace Features.Conveyor
         [SerializeField]
         protected ConveyorData conveyorData = default;
 
+        
         protected ConveyorLineController currentLine = default;
         protected Coroutine addLineCoroutine = default;
         
@@ -103,6 +116,46 @@ namespace Features.Conveyor
         #endregion
 
         /// <summary>
+        /// Init level
+        /// </summary>
+        public virtual void InitData(ConveyorControllerData data)
+        {
+            this.data = data;
+            NotfityOnDataChange();
+        }
+
+        public virtual void SetLevel(int level)
+        {
+            int newLevel = Mathf.Clamp(level, 0, conveyorData.MaxLevel);
+            if (data.Level != newLevel)
+            {
+                data.Level = level;
+                NotfityOnDataChange();
+            }
+        }
+
+        /// <summary>
+        /// Init lines controllers
+        /// </summary>
+        public virtual void InitLinesControllers()
+        {
+            foreach (BaseConveyorLinesController conveyorLinesController in conveyorLinesControllers)
+            {
+                conveyorLinesController.InitLines(this);
+            }
+        }
+
+        /// <summary>
+        /// Add conveyor lines immediately and without events
+        /// </summary>
+        public virtual void AddLinesImmediate(int conveyorLineControllerIndex)
+        {
+            AddingLineIndex = conveyorLineControllerIndex;
+            MoveLines(conveyorLineControllerIndex, conveyorLineControllerIndex + 1);
+            conveyorLinesControllers[conveyorLineControllerIndex].AddLine();
+        }
+
+        /// <summary>
         /// Add conveyor lines
         /// </summary>
         /// <param name="conveyorLineControllerIndex"></param>
@@ -123,20 +176,11 @@ namespace Features.Conveyor
                 return;
             }
             instance = this;
-            conveyorData.onDataChange += Notfity;
-            InitLinesControllers();
-        }
-
-        protected virtual void InitLinesControllers()
-        {
-            foreach (BaseConveyorLinesController conveyorLinesController in conveyorLinesControllers)
-            {
-                conveyorLinesController.InitLines(this);
-            }
         }
 
         protected virtual IEnumerator AddLineWithAwait(int conveyorLineControllerIndex)
         {
+            AddingLineIndex = conveyorLineControllerIndex;
             NotifyOnLineAddStart();
             MoveLines(conveyorLineControllerIndex, conveyorLineControllerIndex + 1);
             conveyorLinesControllers[conveyorLineControllerIndex].AddLine();
@@ -159,7 +203,7 @@ namespace Features.Conveyor
             }
         }
 
-        protected virtual void Notfity() => onLevelChange();
+        protected virtual void NotfityOnDataChange() => onDataChange();
 
         protected virtual void NotifyOnLineAddStart() => onLineAddStart();
 
@@ -172,8 +216,5 @@ namespace Features.Conveyor
                 StopCoroutine(addLineCoroutine);
             }
         }
-
-        protected virtual void OnDestroy()
-            => conveyorData.onDataChange -= Notfity;
     }
 }

@@ -11,21 +11,13 @@ namespace Features.Product.Data
     [CreateAssetMenu(fileName = nameof(ProductData), menuName = "Features/Product/Data/" + nameof(ProductData))]
     public class ProductData : StoreableSOWithSprites
     {
-        /// <summary>
-        /// Fruits count per product
-        /// </summary>
-        public virtual int FruitsCount => fruitsCount.GetGrowthValue(level);
         [SerializeField]
         protected IntExponentialUpdateableParam fruitsCount = new IntExponentialUpdateableParam()
         {
             ParamValue = 1,
             Ratio = 1
         };
-
-        /// <summary>
-        /// Product price
-        /// </summary>
-        public virtual int Price => fruitData.Price * priceRatio.GetGrowthValue(priceLevel);
+        
         [SerializeField]
         protected IntUpdateableParam priceRatio = new IntUpdateableParam()
         {
@@ -33,16 +25,14 @@ namespace Features.Product.Data
             Ratio = 1
         };
 
-        [SerializeField]
-        protected int priceLevel = default;
-
-        [SerializeField]
-        protected FruitData fruitData = default;
+        /// <summary>
+        /// Fruits count per product
+        /// </summary>
+        public virtual int GetFruitsCount(int level) => fruitsCount.GetGrowthValue(level);
 
         /// <summary>
-        /// Set price level
+        /// Product price (without fruits)
         /// </summary>
-        public virtual void SetPriceLevel(int val)
-            => priceLevel = Mathf.Max(0, val);
+        public virtual int GetPrice(int priceLevel) => priceRatio.GetGrowthValue(priceLevel);
     }
 }

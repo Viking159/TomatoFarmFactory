@@ -10,18 +10,20 @@ namespace Features.InfoBox
     public class UpdateLevelText : MaskedTextView
     {
         [SerializeField]
+        protected BaseCreatorInfoBox baseCreatorInfoBox = default;
+        [SerializeField]
         protected StoreableSO data = default;
 
         protected virtual void OnEnable()
         {
             SetText();
-            data.onDataChange += SetText;
+            baseCreatorInfoBox.onDataChange += SetText;
         }
 
         protected virtual void SetText()
-            => SetView(data.UpdateLevelPrice);
+            => SetView(data.GetUpdateLevelPrice(baseCreatorInfoBox.SpawnerData.Level));
 
         protected virtual void OnDisable()
-            => data.onDataChange -= SetText;
+            => baseCreatorInfoBox.onDataChange -= SetText;
     }
 }

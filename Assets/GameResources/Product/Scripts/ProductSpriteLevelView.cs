@@ -9,6 +9,6 @@ namespace Features.Product
     public class ProductSpriteLevelView : AbstractSpiteView<ProductData>
     {
         protected override int GetSpriteIndex()
-            => objectController.Data.Level;
+            => objectController.Level;
     }
 }

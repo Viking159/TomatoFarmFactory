@@ -13,16 +13,13 @@ MonoBehaviour:
   m_Name: KetchupFabricData
   m_EditorClassIdentifier: 
   dataName: KetchupFabric
-  level: 0
   maxLevel: 25
   updateLevelPrice:
     ParamValue: 1
     Ratio: 1.01
-  ppKey: defaultKey
-  rang: 1
   maxRang: 5
   updateRangPrice:
-    ParamValue: 5
+    ParamValue: 0
     Ratio: 0.5
   speed:
     ParamValue: 1.67

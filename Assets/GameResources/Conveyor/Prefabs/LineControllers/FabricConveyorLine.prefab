@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5107648621015938876}
   - component: {fileID: 6570684587266817403}
+  - component: {fileID: 1272148578964765009}
   m_Layer: 0
   m_Name: FabricConveyorLine
   m_TagString: Untagged
@@ -84,6 +85,22 @@ MonoBehaviour:
   maxSpawnersCount: 3
   spawners: []
   height: 2
+  constructPlaceControllers:
+  - {fileID: 3791107947228532633}
+  - {fileID: 8952984427753725491}
+  - {fileID: 8469761203724944842}
+--- !u!114 &1272148578964765009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8755901884213482261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64cb46b520c31454ca27abf1c6e0083b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1097103227174504190
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -631,6 +648,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 567dfdd6e1c9c21459f6b0103f0f41e5, type: 3}
+--- !u!114 &3791107947228532633 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 430949742784074132, guid: 567dfdd6e1c9c21459f6b0103f0f41e5, type: 3}
+  m_PrefabInstance: {fileID: 3560009840116325901}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0a79e310efa6b84b8af732fc11c0ecd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &6949143073689140949 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5843388462326882520, guid: 567dfdd6e1c9c21459f6b0103f0f41e5, type: 3}
@@ -1155,6 +1183,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 5107648621015938876}
     m_Modifications:
     - target: {fileID: 430949742784074132, guid: 567dfdd6e1c9c21459f6b0103f0f41e5, type: 3}
+      propertyPath: index
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 430949742784074132, guid: 567dfdd6e1c9c21459f6b0103f0f41e5, type: 3}
       propertyPath: parentTranform
       value: 
       objectReference: {fileID: 5107648621015938876}
@@ -1261,6 +1293,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5843388462326882520, guid: 567dfdd6e1c9c21459f6b0103f0f41e5, type: 3}
   m_PrefabInstance: {fileID: 8102442409358120030}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8469761203724944842 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 430949742784074132, guid: 567dfdd6e1c9c21459f6b0103f0f41e5, type: 3}
+  m_PrefabInstance: {fileID: 8102442409358120030}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0a79e310efa6b84b8af732fc11c0ecd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8220009767979263417
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1415,6 +1458,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 5107648621015938876}
     m_Modifications:
     - target: {fileID: 430949742784074132, guid: 567dfdd6e1c9c21459f6b0103f0f41e5, type: 3}
+      propertyPath: index
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 430949742784074132, guid: 567dfdd6e1c9c21459f6b0103f0f41e5, type: 3}
       propertyPath: parentTranform
       value: 
       objectReference: {fileID: 5107648621015938876}
@@ -1521,6 +1568,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5843388462326882520, guid: 567dfdd6e1c9c21459f6b0103f0f41e5, type: 3}
   m_PrefabInstance: {fileID: 8774253865419509671}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8952984427753725491 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 430949742784074132, guid: 567dfdd6e1c9c21459f6b0103f0f41e5, type: 3}
+  m_PrefabInstance: {fileID: 8774253865419509671}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0a79e310efa6b84b8af732fc11c0ecd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8955500682736170597
 PrefabInstance:
   m_ObjectHideFlags: 0

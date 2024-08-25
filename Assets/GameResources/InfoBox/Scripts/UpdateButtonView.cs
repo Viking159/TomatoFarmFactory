@@ -9,6 +9,8 @@ namespace Features.InfoBox
     public class UpdateButtonView : MonoBehaviour
     {
         [SerializeField]
+        protected BaseCreatorInfoBox baseCreatorInfoBox = default;
+        [SerializeField]
         protected DoubleStoreableSO data = default;
         [SerializeField]
         protected GameObject updateLevelButton = default;
@@ -18,18 +20,18 @@ namespace Features.InfoBox
         protected virtual void OnEnable()
         {
             SetView();
-            data.onDataChange += SetView;
+            baseCreatorInfoBox.onDataChange += SetView;
         }
 
         protected virtual void SetView()
         {
             DisableButtons();
-            if (data.Level < data.MaxLevel)
+            if (baseCreatorInfoBox.SpawnerData.Level < data.MaxLevel)
             {
                 updateLevelButton.SetActive(true);
                 return;
             }
-            if (data.Rang < data.MaxRang)
+            if (baseCreatorInfoBox.SpawnerData.Rang < data.MaxRang)
             {
                 updateRangButton.SetActive(true);
             }
@@ -42,6 +44,6 @@ namespace Features.InfoBox
         }
 
         protected virtual void OnDisable()
-            => data.onDataChange -= SetView;
+            => baseCreatorInfoBox.onDataChange -= SetView;
     }
 }
