@@ -234,6 +234,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7945851552215508072, guid: f977d3a5ccbb1ac4ab32757ae9d8f536, type: 3}
+      propertyPath: m_Size.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7945851552215508072, guid: f977d3a5ccbb1ac4ab32757ae9d8f536, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 7945851552215508074, guid: f977d3a5ccbb1ac4ab32757ae9d8f536, type: 3}
       propertyPath: m_Name
       value: CrossShapeConveyorElement
@@ -379,6 +387,14 @@ PrefabInstance:
     - target: {fileID: 5925161201192884535, guid: d0bc2a95ea6e8ab4188759db2d117339, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5925161201192884537, guid: d0bc2a95ea6e8ab4188759db2d117339, type: 3}
+      propertyPath: m_Size.y
+      value: 1.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 5925161201192884537, guid: d0bc2a95ea6e8ab4188759db2d117339, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.025
       objectReference: {fileID: 0}
     - target: {fileID: 5925161201192884539, guid: d0bc2a95ea6e8ab4188759db2d117339, type: 3}
       propertyPath: m_Name

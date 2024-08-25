@@ -52,6 +52,7 @@ namespace Features.Fabric
         protected Coroutine colliderEnableCoroutine = default;
         protected CancellationTokenSource cancellationTokenSource = default;
 
+        protected int consumeCount = 0;
         protected float lastConsumeTime = -100;
 
         public virtual void Consume(IConsumable consumable)
@@ -114,12 +115,13 @@ namespace Features.Fabric
         protected async virtual void ConsumeObject()
         {
             cancellationTokenSource = new CancellationTokenSource();
+            consumeCount = consumableFruit.Count;
             Consume(consumableFruit);
             try
             {
                 await Task.Delay(TimeSpan.FromSeconds(consumeTime), cancellationTokenSource.Token);
                 lastConsumeTime = Time.time;
-                fabricConsumeController.ConsumeObjects(consumableFruit.Count);
+                fabricConsumeController.ConsumeObjects(consumeCount);
             }
             catch (Exception ex)
             {
