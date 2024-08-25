@@ -14,21 +14,12 @@ namespace Features.Ferm
         /// <summary>
         /// Fruits creation speed
         /// </summary>
-        public override float Speed => data.Speed;
+        public override float Speed => data.GetSpeed(Level);
 
         [SerializeField]
         protected FruitData fruitData = default;
 
-        protected override void UpdateParams()
-        {
-            base.UpdateParams();
-            SetFruitData();
-        }
-
-        protected virtual void SetFruitData()
-            => fruitData.SetLevel(data.Rang);
-
         protected override void InitData()
-            => createdObject.InitData(fruitData);
+            => createdObject.InitData(fruitData, Rang);
     }
 }

@@ -73,6 +73,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fruit: {fileID: 416809255}
   conveyorRider: {fileID: 472831299400054542}
+  fruitData: {fileID: 11400000, guid: d89ec0ea50e9d41428e94be37ccff648, type: 2}
 --- !u!1001 &1196669368368162844
 PrefabInstance:
   m_ObjectHideFlags: 0

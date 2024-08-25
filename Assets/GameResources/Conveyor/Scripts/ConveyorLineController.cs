@@ -1,6 +1,8 @@
 namespace Features.Conveyor
 {
+    using Features.ConstructPlace;
     using Features.Extensions.BaseDataTypes;
+    using Features.SaveSystem;
     using Features.Spawner;
     using System;
     using System.Collections.Generic;
@@ -54,11 +56,20 @@ namespace Features.Conveyor
         protected BaseConveyorLinesController linesController = default;
 
         /// <summary>
+        /// Line controller data
+        /// </summary>
+        public LineControllerData LineControllerData => lineControllerData;
+        protected LineControllerData lineControllerData = default;
+
+        /// <summary>
         /// Line height
         /// </summary>
         public float Height => height;
         [SerializeField, Min(0)]
         protected float height = 1f;
+
+        [SerializeField]
+        protected List<ConstructPlaceController> constructPlaceControllers = new List<ConstructPlaceController>();
 
         protected AbstractObjectCreator abstractObjectCreator = default;
 
@@ -75,13 +86,24 @@ namespace Features.Conveyor
         }
 
         /// <summary>
+        /// Remove construct place and add spawner
+        /// </summary>
+        public virtual void AddSpawner(int index)
+        {
+            if (index >= 0 && index < constructPlaceControllers.Count)
+            {
+                constructPlaceControllers[index].ConstructPlace();
+            }
+        }
+
+        /// <summary>
         /// Add spanwer in spawners list
         /// </summary>
-        /// <param name="spawnerObject"></param>
-        public virtual void AddSpawner(GameObject spawnerObject)
+        public virtual void AddSpawner(GameObject spawnerObject, int index)
         {
             if (spawnerObject.TryGetComponent(out abstractObjectCreator))
             {
+                abstractObjectCreator.InitData(new SaveSystem.SpawnerData() { Index = index });
                 spawners.Add(abstractObjectCreator);
                 NotifyOnSpawnerAdd();
                 return;

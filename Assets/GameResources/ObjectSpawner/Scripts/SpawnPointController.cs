@@ -1,6 +1,9 @@
 namespace Features.Spawner
 {
     using Features.Conveyor;
+    using System;
+    using System.Threading;
+    using System.Threading.Tasks;
     using UnityEngine;
 
     /// <summary>
@@ -8,6 +11,8 @@ namespace Features.Spawner
     /// </summary>
     public class SpawnPointController : MonoBehaviour
     {
+        protected const float AWAIT_CONVEYOR_ELEMENT = 0.5f;
+
         [SerializeField]
         protected AbstractObjectCreator spawner = default;
         [SerializeField]
@@ -16,30 +21,51 @@ namespace Features.Spawner
         protected LayerMask layerMask = default;
 
         protected ConveyorElement conveyorElement = default;
+        protected CancellationTokenSource cancelationTokenSource = default;
 
-        protected virtual void Start()
+        protected virtual async void Start()
         {
-            InitConveyorElement();
+            cancelationTokenSource = new CancellationTokenSource();
+            await InitConveyorElement();
             if (conveyorElement == null)
             {
+                Debug.LogError($"{nameof(SpawnPointController)}: Conveyor element not found!");
                 enabled = false;
                 return;
             }
             conveyorElement.onRidersCountChange += CheckConveyorOverload;
         }
 
-        protected virtual void InitConveyorElement()
+        /// <summary>
+        /// Init conveyor element with await to wait for conveyor lines init and move
+        /// </summary>
+        protected virtual async Task InitConveyorElement()
         {
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, radius, layerMask, -1, 1);
-            if (colliders == null || colliders.Length == 0)
+            try
             {
-                return;
+                await Task.Delay(TimeSpan.FromSeconds(AWAIT_CONVEYOR_ELEMENT), cancelationTokenSource.Token);
+                Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, radius, layerMask, -1, 1);
+                if (colliders == null || colliders.Length == 0)
+                {
+                    return;
+                }
+                if (colliders.Length == 1)
+                {
+                    colliders[0].TryGetComponent(out conveyorElement);
+                }
+                GetClosest(colliders).TryGetComponent(out conveyorElement);
             }
-            if (colliders.Length == 1)
+            catch (Exception ex)
             {
-                colliders[0].TryGetComponent(out conveyorElement);
+                if (cancelationTokenSource.IsCancellationRequested)
+                {
+                    Debug.Log($"{nameof(SpawnPointController)}: Token cancel requested");
+                }
+                else
+                {
+                    Debug.LogError($"{nameof(SpawnPointController)}: InitConveyorElement error: {ex.Message}\n{ex.StackTrace}");
+                }
             }
-            GetClosest(colliders).TryGetComponent(out conveyorElement);
         }
 
         protected virtual Collider2D GetClosest(Collider2D[] colliders)
@@ -67,6 +93,11 @@ namespace Features.Spawner
             if (conveyorElement != null)
             {
                 conveyorElement.onRidersCountChange -= CheckConveyorOverload;
+            }
+            if (cancelationTokenSource != null)
+            {
+                cancelationTokenSource.Cancel();
+                cancelationTokenSource.Dispose();
             }
         }
     }

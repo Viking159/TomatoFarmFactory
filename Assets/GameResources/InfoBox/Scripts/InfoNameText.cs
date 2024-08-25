@@ -12,16 +12,9 @@ namespace Features.InfoBox
         [SerializeField]
         protected StoreableSO data = default;
 
-        protected virtual void OnEnable()
-        {
-            SetText();
-            data.onDataChange += SetText;
-        }
+        protected virtual void OnEnable() => SetText();
 
         protected virtual void SetText()
             => SetView(data.Name);
-
-        protected virtual void OnDisable()
-            => data.onDataChange -= SetText;
     }
 }

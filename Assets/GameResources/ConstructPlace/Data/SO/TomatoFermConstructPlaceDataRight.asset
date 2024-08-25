@@ -15,5 +15,5 @@ MonoBehaviour:
   placeName: Tomato ferm
   discription: Tomato ferm creates tomatos
   image: {fileID: 0}
-  constructPrefab: {fileID: 9159479671574218699, guid: 0f6414b8666e40e408d823d4bcc79f58, type: 3}
+  constructPrefab: {fileID: 3594598944153151541, guid: a6eec68269d78b74ab4f4bab9537aa31, type: 3}
   price: 100

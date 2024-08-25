@@ -28,9 +28,14 @@ namespace Features.Fabric
         /// <summary>
         /// Required count of fruits
         /// </summary>
-        public int RequiredFruitsCount => productData.FruitsCount;
+        public int RequiredFruitsCount => productData.GetFruitsCount(Rang);
 
-        public override float Speed => data.Speed;
+        /// <summary>
+        /// Consume time
+        /// </summary>
+        public virtual float ConsumeSpeed => data.GetConsumeSpeed(Rang);
+
+        public override float Speed => data.GetSpeed(Level);
 
         [SerializeField]
         protected ProductData productData = default;
@@ -50,15 +55,6 @@ namespace Features.Fabric
 
         protected override void OnEnable() 
             => SetConveyorStateAndActivity();
-
-        protected override void UpdateParams()
-        {
-            base.UpdateParams();
-            SetProductData();
-        }
-
-        protected virtual void SetProductData()
-            => productData.SetLevel(data.Rang);
 
         protected override IEnumerator SpawnObjects()
         {
@@ -81,7 +77,7 @@ namespace Features.Fabric
         }
 
         protected override void InitData()
-            => createdObject.InitData(productData);
+            => createdObject.InitData(productData, Rang);
 
         protected virtual void NotifyActiveSpwaningStateChange()
             => onActiveSpwaningStateChange();

@@ -1,5 +1,6 @@
 namespace Features.Spawner
 {
+    using Features.Data;
     using System;
     using System.Collections;
     using UnityEngine;
@@ -11,6 +12,11 @@ namespace Features.Spawner
     {
         protected const int MIN_PROGRESS_VALUE = 0;
         protected const int MAX_PROGRESS_VALUE = 1;
+
+        /// <summary>
+        /// Data change event
+        /// </summary>
+        public event Action onDataChange = delegate { };
 
         /// <summary>
         /// Spawner state change event
@@ -38,22 +44,79 @@ namespace Features.Spawner
         public abstract float Speed { get; }
 
         /// <summary>
+        /// Level
+        /// </summary>
+        public virtual int Level => spawnerData.Level;
+
+        /// <summary>
+        /// Rang
+        /// </summary>
+        public virtual int Rang => spawnerData.Rang;
+
+        /// <summary>
         /// Object spawn progress (0..1)
         /// </summary>
         public virtual float Progress => progress;
         protected float progress = default;
 
+        /// <summary>
+        /// Creator index in creators line
+        /// </summary>
+        public int Index => spawnerData.Index;
+
+        /// <summary>
+        /// Data
+        /// </summary>
+        public SaveSystem.SpawnerData SpawnerData => spawnerData;
+        protected SaveSystem.SpawnerData spawnerData = new SaveSystem.SpawnerData();
+
         public virtual bool IsSpawning => isSpawning;
         [SerializeField]
         protected bool isSpawning = true;
 
+        /// <summary>
+        /// Spawn time
+        /// </summary>
+        public float SpawnTime => spawnTime;
+        protected float spawnTime = default;
+
+
         [SerializeField]
         protected Transform spawnPosition = default;
 
+        
         protected Coroutine spawnCoroutine = default;
 
-        protected float spawnTime = default;
+        
         protected float curTime = default;
+
+        /// <summary>
+        /// Init creator data
+        /// </summary>
+        public virtual void InitData(SaveSystem.SpawnerData spawnerData)
+        {
+            this.spawnerData = spawnerData;
+            SetSpawnTime();
+            NotifyOnDataChange();
+        }
+
+        /// <summary>
+        /// Set level
+        /// </summary>
+        public virtual void SetLevel(int level)
+        {
+            spawnerData.Level = level;
+            NotifyOnDataChange();
+        }
+
+        /// <summary>
+        /// Set rang
+        /// </summary>
+        public virtual void SetRang(int rang)
+        {
+            spawnerData.Rang = rang;
+            NotifyOnDataChange();
+        }
 
         /// <summary>
         /// Set conveyor progress state
@@ -75,7 +138,8 @@ namespace Features.Spawner
         /// <summary>
         /// Set spawn time
         /// </summary>
-        protected abstract void SetSpawnTime();
+        protected virtual void SetSpawnTime() 
+            => spawnTime = GlobalData.SPEED_CONVERT_RATIO / Speed;
 
         protected virtual IEnumerator SpawnObjects()
         {
@@ -113,18 +177,6 @@ namespace Features.Spawner
             }
         }
 
-        protected virtual void NotifySpawnState()
-            => onSpawnStateChange();
-
-        protected virtual void NotifySpawn()
-            => onObjectSpawn();
-
-        protected virtual void NotifySpawnStart()
-            => onObjectSpawnStart();
-
-        protected virtual void NotfityProgress()
-            => onProgressValueChange();
-
         protected virtual void StartSpawn()
         {
             if (spawnCoroutine != null)
@@ -144,6 +196,16 @@ namespace Features.Spawner
             spawnCoroutine = null;
             SetProgress(MIN_PROGRESS_VALUE);
         }
+
+        protected virtual void NotifySpawnState() => onSpawnStateChange();
+
+        protected virtual void NotifySpawn() => onObjectSpawn();
+
+        protected virtual void NotifySpawnStart() => onObjectSpawnStart();
+
+        protected virtual void NotfityProgress() => onProgressValueChange();
+
+        protected virtual void NotifyOnDataChange() => onDataChange();
 
         protected virtual void OnDisable() 
             => StopSpawn();

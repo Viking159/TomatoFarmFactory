@@ -322,7 +322,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e860bc4593a5e145b696e7050466e79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fabricProductCreatorController: {fileID: 5348532572641411872}
   fabricFruitsConsumer: {fileID: 3436085694768385249}
   pathOutPoints:
   - {fileID: 3436085693106459557}
@@ -434,7 +433,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fabricConsumeController: {fileID: 5348532572641411873}
   fabricProductCreatorController: {fileID: 5348532572641411872}
-  handInTranform: {fileID: 3436085693340843776}
 --- !u!1 &3436085694769689008
 GameObject:
   m_ObjectHideFlags: 0
@@ -807,7 +805,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17c8fbeecd268564eb5592c108bd48ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: f880fcdd87605ad4a8f0bc32ebfb75a4, type: 2}
+  creator: {fileID: 5348532572641411872}
   spritesData: {fileID: 11400000, guid: da5fbd1aa603ef247b24c38dc1f8d9e0, type: 2}
 --- !u!1 &5348532572040761289
 GameObject:
@@ -880,7 +878,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1bb066ac1d785e45b87b30b54290974, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  infoBoxPrefab: {fileID: 3068069748833056089, guid: 590454cd28efb4744a03c4d038fb96c6, type: 3}
+  creator: {fileID: 5348532572641411872}
+  infoBoxPrefab: {fileID: 4818485490799878651, guid: 590454cd28efb4744a03c4d038fb96c6, type: 3}
 --- !u!1 &5348532572557852829
 GameObject:
   m_ObjectHideFlags: 0

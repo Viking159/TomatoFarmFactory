@@ -70,7 +70,7 @@ namespace Features.BuyProductionLineView
         protected virtual void OnDisable()
         {
             ConveyorController.RemoveLineAddingStartListener(OnLineAddStarted);
-            ConveyorController.RemoveLineAddingEndListener(SetView);
+            ConveyorController.RemoveLineAddingEndListener(OnLineAddEnded);
             StopListenLineController();
         }
     }

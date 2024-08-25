@@ -37,19 +37,29 @@ namespace Features.Spawner
         /// </summary>
         protected abstract void InitData();
 
-        protected virtual void Awake()
-        {
-            UpdateParams();
-            data.onDataChange += UpdateParams;
-        }
+        protected virtual void Awake() => SetSpawnTime();
 
         protected virtual void OnEnable() => StartSpawn();
 
-        protected virtual void UpdateParams() 
-            => SetSpawnTime();
+        public override void SetLevel(int level)
+        {
+            int newLevel = Mathf.Clamp(level, 0, data.MaxLevel);
+            if (Level != newLevel)
+            {
+                base.SetLevel(newLevel);
+                SetSpawnTime();
+            }
+        }
 
-        protected override void SetSpawnTime()
-           => spawnTime = GlobalData.SPEED_CONVERT_RATIO / data.Speed;
+        public override void SetRang(int rang)
+        {
+            int newRang = Mathf.Clamp(rang, 0, data.MaxRang);
+            if (Rang != newRang)
+            {
+                spawnerData.Level = 0;
+                base.SetRang(newRang);
+            }
+        }
 
         protected override void Spawn()
         {
@@ -57,12 +67,9 @@ namespace Features.Spawner
             spawnedCount++;
             createdObject = Instantiate(prefabObect, spawnPosition);
             createdObject.transform.SetParent(null);
-            createdObject.SetCreator(this);
+            createdObject.InitCreator(this);
             InitData();
             NotifySpawn();
         }
-
-        protected virtual void OnDestroy()
-            => data.onDataChange -= UpdateParams;
     }
 }

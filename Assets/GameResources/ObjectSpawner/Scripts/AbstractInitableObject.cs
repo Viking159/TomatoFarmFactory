@@ -15,9 +15,10 @@ namespace Features.Spawner
         public T Data => data;
         protected T data = default;
 
-        public virtual void InitData(T data)
+        public virtual void InitData(T data, int level)
         {
             this.data = data;
+            this.level = level;
             NotifyDataInit();
         }
 

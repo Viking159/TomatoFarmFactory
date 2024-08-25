@@ -1,16 +1,17 @@
 namespace Features.UI
 {
     using Features.Data;
+    using Features.Spawner;
     using UnityEngine;
 
     /// <summary>
     /// Sprite controller based in level data
     /// </summary>
     [RequireComponent(typeof(SpriteRenderer))]
-    public class SpriteLevelController : MonoBehaviour
+    public class CreatorSpriteLevelController : MonoBehaviour
     {
         [SerializeField]
-        protected StoreableSO levelData = default;
+        protected AbstractObjectCreator creator = default;
         [SerializeField]
         protected SpritesData spriteLevelData = default;
 
@@ -22,18 +23,18 @@ namespace Features.UI
         protected virtual void OnEnable()
         {
             SetView();
-            levelData.onDataChange += SetView;
+            creator.onDataChange += SetView;
         }
 
         protected virtual void SetView()
         {
-            if (levelData.Level < spriteLevelData.SpritesCount)
+            if (creator.Level < spriteLevelData.SpritesCount)
             {
-                spriteRenderer.sprite = spriteLevelData.GetSpriteByIndex(levelData.Level);
+                spriteRenderer.sprite = spriteLevelData.GetSpriteByIndex(creator.Level);
             }
         }
 
         protected virtual void OnDisable()
-            => levelData.onDataChange -= SetView;
+            => creator.onDataChange -= SetView;
     }
 }

@@ -10,18 +10,20 @@ namespace Features.InfoBox
     public class LevelObjectSwither : BaseObjectSwitcher
     {
         [SerializeField]
+        protected BaseCreatorInfoBox baseCreatorInfoBox = default;
+        [SerializeField]
         protected StoreableSO data = default;
 
         protected virtual void OnEnable()
         {
             SetView();
-            data.onDataChange += SetView;
+            baseCreatorInfoBox.onDataChange += SetView;
         }
 
         protected virtual void SetView()
-            => SetObjects(data.Level == data.MaxLevel);
+            => SetObjects(baseCreatorInfoBox.SpawnerData.Level == data.MaxLevel);
 
         protected virtual void OnDisable()
-            => data.onDataChange -= SetView;
+            => baseCreatorInfoBox.onDataChange -= SetView;
     }
 }

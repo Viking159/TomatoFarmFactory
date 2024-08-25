@@ -76,8 +76,8 @@ namespace Features.Conveyor
         {
             this.lineController = lineController;
             conveyorController = lineController.LinesController.ConveyorController;
-            conveyorController.onLevelChange += SetSpeed;
             SetSpeed();
+            conveyorController.onDataChange += SetSpeed;
             SetRidersCount(riders.Count);
         }
 
@@ -172,7 +172,7 @@ namespace Features.Conveyor
         {
             if (conveyorController != null)
             {
-                conveyorController.onLevelChange -= SetSpeed;
+                conveyorController.onDataChange -= SetSpeed;
             }
         }
     }

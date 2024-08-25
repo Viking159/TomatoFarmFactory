@@ -31,10 +31,12 @@ namespace Features.Shop.Data
         public override void Init()
             => moneyData.onMoneyCountChange += OnMoneyCountChanged;
 
-        private void OnMoneyCountChanged()
-            => onMoneyCountChange();
-
         public override void Dispose()
             => moneyData.onMoneyCountChange -= OnMoneyCountChanged;
+
+        protected virtual void OnMoneyCountChanged()
+            => NotifyOnMoneyChange();
+
+        protected virtual void NotifyOnMoneyChange() => onMoneyCountChange();
     }
 }
