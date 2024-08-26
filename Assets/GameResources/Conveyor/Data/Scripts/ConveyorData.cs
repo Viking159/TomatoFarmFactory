@@ -21,5 +21,11 @@ namespace Features.Conveyor.Data
         /// Conveyor speed
         /// </summary>
         public virtual float GetSpeed(int level) => speed.GetGrowthValue(level);
+
+        #region GameSettings
+        public FloatUpdateableParam Speed => speed;
+        public virtual void SetStartSpeed(float startSpeed) => speed.ParamValue = startSpeed;
+        public virtual void SetSpeedRatio(float ratio) => speed.Ratio = ratio;
+        #endregion
     }
 }

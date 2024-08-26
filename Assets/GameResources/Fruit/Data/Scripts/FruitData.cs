@@ -34,5 +34,14 @@ namespace Features.Fruit.Data
         /// Fruit price
         /// </summary>
         public virtual int GetPrice(int priceLevel) => price.GetGrowthValue(priceLevel);
+
+        #region GameSettings
+        public IntUpdateableParam FruitsCount => count;
+        public virtual void SetStartCount(int startCount) => count.ParamValue = startCount;
+        public virtual void SetRatio(float ratio) => count.Ratio = ratio;
+
+        public IntUpdateableParam PriceRatio => price;
+        public virtual void SetPrice(int val) => price.ParamValue = val;
+        #endregion
     }
 }

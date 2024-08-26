@@ -21,6 +21,12 @@ namespace Features.Spawner
         /// Speed
         /// </summary>
         public float GetSpeed(int level) => speed.GetGrowthValue(level);
+
+        #region GameSettings
+        public FloatUpdateableParam Speed => speed;
+        public virtual void SetSpawnStartSpeed(float startVal) => speed.ParamValue = startVal;
+        public virtual void SetSpawnRatio(float ratio) => speed.Ratio = ratio;
+        #endregion
     }
 }
 

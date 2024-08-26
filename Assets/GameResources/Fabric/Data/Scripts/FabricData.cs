@@ -21,5 +21,11 @@ namespace Features.Fabric.Data
         /// Fruits consuming speed
         /// </summary>
         public float GetConsumeSpeed(int rang) => consumeSpeed.GetGrowthValue(rang);
+
+        #region GameSettings
+        public FloatUpdateableParam ConsumeSpeed => consumeSpeed;
+        public virtual void SetConsumeStartCount(float startVal) => consumeSpeed.ParamValue = startVal;
+        public virtual void SetConsumeRatio(float ratio) => consumeSpeed.Ratio = ratio;
+        #endregion
     }
 }
