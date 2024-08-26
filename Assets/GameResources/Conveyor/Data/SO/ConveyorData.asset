@@ -13,12 +13,10 @@ MonoBehaviour:
   m_Name: ConveyorData
   m_EditorClassIdentifier: 
   dataName: Conveyor
-  level: 0
   maxLevel: 25
   updateLevelPrice:
     ParamValue: 10
     Ratio: 1.01
-  ppKey: conveyorDataKey
   speed:
-    ParamValue: 3.34
+    ParamValue: 2.25
     Ratio: 0.1999

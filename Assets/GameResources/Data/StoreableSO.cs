@@ -33,5 +33,15 @@ namespace Features.Data
         /// Update level price
         /// </summary>
         public virtual int GetUpdateLevelPrice(int level) => updateLevelPrice.GetGrowthValue(level);
+
+        #region GameSettings
+        protected virtual void Awake()
+        {
+            hideFlags = HideFlags.DontUnloadUnusedAsset;
+        }
+        public IntUpdateableParam LevelPrice => updateLevelPrice;
+        public virtual void SetStartLevelPrice(int startVal) => updateLevelPrice.ParamValue = startVal;
+        public virtual void SetStartLevelRatio(float ratio) => updateLevelPrice.Ratio = ratio;
+        #endregion
     }
 }
