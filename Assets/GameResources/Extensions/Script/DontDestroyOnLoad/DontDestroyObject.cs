@@ -7,7 +7,17 @@ namespace Features.Extensions.DontDestroy
     /// </summary>
     public class DontDestroyObject : MonoBehaviour
     {
+        protected static DontDestroyObject instance = default;
+
         protected virtual void Awake()
-            => DontDestroyOnLoad(gameObject);
+        {
+            if (instance != null)
+            {
+                Destroy(gameObject);
+                return;
+            }
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
     }
 }
