@@ -33,11 +33,11 @@ namespace Features.SaveSystem
             {
                 ConveyorDataFileController.Instance.InitConveyorData(defaultData);
             }
-            SetConveyor();
+            InitConveyor();
             conveyorController.InitLinesControllers();
         }
 
-        protected virtual void SetConveyor()
+        protected virtual void InitConveyor()
         {
             conveyorController.InitData(ConveyorDataFileController.Instance.ConveyorSaveData.ConveyorControllerData);
             for (int i = 0; i < ConveyorDataFileController.Instance.ConveyorSaveData.LinesControllers.Count; i++)
@@ -49,7 +49,7 @@ namespace Features.SaveSystem
                     {
                         conveyorController.AddLinesImmediate(i);
                     }
-                    lineController = conveyorController.ConveyorLinesControllers[i].ConveyorLines[j];
+                    lineController = linesController.ConveyorLines[j];
                     loadedLineController = ConveyorDataFileController.Instance.ConveyorSaveData.LinesControllers[i].LineControllers[j];
                     for (int l = 0; l < loadedLineController.Spawners.Count; l++)
                     {
