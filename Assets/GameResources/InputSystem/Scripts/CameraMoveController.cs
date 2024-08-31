@@ -6,6 +6,7 @@ namespace Features.ScrollViewController
     using UnityEngine.EventSystems;
     using UnityEngine.InputSystem;
     using System.Linq;
+    using Features.Extensions.BaseDataTypes;
 
     /// <summary>
     /// Scroll game view controller
@@ -45,7 +46,8 @@ namespace Features.ScrollViewController
             BaseConveyorLinesController lastLineController = _conveyorController.ConveyorLinesControllers.LastOrDefault();
             if (lastLineController != null)
             {
-                ConveyorLineController lastLine = lastLineController.ConveyorLines.LastOrDefault();
+                ConveyorLineController lastLine = lastLineController.ConveyorLines.IsNullOrEmpty() ? null 
+                    : lastLineController.ConveyorLines[lastLineController.IsPositionOrderReversed ? 0 : lastLineController.ConveyorLines.Count - 1];
                 _bottomYPosition = (lastLine != null ? lastLine.transform.position.y - lastLine.Height : lastLineController.transform.position.y)
                     + _bottomOffset + CAMERA_HALF_HEIGHT;
                 if (_bottomYPosition <= _topPosition.position.y)

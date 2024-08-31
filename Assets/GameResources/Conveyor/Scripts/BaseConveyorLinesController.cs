@@ -26,7 +26,7 @@ namespace Features.Conveyor
         /// <summary>
         /// Prefab height
         /// </summary>
-        public float PrefabHeight => conveyorLinePrefab.Height;
+        public virtual float PrefabHeight => conveyorLinePrefab.Height;
 
         /// <summary>
         /// Conveyor lines
@@ -34,6 +34,13 @@ namespace Features.Conveyor
         public IReadOnlyList<ConveyorLineController> ConveyorLines => conveyorLines;
         [SerializeField]
         protected List<ConveyorLineController> conveyorLines = new List<ConveyorLineController>();
+
+        /// <summary>
+        /// Is lines positions reversed
+        /// </summary>
+        public bool IsPositionOrderReversed => isPositionOrderReversed;
+        [SerializeField]
+        protected bool isPositionOrderReversed = false;
 
         /// <summary>
         /// Conveyor controller
@@ -66,6 +73,11 @@ namespace Features.Conveyor
         public virtual void AddLine()
         {
             conveyorLines.Add(Instantiate(conveyorLinePrefab, lineTransform));
+            SetLastLinePosition();
+        }
+
+        protected virtual void SetLastLinePosition()
+        {
             if (conveyorLines.Count > MIN_ELEMENTS_COUNT)
             {
                 SetNewLinePosition(conveyorLines.Last(), conveyorLines.BeforeLast());

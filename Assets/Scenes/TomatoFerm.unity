@@ -289,6 +289,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   conveyorLines:
   - {fileID: 922381994}
+  isReversed: 0
   lineTransform: {fileID: 47861901}
   conveyorLinePrefab: {fileID: 1434644816719911793, guid: 20835c09f1dc58b49ac0804092eae7d1, type: 3}
   startPosition: {x: 0, y: 0, z: 0}
@@ -350,7 +351,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 70209916}
-  - component: {fileID: 70209917}
+  - component: {fileID: 70209919}
   - component: {fileID: 70209918}
   m_Layer: 0
   m_Name: FabricsConveyorLineController
@@ -375,22 +376,6 @@ Transform:
   m_Father: {fileID: 437548255}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &70209917
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 70209915}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6df9972f247a1554f83962c199cf5ce3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  conveyorLines: []
-  lineTransform: {fileID: 70209916}
-  conveyorLinePrefab: {fileID: 6570684587266817403, guid: 1fe21fa1042dbe842996be4302e63fea, type: 3}
-  startPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &70209918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -409,6 +394,23 @@ MonoBehaviour:
   conveyorController: {fileID: 437548256}
   lineIndex: 1
   maxLinesCount: 3
+--- !u!114 &70209919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 70209915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef40cf4191788a04898ebc5f05db25e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  conveyorLines: []
+  isReversed: 1
+  lineTransform: {fileID: 70209916}
+  conveyorLinePrefab: {fileID: 6570684587266817403, guid: 1fe21fa1042dbe842996be4302e63fea, type: 3}
+  startPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &85175513
 GameObject:
   m_ObjectHideFlags: 0
@@ -743,7 +745,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   conveyorLinesControllers:
   - {fileID: 1312829190}
-  - {fileID: 70209917}
+  - {fileID: 70209919}
   - {fileID: 1835497883}
   - {fileID: 47861902}
   awaitTimeOnLineAdd: 1
@@ -1226,7 +1228,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 63.92001, y: -392.9}
+  m_AnchoredPosition: {x: 63.920013, y: -392.9}
   m_SizeDelta: {x: 278.3, y: 86.9}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &693447714
@@ -2407,6 +2409,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   conveyorLines:
   - {fileID: 1399987506}
+  isReversed: 0
   lineTransform: {fileID: 1312829189}
   conveyorLinePrefab: {fileID: 2269289368457566820, guid: 3ee143566e1e8014a9f07dec03ebc2e1, type: 3}
   startPosition: {x: 0, y: 0, z: 0}
@@ -2901,6 +2904,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   conveyorLines:
   - {fileID: 2572737684345791365}
+  isReversed: 0
   lineTransform: {fileID: 1835497882}
   conveyorLinePrefab: {fileID: 7621343565150761838, guid: 5d72f47ef9346aa40b0688e0921afba4, type: 3}
   startPosition: {x: 0, y: 0, z: 0}
