@@ -193,8 +193,6 @@ namespace Features.Conveyor
             return GlobalData.SPEED_CONVERT_RATIO / speed / distance;
         }
 
-        
-
         public virtual void SetConveyorElement(ConveyorElement conveyorElement)
         {
             if (currentConveyorElement == conveyorElement)
@@ -238,6 +236,9 @@ namespace Features.Conveyor
         }
 
         protected virtual void OnDestroy()
-            => ResetConveyorElement();
+        {
+            PauseRiding(PauseWeight.FORCE);
+            ResetConveyorElement();
+        }
     }
 }

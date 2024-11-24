@@ -60,7 +60,12 @@ namespace Features.Fabric
         {
             while (isActiveAndEnabled && isActiveSpawning)
             {
-                yield return CountTime();
+                if (countTimeCoroutine != null)
+                {
+                    StopCoroutine(countTimeCoroutine);
+                }
+                countTimeCoroutine = StartCoroutine(CountTime());
+                yield return countTimeCoroutine;
                 Spawn();
             }
             SetProgress(MIN_PROGRESS_VALUE);

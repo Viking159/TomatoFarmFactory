@@ -1,4 +1,4 @@
-namespace Features.ScrollViewController
+namespace Features.InputSystem
 {
     using Features.Conveyor;
     using System;
@@ -16,6 +16,11 @@ namespace Features.ScrollViewController
     {
         private const int CAMERA_HALF_HEIGHT = 5;
 
+        /// <summary>
+        /// Move event (Vector2 is delta)
+        /// </summary>
+        public event Action<Vector3> onMove = delegate { };
+
         [SerializeField]
         private Transform _topPosition = default;
         [SerializeField]
@@ -28,12 +33,15 @@ namespace Features.ScrollViewController
         private MainInputActions _inputActions = default;
         private float _bottomYPosition = default;
         private Vector3 _newPosition = Vector3.zero;
+        private Vector3 _positionDelta = Vector3.zero;
 
         private void Awake() => _inputActions = new MainInputActions();
 
         private void OnEnable()
         {
             _inputActions.Enable();
+            _inputActions.ActionMap.Enable();
+            _inputActions.ActionMap.Move.Enable();
             _inputActions.ActionMap.Move.performed += MovePreformed;
             SetBottomPosition();
             _conveyorController.onLineAddEnd += OnLineAdded;
@@ -72,7 +80,9 @@ namespace Features.ScrollViewController
             ClampNewPosition();
             if (_newPosition != transform.position)
             {
+                _positionDelta = _newPosition - transform.position;
                 transform.position = _newPosition;
+                onMove(_positionDelta);
             }
         }
 
@@ -92,6 +102,8 @@ namespace Features.ScrollViewController
         private void OnDisable()
         {
             _inputActions.ActionMap.Move.performed -= MovePreformed;
+            _inputActions.ActionMap.Move.Disable();
+            _inputActions.ActionMap.Disable();
             _inputActions.Disable();
             _conveyorController.onLineAddEnd -= OnLineAdded;
         }

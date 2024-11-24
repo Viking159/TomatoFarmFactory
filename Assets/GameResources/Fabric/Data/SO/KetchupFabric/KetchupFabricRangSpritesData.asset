@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: KetchupFabricRangSpritesData
   m_EditorClassIdentifier: 
   _sprites:
-  - {fileID: 21300000, guid: 98d2b594456dceb4cbbe08a10923cc82, type: 3}
-  - {fileID: 21300000, guid: 15d5601f81e285041ac19ac6552917b1, type: 3}
-  - {fileID: 21300000, guid: 5720e40cd6c23b1459c2fcee9e691468, type: 3}
-  - {fileID: 21300000, guid: 7a6695a9191b10449a9542e0609f2b22, type: 3}
-  - {fileID: 21300000, guid: 92c38642e49eec5489378e953523927b, type: 3}
-  defaultSprite: {fileID: 21300000, guid: 98d2b594456dceb4cbbe08a10923cc82, type: 3}
+  - {fileID: 21300000, guid: 765c1189c50110b48b57a98ed19c4632, type: 3}
+  - {fileID: 21300000, guid: 4bd78783b1384e84ebd126180e351644, type: 3}
+  - {fileID: 21300000, guid: e66c95488fd2d224da04bc57546fe17d, type: 3}
+  - {fileID: 21300000, guid: 82de325b80bc8a1418f11b788ce6a3c7, type: 3}
+  - {fileID: 21300000, guid: 3ed6f875f8de6e44fb1359a9959ed335, type: 3}
+  - {fileID: 21300000, guid: 3ed6f875f8de6e44fb1359a9959ed335, type: 3}
+  defaultSprite: {fileID: 21300000, guid: 765c1189c50110b48b57a98ed19c4632, type: 3}

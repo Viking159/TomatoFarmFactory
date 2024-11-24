@@ -98,6 +98,7 @@ namespace Features.Spawner
             {
                 cancelationTokenSource.Cancel();
                 cancelationTokenSource.Dispose();
+                cancelationTokenSource = null;
             }
         }
     }
