@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d775cbe65fc3ab4bbfd3bb974457a4b, type: 3}
+  m_Name: KetchupProductData
+  m_EditorClassIdentifier: 
+  dataName: Ketchup
+  level: 2
+  maxLevel: 25
+  updateLevelPrice:
+    ParamValue: 10
+    Ratio: 1.2
+  ppKey: ketchapLevelPPKey
+  spritesData: {fileID: 11400000, guid: e9d7dbdfa575ba54c95f6fc1a29bf114, type: 2}
+  fruitsCount:
+    ParamValue: 10
+    Ratio: 1.1
+  priceRatio:
+    ParamValue: 2
+    Ratio: 1
+  priceLevel: 0
+  fruitData: {fileID: 11400000, guid: d89ec0ea50e9d41428e94be37ccff648, type: 2}
