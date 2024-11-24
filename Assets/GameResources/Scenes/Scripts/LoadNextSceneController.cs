@@ -1,12 +1,10 @@
 namespace Features.Scenes
 {
-    using Features.Data.BaseContainerData;
-    using Features.SaveSystem;
-    using System;
+    using System.Collections;
     using System.Collections.Generic;
-    using System.Threading.Tasks;
     using UnityEngine;
     using UnityEngine.SceneManagement;
+    using Features.Data.BaseContainerData;
 
     /// <summary>
     /// Load next scene controller
@@ -16,11 +14,12 @@ namespace Features.Scenes
         [SerializeField]
         protected StringNotifyData nextSceneContainer = default;
         [SerializeField]
-        protected List<AbstractDataFileController> dataControllers = new List<AbstractDataFileController>();
+        protected List<AbstractLoadSceneCondition> conditions = new List<AbstractLoadSceneCondition>();
         [SerializeField, Min(0)]
         protected float minAwaitTime = 1.5f;
 
         protected AsyncOperation loadOperation = default;
+        protected Coroutine conditionsCoroutine = default;
         protected int initedControllers = 0;
         protected string sceneName = string.Empty;
 
@@ -30,52 +29,22 @@ namespace Features.Scenes
         {
             startTime = Time.time;
             sceneName = SceneManager.GetActiveScene().name;
-            ListenControllers();
-            dataControllers.ForEach(controller => controller.LoadData());
+            conditions.ForEach(condition => condition.InitCondition());
+            conditionsCoroutine = StartCoroutine(WaitConditions());
         }
 
-        protected virtual void ListenControllers()
+        protected virtual IEnumerator WaitConditions()
         {
-            for (int i = 0; i < dataControllers.Count; i++)
+            yield return new WaitForSeconds(minAwaitTime);
+            while (conditions.Exists(condition => condition.IsValidCondition == false))
             {
-                dataControllers[i].onDataInited += IncrementInitedControllersCount;
+                yield return null;
             }
+            LoadNextScene();
         }
 
-        protected virtual void StopListenControllers()
+        protected virtual void LoadNextScene()
         {
-            for (int i = 0; i < dataControllers.Count; i++)
-            {
-                dataControllers[i].onDataInited -= IncrementInitedControllersCount;
-            }
-        }
-
-        protected virtual void IncrementInitedControllersCount()
-        {
-            initedControllers++;
-            if (TryLoadNextScene())
-            {
-                StopListenControllers();
-            }
-        }
-
-        protected virtual bool TryLoadNextScene()
-        {
-            if (initedControllers >= dataControllers.Count)
-            {
-                LoadNextScene();
-                return true;
-            }
-            return false;
-        }
-
-        protected virtual async void LoadNextScene()
-        {
-            float timeLeft = minAwaitTime - (Time.time - startTime);
-            if (timeLeft > 0)
-            {
-                await Task.Delay(TimeSpan.FromSeconds(timeLeft));
-            }
             loadOperation = SceneManager.LoadSceneAsync(nextSceneContainer.DataValue, LoadSceneMode.Additive);
             if (loadOperation != null)
             {
@@ -89,13 +58,17 @@ namespace Features.Scenes
             SceneManager.UnloadSceneAsync(sceneName);
         }
 
-        private void OnDisable()
+        protected virtual  void OnDisable()
         {
+            if (conditionsCoroutine != null)
+            {
+                StopCoroutine(conditionsCoroutine);
+                conditionsCoroutine = null;
+            }
             if (loadOperation != null)
             {
                 loadOperation.completed -= OnSceneLoaded;
             }
-            StopListenControllers();
         }
     }
 }

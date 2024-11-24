@@ -210,7 +210,6 @@ namespace Features.SaveSystem
         {
             if (instance != null)
             {
-                Debug.Log($"{nameof(ConveyorDataFileController)}: instance already exists!");
                 Destroy(gameObject);
                 return;
             }
