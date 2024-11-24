@@ -86,8 +86,9 @@ namespace Features.Spawner
 
         
         protected Coroutine spawnCoroutine = default;
+        protected Coroutine countTimeCoroutine = default;
 
-        
+
         protected float curTime = default;
 
         /// <summary>
@@ -145,7 +146,12 @@ namespace Features.Spawner
         {
             while (isActiveAndEnabled)
             {
-                yield return CountTime();
+                if (countTimeCoroutine != null)
+                {
+                    StopCoroutine(countTimeCoroutine);
+                }
+                countTimeCoroutine = StartCoroutine(CountTime());
+                yield return countTimeCoroutine;
                 Spawn();
             }
         }
@@ -192,6 +198,10 @@ namespace Features.Spawner
             if (spawnCoroutine != null)
             {
                 StopCoroutine(spawnCoroutine);
+            }
+            if (countTimeCoroutine != null)
+            {
+                StopCoroutine(countTimeCoroutine);
             }
             spawnCoroutine = null;
             SetProgress(MIN_PROGRESS_VALUE);

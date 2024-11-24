@@ -76,7 +76,7 @@ namespace Features.Fabric
             }
             pathObjectTween = fabricFruitsConsumer.ConsumableObject.transform.DOPath
                 (
-                    new Vector3[2] { fabricFruitsConsumer.ConsumableObject.transform.position, pathOutVectors.Last() },
+                    new Vector3[2] { fabricFruitsConsumer.ConsumableObject.transform.position, new Vector3(pathOutVectors.Last().x, fabricFruitsConsumer.ConsumableObject.transform.position.y, fabricFruitsConsumer.ConsumableObject.transform.position.z) },
                     animationDuration,
                     PathType.Linear
                 );

@@ -122,10 +122,11 @@ namespace Features.Fabric
                 await Task.Delay(TimeSpan.FromSeconds(consumeTime), cancellationTokenSource.Token);
                 lastConsumeTime = Time.time;
                 fabricConsumeController.ConsumeObjects(consumeCount);
+                cancellationTokenSource = null;
             }
             catch (Exception ex)
             {
-                if (cancellationTokenSource.IsCancellationRequested)
+                if (ex is OperationCanceledException)
                 {
                     Debug.Log($"{nameof(FabricFruitsConsumer)}: cancel requested");
                 }
@@ -134,7 +135,6 @@ namespace Features.Fabric
                     Debug.LogError($"{nameof(FabricFruitsConsumer)}: Ex: {ex.Message}\n{ex.StackTrace}");
                 }
             }
-            cancellationTokenSource = null;
         }
 
         protected virtual bool CheckLastConsumeTime() => Time.time - lastConsumeTime >= consumeTime;
@@ -165,6 +165,7 @@ namespace Features.Fabric
             if (cancellationTokenSource != null)
             {
                 cancellationTokenSource.Cancel();
+                cancellationTokenSource.Dispose();
                 cancellationTokenSource = null;
             }
             fabricProductCreatorController.onDataChange -= SetConsumeAwaitTime;

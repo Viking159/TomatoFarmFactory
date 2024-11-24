@@ -2,7 +2,6 @@ namespace Features.InfoBox
 {
     using UnityEngine;
     using UnityEngine.EventSystems;
-    using Features.InfoBox;
     using Features.Spawner;
 
     /// <summary>
@@ -36,15 +35,23 @@ namespace Features.InfoBox
 
         protected virtual void DestroyInfoBox()
         {
+            StopListenInfoBox();
             if (infoBox != null)
             {
-                infoBox.onBoxClose -= DestroyInfoBox;
                 Destroy(infoBox.gameObject);
             }
         }
 
+        protected virtual void StopListenInfoBox()
+        {
+            if (infoBox != null)
+            {
+                infoBox.onBoxClose -= DestroyInfoBox;
+            }
+        }
+
         protected virtual void OnDestroy()
-            => DestroyInfoBox();
+            => StopListenInfoBox();
     }
 }
 
