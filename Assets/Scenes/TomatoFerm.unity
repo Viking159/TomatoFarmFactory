@@ -4698,6 +4698,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 47861901}
     m_Modifications:
+    - target: {fileID: 941917688438505252, guid: 20835c09f1dc58b49ac0804092eae7d1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 941917688438505252, guid: 20835c09f1dc58b49ac0804092eae7d1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1434644816719911793, guid: 20835c09f1dc58b49ac0804092eae7d1, type: 3}
       propertyPath: maxSpawnersCount
       value: 1
@@ -4728,7 +4736,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2343128857411078088, guid: 20835c09f1dc58b49ac0804092eae7d1, type: 3}
       propertyPath: m_Name
-      value: RRRightConveyorElement (1)
+      value: RightConveyorElement (1)
       objectReference: {fileID: 0}
     - target: {fileID: 3770592927955229253, guid: 20835c09f1dc58b49ac0804092eae7d1, type: 3}
       propertyPath: m_RootOrder
@@ -4786,14 +4794,46 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 4714249337044103043, guid: 20835c09f1dc58b49ac0804092eae7d1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4714249337044103043, guid: 20835c09f1dc58b49ac0804092eae7d1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5600629016648555675, guid: 20835c09f1dc58b49ac0804092eae7d1, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5717811567109744992, guid: 20835c09f1dc58b49ac0804092eae7d1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5717811567109744992, guid: 20835c09f1dc58b49ac0804092eae7d1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5717811567109744992, guid: 20835c09f1dc58b49ac0804092eae7d1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 5717811567109745004, guid: 20835c09f1dc58b49ac0804092eae7d1, type: 3}
       propertyPath: m_Name
       value: CrossShapeConveyorElement3
       objectReference: {fileID: 0}
+    - target: {fileID: 5717811567109745006, guid: 20835c09f1dc58b49ac0804092eae7d1, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5717811567109745006, guid: 20835c09f1dc58b49ac0804092eae7d1, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.0009775
+      objectReference: {fileID: 0}
+    - target: {fileID: 5717811567109745007, guid: 20835c09f1dc58b49ac0804092eae7d1, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6c73dc54dffbcff4fba74d5add6b28f1, type: 3}
     - target: {fileID: 6181214290622528541, guid: 20835c09f1dc58b49ac0804092eae7d1, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -4818,6 +4858,14 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 7027975973526083940, guid: 20835c09f1dc58b49ac0804092eae7d1, type: 3}
+      propertyPath: crossOpenSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c6132b65a3afe474bb39ca0689a5df6e, type: 3}
+    - target: {fileID: 7027975973526083940, guid: 20835c09f1dc58b49ac0804092eae7d1, type: 3}
+      propertyPath: crossCloseSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6c73dc54dffbcff4fba74d5add6b28f1, type: 3}
     - target: {fileID: 7163239716900294313, guid: 20835c09f1dc58b49ac0804092eae7d1, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -4838,14 +4886,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: p2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7027975973526083940, guid: 20835c09f1dc58b49ac0804092eae7d1, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 3770592927955229253, guid: 20835c09f1dc58b49ac0804092eae7d1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 282703924}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5717811567109745004, guid: 20835c09f1dc58b49ac0804092eae7d1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3770592927509838725}
   m_SourcePrefab: {fileID: 100100000, guid: 20835c09f1dc58b49ac0804092eae7d1, type: 3}
+--- !u!1 &3770592927509838724 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5717811567109745004, guid: 20835c09f1dc58b49ac0804092eae7d1, type: 3}
+  m_PrefabInstance: {fileID: 3770592927509838723}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3770592927509838725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3770592927509838724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5a4aee1bb2fd8544aea5298caa6877a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crossOpenSprite: {fileID: 21300000, guid: c6132b65a3afe474bb39ca0689a5df6e, type: 3}
+  crossCloseSprite: {fileID: 21300000, guid: 6c73dc54dffbcff4fba74d5add6b28f1, type: 3}
+  lineController: {fileID: 922381994}
 --- !u!1 &5698132873735031912 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3519762672344332724, guid: 200bf48894bc2af4180f3ca4b5701e8c, type: 3}

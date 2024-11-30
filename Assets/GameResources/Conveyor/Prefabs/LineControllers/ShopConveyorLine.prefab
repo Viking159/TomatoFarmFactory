@@ -24,6 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1585148633701400059}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -36,7 +37,6 @@ Transform:
   - {fileID: 2287152450872101602}
   - {fileID: 2037832780034636851}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2269289368457566820
 MonoBehaviour:
@@ -61,11 +61,13 @@ MonoBehaviour:
   maxSpawnersCount: 0
   spawners: []
   height: 1.5
+  constructPlaceControllers: []
 --- !u!1001 &291707803936868949
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 2704963687569151878}
     m_Modifications:
     - target: {fileID: 1750647560898459238, guid: 3acaac1afc724b24e8e1117c655ccf4a, type: 3}
@@ -86,19 +88,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1750647560898459238, guid: 3acaac1afc724b24e8e1117c655ccf4a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 1750647560898459238, guid: 3acaac1afc724b24e8e1117c655ccf4a, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1750647560898459238, guid: 3acaac1afc724b24e8e1117c655ccf4a, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1750647560898459238, guid: 3acaac1afc724b24e8e1117c655ccf4a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1750647560898459238, guid: 3acaac1afc724b24e8e1117c655ccf4a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -110,13 +104,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1750647560898459238, guid: 3acaac1afc724b24e8e1117c655ccf4a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 270
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1750647560898459242, guid: 3acaac1afc724b24e8e1117c655ccf4a, type: 3}
       propertyPath: m_Name
       value: RightUpCornerConveyorElement
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3acaac1afc724b24e8e1117c655ccf4a, type: 3}
 --- !u!114 &2037832780034636850 stripped
 MonoBehaviour:
@@ -139,6 +136,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 2704963687569151878}
     m_Modifications:
     - target: {fileID: 7771116444637305191, guid: 5b94ae7e43a2fad47b0701f4b4a132a6, type: 3}
@@ -190,6 +188,9 @@ PrefabInstance:
       value: RightConveyorElement
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b94ae7e43a2fad47b0701f4b4a132a6, type: 3}
 --- !u!114 &8017601807243426856 stripped
 MonoBehaviour:
@@ -212,6 +213,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 2704963687569151878}
     m_Modifications:
     - target: {fileID: 1966049889692530961, guid: 8a947fe25d15eff4d847be717b8b9a8c, type: 3}
@@ -236,7 +238,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1966049889692530973, guid: 8a947fe25d15eff4d847be717b8b9a8c, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 1966049889692530973, guid: 8a947fe25d15eff4d847be717b8b9a8c, type: 3}
       propertyPath: m_LocalRotation.x
@@ -244,10 +246,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1966049889692530973, guid: 8a947fe25d15eff4d847be717b8b9a8c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1966049889692530973, guid: 8a947fe25d15eff4d847be717b8b9a8c, type: 3}
-      propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1966049889692530973, guid: 8a947fe25d15eff4d847be717b8b9a8c, type: 3}
@@ -260,9 +258,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1966049889692530973, guid: 8a947fe25d15eff4d847be717b8b9a8c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a947fe25d15eff4d847be717b8b9a8c, type: 3}
 --- !u!114 &1260361004315686282 stripped
 MonoBehaviour:
@@ -285,6 +286,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 2704963687569151878}
     m_Modifications:
     - target: {fileID: 5925161201192884535, guid: d0bc2a95ea6e8ab4188759db2d117339, type: 3}
@@ -336,6 +338,9 @@ PrefabInstance:
       value: UpConveyorElement (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0bc2a95ea6e8ab4188759db2d117339, type: 3}
 --- !u!114 &3515712056743537658 stripped
 MonoBehaviour:
@@ -358,6 +363,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 2704963687569151878}
     m_Modifications:
     - target: {fileID: 5925161201192884535, guid: d0bc2a95ea6e8ab4188759db2d117339, type: 3}
@@ -404,11 +410,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5925161201192884537, guid: d0bc2a95ea6e8ab4188759db2d117339, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.0009775
+      objectReference: {fileID: 0}
     - target: {fileID: 5925161201192884539, guid: d0bc2a95ea6e8ab4188759db2d117339, type: 3}
       propertyPath: m_Name
       value: UpConveyorElement
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0bc2a95ea6e8ab4188759db2d117339, type: 3}
 --- !u!4 &4569470179550986618 stripped
 Transform:
@@ -431,6 +444,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 2704963687569151878}
     m_Modifications:
     - target: {fileID: 7771116444637305191, guid: 5b94ae7e43a2fad47b0701f4b4a132a6, type: 3}
@@ -482,6 +496,9 @@ PrefabInstance:
       value: RightConveyorElement (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b94ae7e43a2fad47b0701f4b4a132a6, type: 3}
 --- !u!4 &2287152450872101602 stripped
 Transform:

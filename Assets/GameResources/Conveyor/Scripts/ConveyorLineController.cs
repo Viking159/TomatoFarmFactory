@@ -14,6 +14,11 @@ namespace Features.Conveyor
     public class ConveyorLineController : MonoBehaviour
     {
         /// <summary>
+        /// Init event
+        /// </summary>
+        public event Action onInit = delegate { };
+
+        /// <summary>
         /// Add spawner to list event
         /// </summary>
         public event Action onSpawnerAdd = delegate { };
@@ -83,6 +88,7 @@ namespace Features.Conveyor
             {
                 line.Init(this);
             }
+            NotifyOnInit();
         }
 
         /// <summary>
@@ -112,6 +118,8 @@ namespace Features.Conveyor
         }
 
         protected virtual void NotifyOnSpawnerAdd() => onSpawnerAdd();
+
+        protected virtual void NotifyOnInit() => onInit();
     }
 }
 
