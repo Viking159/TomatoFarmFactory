@@ -28,6 +28,7 @@ namespace Features.Conveyor
         }
 
         protected virtual bool CheckConditions()
-            => moneyData.Coins >= data.GetUpdateLevelPrice(conveyorController.Level);
+            => moneyData.Coins >= data.GetUpdateLevelPrice(conveyorController.Level)
+            && conveyorController.Level < data.MaxLevel;
     }
 }

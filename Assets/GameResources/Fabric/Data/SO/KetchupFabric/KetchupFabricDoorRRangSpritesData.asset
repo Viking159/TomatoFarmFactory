@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dba99d64f46533641bdca13d0ad781e2, type: 3}
+  m_Name: KetchupFabricDoorRRangSpritesData
+  m_EditorClassIdentifier: 
+  _sprites:
+  - {fileID: 21300000, guid: 9fa7e2771e40177488aef9d15b1fb837, type: 3}
+  - {fileID: 21300000, guid: 9fa7e2771e40177488aef9d15b1fb837, type: 3}
+  - {fileID: 21300000, guid: 9fa7e2771e40177488aef9d15b1fb837, type: 3}
+  - {fileID: 21300000, guid: 9fa7e2771e40177488aef9d15b1fb837, type: 3}
+  - {fileID: 21300000, guid: d842b94389ff3b24aa1d47014e9f1df0, type: 3}
+  - {fileID: 21300000, guid: d842b94389ff3b24aa1d47014e9f1df0, type: 3}
+  defaultSprite: {fileID: 21300000, guid: c70444902840e234a8119aefc4f2a536, type: 3}

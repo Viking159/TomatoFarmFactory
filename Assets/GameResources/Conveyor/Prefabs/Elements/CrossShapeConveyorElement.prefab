@@ -39,9 +39,49 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1481811561594023014, guid: bd477faf9a291134ba1b368f2eb029cd, type: 3}
+      propertyPath: conveyorElement
+      value: 
+      objectReference: {fileID: 6749042050403203670}
     - target: {fileID: 1849081362008255725, guid: bd477faf9a291134ba1b368f2eb029cd, type: 3}
       propertyPath: m_Name
       value: p1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3766160098370057794, guid: bd477faf9a291134ba1b368f2eb029cd, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.9112817
+      objectReference: {fileID: 0}
+    - target: {fileID: 3766160098370057794, guid: bd477faf9a291134ba1b368f2eb029cd, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4171231432846472603, guid: bd477faf9a291134ba1b368f2eb029cd, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.9112817
+      objectReference: {fileID: 0}
+    - target: {fileID: 4171231432846472603, guid: bd477faf9a291134ba1b368f2eb029cd, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4702121491626673842, guid: bd477faf9a291134ba1b368f2eb029cd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4702121491626673842, guid: bd477faf9a291134ba1b368f2eb029cd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4702121491626673842, guid: bd477faf9a291134ba1b368f2eb029cd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4702121491626673842, guid: bd477faf9a291134ba1b368f2eb029cd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4702121491626673842, guid: bd477faf9a291134ba1b368f2eb029cd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5880545307176364403, guid: bd477faf9a291134ba1b368f2eb029cd, type: 3}
       propertyPath: m_RootOrder
@@ -91,6 +131,14 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: f27032e3c60f11d42bb28cf76d24449d, type: 3}
+    - target: {fileID: 5880545307176364413, guid: bd477faf9a291134ba1b368f2eb029cd, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5880545307176364413, guid: bd477faf9a291134ba1b368f2eb029cd, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.0009775
+      objectReference: {fileID: 0}
     - target: {fileID: 5880545307176364415, guid: bd477faf9a291134ba1b368f2eb029cd, type: 3}
       propertyPath: m_Name
       value: CrossShapeConveyorElement
@@ -109,7 +157,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5520498347428806926, guid: bd477faf9a291134ba1b368f2eb029cd, type: 3}
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2703867678343738405, guid: bd477faf9a291134ba1b368f2eb029cd, type: 3}
+    - {fileID: 6413396590670021744, guid: bd477faf9a291134ba1b368f2eb029cd, type: 3}
+    - {fileID: 8232983153349509488, guid: bd477faf9a291134ba1b368f2eb029cd, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 5880545307176364403, guid: bd477faf9a291134ba1b368f2eb029cd, type: 3}
       insertIndex: -1
