@@ -15,5 +15,5 @@ MonoBehaviour:
   placeName: Ketchup fabric line
   discription: Conveyor line with 3 ketchup fabrics
   image: {fileID: 0}
-  constructPrefab: {fileID: 0}
+  constructPrefab: {fileID: 8755901884213482261, guid: 1fe21fa1042dbe842996be4302e63fea, type: 3}
   price: 500

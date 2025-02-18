@@ -109,7 +109,7 @@ namespace Features.Conveyor
         {
             if (spawnerObject.TryGetComponent(out abstractObjectCreator))
             {
-                abstractObjectCreator.InitData(new SaveSystem.SpawnerData() { Index = index });
+                abstractObjectCreator.InitData(this, new SaveSystem.SpawnerData() { Index = index });
                 spawners.Add(abstractObjectCreator);
                 NotifyOnSpawnerAdd();
                 return;

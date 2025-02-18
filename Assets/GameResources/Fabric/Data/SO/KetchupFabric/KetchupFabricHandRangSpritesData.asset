@@ -16,7 +16,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: fccfb0cb64e75b54d85855c40852c2d0, type: 3}
   - {fileID: 21300000, guid: fccfb0cb64e75b54d85855c40852c2d0, type: 3}
   - {fileID: 21300000, guid: fccfb0cb64e75b54d85855c40852c2d0, type: 3}
-  - {fileID: 21300000, guid: 07e999ed43f476d4dbb9a65cb4fc683d, type: 3}
+  - {fileID: 21300000, guid: fccfb0cb64e75b54d85855c40852c2d0, type: 3}
   - {fileID: 21300000, guid: 07e999ed43f476d4dbb9a65cb4fc683d, type: 3}
   - {fileID: 21300000, guid: 07e999ed43f476d4dbb9a65cb4fc683d, type: 3}
   defaultSprite: {fileID: 21300000, guid: fccfb0cb64e75b54d85855c40852c2d0, type: 3}

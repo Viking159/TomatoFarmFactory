@@ -1,14 +1,15 @@
 namespace Features.Conveyor
 {
+    using System.Collections.Generic;
     using UnityEngine;
 
     [RequireComponent(typeof(SpriteRenderer))]
     public class CrossShapeConveyorView : MonoBehaviour
     {
         [SerializeField]
-        protected Sprite crossOpenSprite = default;
+        protected List<GameObject> openingObjects = new List<GameObject>();
         [SerializeField]
-        protected Sprite crossCloseSprite = default;
+        protected List<GameObject> closingObjects = new List<GameObject>();
         [SerializeField]
         protected ConveyorLineController lineController = default;
 
@@ -46,9 +47,15 @@ namespace Features.Conveyor
             }
         }
 
-        protected virtual void SetOpenView() => spriteRenderer.sprite = crossOpenSprite;
+        protected virtual void SetOpenView() => SetView(true);
 
-        protected virtual void SetCloseView() => spriteRenderer.sprite = crossCloseSprite;
+        protected virtual void SetCloseView() => SetView(false);
+
+        protected virtual void SetView(bool isOpen)
+        {
+            openingObjects.ForEach(obj => obj.SetActive(isOpen));
+            closingObjects.ForEach(obj => obj.SetActive(!isOpen));
+        }
 
         protected virtual void Unsubscribe()
         {
