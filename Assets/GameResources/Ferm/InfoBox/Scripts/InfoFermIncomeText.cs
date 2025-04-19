@@ -22,8 +22,12 @@ namespace Features.Ferm.InfoBox
         }
 
         protected virtual void SetText()
-            => SetView(string.Format(mask, fruitData.GetPrice(0) * fruitData.GetCount(baseCreatorInfoBox.SpawnerData.Rang)));
+            => SetView(string.Format(mask,
+                (
+                baseCreatorInfoBox.SpawnerData == null 
+                ? 0
+                : fruitData.GetPrice(0) * fruitData.GetCount(baseCreatorInfoBox.SpawnerData.Rang))));
 
-        protected virtual void Ondisable() => baseCreatorInfoBox.onDataChange -= SetText;
+        protected virtual void OnDisable() => baseCreatorInfoBox.onDataChange -= SetText;
     }
 }

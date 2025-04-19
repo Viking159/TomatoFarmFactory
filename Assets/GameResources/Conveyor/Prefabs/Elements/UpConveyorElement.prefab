@@ -494,6 +494,7 @@ GameObject:
   - component: {fileID: 5925161201192884536}
   - component: {fileID: 5925161201192884537}
   - component: {fileID: 5925161201192884534}
+  - component: {fileID: 3557408512273785041}
   m_Layer: 9
   m_Name: UpConveyorElement
   m_TagString: Untagged
@@ -608,7 +609,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1.0009775}
+    oldSize: {x: 1, y: 1.0009596}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -635,6 +636,20 @@ MonoBehaviour:
   - {fileID: 6633724324053721044}
   - {fileID: 964002566525272156}
   - {fileID: 8043439054113885935}
+--- !u!114 &3557408512273785041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5925161201192884539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f2b7e360fe1c3b40a30e0c824d61b92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  infoBoxContainer: {fileID: 11400000, guid: 4d553055b2052a04db85e0d4bb32a6a8, type: 2}
+  conveyorElement: {fileID: 5925161201192884534}
 --- !u!1 &5967256070124827876
 GameObject:
   m_ObjectHideFlags: 0
@@ -793,6 +808,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   conveyorElement: {fileID: 5925161201192884534}
+  ratio: 0.5
 --- !u!1 &6982459357877294145
 GameObject:
   m_ObjectHideFlags: 0

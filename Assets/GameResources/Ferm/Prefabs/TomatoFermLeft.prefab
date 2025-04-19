@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 825377566855255812}
   - component: {fileID: 5093878577951604930}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: BackgorundSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 9159479669864145909}
   - component: {fileID: 9159479669864145908}
   - component: {fileID: 9159479669864145911}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: SliderCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -198,7 +198,7 @@ GameObject:
   - component: {fileID: 9159479670079716453}
   - component: {fileID: 9159479670079716450}
   - component: {fileID: 9159479670079716451}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -301,7 +301,7 @@ GameObject:
   - component: {fileID: 9159479670648196858}
   - component: {fileID: 9159479670648196859}
   - component: {fileID: 9159479670648196856}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -398,7 +398,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9159479670832241012}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -436,7 +436,7 @@ GameObject:
   - component: {fileID: 9159479670916942628}
   - component: {fileID: 9159479670916942629}
   - component: {fileID: 9159479670916942626}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: InfoBoxCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -515,8 +515,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1bb066ac1d785e45b87b30b54290974, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  infoBoxContainer: {fileID: 11400000, guid: 3b5e078b6b0e872428a0af16b0d46b75, type: 2}
   creator: {fileID: 9159479671574218697}
-  infoBoxPrefab: {fileID: 1828200322396738145, guid: 8f11ea624b115e44f81cc90874a771ce, type: 3}
 --- !u!1 &9159479671490397299
 GameObject:
   m_ObjectHideFlags: 0
@@ -528,7 +528,7 @@ GameObject:
   - component: {fileID: 9159479671490397296}
   - component: {fileID: 9159479671490397310}
   - component: {fileID: 9159479671490397297}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -603,7 +603,7 @@ GameObject:
   - component: {fileID: 9159479671506965394}
   - component: {fileID: 9159479671506965392}
   - component: {fileID: 9159479671506965395}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -677,7 +677,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9159479671545502522}
   - component: {fileID: 9159479671545502523}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SpawnPosition
   m_TagString: Untagged
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
@@ -727,7 +727,7 @@ GameObject:
   - component: {fileID: 9159479671574218696}
   - component: {fileID: 9159479671574218697}
   - component: {fileID: 3906293997213930799}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: TomatoFermLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}

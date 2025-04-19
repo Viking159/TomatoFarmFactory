@@ -117,10 +117,13 @@ namespace Features.Spawner
         /// <summary>
         /// Set rang
         /// </summary>
-        public virtual void SetRang(int rang)
+        public virtual void SetRang(int rang, bool saveAfter = true)
         {
             spawnerData.Rang = rang;
-            ConveyorDataFileController.Instance.UpdateSpawnerData(spawnerData, conveyorLineController.LinesController.Index, conveyorLineController.Index, Index);
+            if (saveAfter)
+            {
+                ConveyorDataFileController.Instance.UpdateSpawnerData(spawnerData, conveyorLineController.LinesController.Index, conveyorLineController.Index, Index);
+            }
             NotifyOnDataChange();
         }
 

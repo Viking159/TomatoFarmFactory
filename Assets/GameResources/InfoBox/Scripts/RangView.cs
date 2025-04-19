@@ -27,9 +27,12 @@ namespace Features.InfoBox
 
         protected virtual void SetView()
         {
-            for(int i = 0; i < images.Count; i++)
+            if (baseCreatorInfoBox.SpawnerData != null)
             {
-                images[i].color = baseCreatorInfoBox.SpawnerData.Rang >= (i + 1) ? activeColor : inactiveColor;
+                for (int i = 0; i < images.Count; i++)
+                {
+                    images[i].color = baseCreatorInfoBox.SpawnerData.Rang >= (i + 1) ? activeColor : inactiveColor;
+                }
             }
         }
 

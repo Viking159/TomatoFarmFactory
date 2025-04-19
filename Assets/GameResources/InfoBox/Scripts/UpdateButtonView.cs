@@ -26,14 +26,17 @@ namespace Features.InfoBox
         protected virtual void SetView()
         {
             DisableButtons();
-            if (baseCreatorInfoBox.SpawnerData.Level < data.MaxLevel)
+            if (baseCreatorInfoBox.SpawnerData != null)
             {
-                updateLevelButton.SetActive(true);
-                return;
-            }
-            if (baseCreatorInfoBox.SpawnerData.Rang < data.MaxRang)
-            {
-                updateRangButton.SetActive(true);
+                if (baseCreatorInfoBox.SpawnerData.Level < data.MaxLevel)
+                {
+                    updateLevelButton.SetActive(true);
+                    return;
+                }
+                if (baseCreatorInfoBox.SpawnerData.Rang < data.MaxRang)
+                {
+                    updateRangButton.SetActive(true);
+                }
             }
         }
 

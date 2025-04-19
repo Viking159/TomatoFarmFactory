@@ -1,26 +1,20 @@
 namespace Features.ConstructPlace
 {
+    using Features.InfoBox;
     using Features.Shop.Data;
     using UnityEngine;
-    using UnityEngine.EventSystems;
 
     /// <summary>
     /// Construct place collider controller
     /// </summary>
-    public class ConstructPlacePointerCollider : MonoBehaviour
+    public class ConstructPlacePointerCollider : AbstractClickController
     {
         [SerializeField]
         protected ConstructPlaceController constructPlaceController = default;
         [SerializeField]
         protected MoneyData moneyData = default;
 
-        protected virtual void OnMouseUp()
-        {
-            if (!EventSystem.current.IsPointerOverGameObject())
-            {
-                ConstructPlace();
-            }
-        }
+        protected override void ClickHandle() => ConstructPlace();
 
         protected virtual void ConstructPlace()
         {

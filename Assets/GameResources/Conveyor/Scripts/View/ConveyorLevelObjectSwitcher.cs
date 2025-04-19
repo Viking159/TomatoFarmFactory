@@ -21,7 +21,7 @@ namespace Features.Conveyor
         }
 
         protected virtual void SetView()
-            => SetObjects(conveyorController.Level == data.MaxLevel);
+            => SetObjects(conveyorController.Level >= data.MaxLevel);
 
         protected virtual void OnDisable()
             => conveyorController.onDataChange -= SetView;
