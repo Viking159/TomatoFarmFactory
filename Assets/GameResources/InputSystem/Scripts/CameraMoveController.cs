@@ -7,6 +7,7 @@ namespace Features.InputSystem
     using UnityEngine.InputSystem;
     using System.Linq;
     using Features.Extensions.BaseDataTypes;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Scroll game view controller
@@ -34,8 +35,15 @@ namespace Features.InputSystem
         private float _bottomYPosition = default;
         private Vector3 _newPosition = Vector3.zero;
         private Vector3 _positionDelta = Vector3.zero;
+        private List<RaycastResult> _results = new List<RaycastResult>();
+        private PointerEventData _pointerEventData = default;
+        private bool _isOverUI = true;
 
-        private void Awake() => _inputActions = new MainInputActions();
+        private void Awake()
+        {
+            _inputActions = new MainInputActions();
+            _pointerEventData = new PointerEventData(EventSystem.current);
+        }
 
         private void OnEnable()
         {
@@ -43,6 +51,9 @@ namespace Features.InputSystem
             _inputActions.ActionMap.Enable();
             _inputActions.ActionMap.Move.Enable();
             _inputActions.ActionMap.Move.performed += MovePreformed;
+            _inputActions.ActionMap.PointerEvents.Enable();
+            _inputActions.ActionMap.PointerEvents.started += PointerDownHandler;
+            _inputActions.ActionMap.PointerEvents.canceled += PointerUpHandler;
             SetBottomPosition();
             _conveyorController.onLineAddEnd += OnLineAdded;
         }
@@ -66,9 +77,20 @@ namespace Features.InputSystem
             _bottomYPosition = _topPosition.position.y;
         }
 
+        private bool IsPointerOverUI(Vector2 position)
+        {
+            _pointerEventData.position = position;
+            EventSystem.current.RaycastAll(_pointerEventData, _results);
+            return _results.Count > 0;
+        }
+
+        private void PointerUpHandler(InputAction.CallbackContext context) => _isOverUI = true;
+
+        private void PointerDownHandler(InputAction.CallbackContext context) => _isOverUI = IsPointerOverUI(Mouse.current.position.ReadValue());
+
         private void MovePreformed(InputAction.CallbackContext context)
         {
-            if (!EventSystem.current.IsPointerOverGameObject())
+            if (!_isOverUI)
             {
                 MoveCamera(context.ReadValue<float>());
             }
@@ -101,6 +123,9 @@ namespace Features.InputSystem
 
         private void OnDisable()
         {
+            _inputActions.ActionMap.PointerEvents.started -= PointerDownHandler;
+            _inputActions.ActionMap.PointerEvents.canceled -= PointerUpHandler;
+            _inputActions.ActionMap.PointerEvents.Disable();
             _inputActions.ActionMap.Move.performed -= MovePreformed;
             _inputActions.ActionMap.Move.Disable();
             _inputActions.ActionMap.Disable();

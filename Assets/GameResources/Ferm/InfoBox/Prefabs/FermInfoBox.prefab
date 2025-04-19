@@ -140,6 +140,7 @@ GameObject:
   - component: {fileID: 2791570375122760518}
   - component: {fileID: 8113948872435589313}
   - component: {fileID: 4643740969701130885}
+  - component: {fileID: 3036223070059949765}
   m_Layer: 5
   m_Name: Popup_name
   m_TagString: Untagged
@@ -208,6 +209,21 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Popup_name
+--- !u!114 &3036223070059949765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 790544230098576098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73b0a82964c050b439584396da2aa348, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mask: Farm {0}
+  infoBoxController: {fileID: 1828200322396738145}
+  lineElementsCount: 2
 --- !u!1 &790891377681297039
 GameObject:
   m_ObjectHideFlags: 0

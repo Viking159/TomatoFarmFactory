@@ -623,6 +623,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 39
       objectReference: {fileID: 0}
+    - target: {fileID: 6533843737006970199, guid: 8f11ea624b115e44f81cc90874a771ce, type: 3}
+      propertyPath: mask
+      value: Factory {0}
+      objectReference: {fileID: 0}
+    - target: {fileID: 6533843737006970199, guid: 8f11ea624b115e44f81cc90874a771ce, type: 3}
+      propertyPath: lineElementsCount
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7063736462862048887, guid: 8f11ea624b115e44f81cc90874a771ce, type: 3}
       propertyPath: m_Name
       value: CreationTime
@@ -705,12 +713,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8951888404988015194, guid: 8f11ea624b115e44f81cc90874a771ce, type: 3}
+    - {fileID: 3036223070059949765, guid: 8f11ea624b115e44f81cc90874a771ce, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 7858027881627280256, guid: 8f11ea624b115e44f81cc90874a771ce, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6321547298221351614}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 790544230098576098, guid: 8f11ea624b115e44f81cc90874a771ce, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1849496945039268143}
     - targetCorrespondingSourceObject: {fileID: 1596454027962822482, guid: 8f11ea624b115e44f81cc90874a771ce, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6305804505149968811}
@@ -751,3 +763,23 @@ MonoBehaviour:
   mask: '{0}'
   baseCreatorInfoBox: {fileID: 4818485490799878651}
   productData: {fileID: 11400000, guid: 24f16dda6dd95dc4595c4b98ffdfe440, type: 2}
+--- !u!1 &5870778901561921912 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 790544230098576098, guid: 8f11ea624b115e44f81cc90874a771ce, type: 3}
+  m_PrefabInstance: {fileID: 6593728932925043610}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1849496945039268143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5870778901561921912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a03273cdf7cca3942bd500949240e866, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mask: Factory {0}
+  infoBoxController: {fileID: 4818485490799878651}
+  lineElementsCount: 3

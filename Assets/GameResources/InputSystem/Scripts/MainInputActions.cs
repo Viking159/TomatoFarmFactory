@@ -35,6 +35,15 @@ public partial class @MainInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""PointerEvents"",
+                    ""type"": ""Button"",
+                    ""id"": ""18a03f54-f4b5-41d4-93e0-07ed9371dc3c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -103,6 +112,17 @@ public partial class @MainInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a8f91ce2-c161-4bd3-8ed1-801d19a8eac4"",
+                    ""path"": ""<Pointer>/press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PointerEvents"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -112,6 +132,7 @@ public partial class @MainInputActions: IInputActionCollection2, IDisposable
         // ActionMap
         m_ActionMap = asset.FindActionMap("ActionMap", throwIfNotFound: true);
         m_ActionMap_Move = m_ActionMap.FindAction("Move", throwIfNotFound: true);
+        m_ActionMap_PointerEvents = m_ActionMap.FindAction("PointerEvents", throwIfNotFound: true);
     }
 
     ~@MainInputActions()
@@ -179,11 +200,13 @@ public partial class @MainInputActions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_ActionMap;
     private List<IActionMapActions> m_ActionMapActionsCallbackInterfaces = new List<IActionMapActions>();
     private readonly InputAction m_ActionMap_Move;
+    private readonly InputAction m_ActionMap_PointerEvents;
     public struct ActionMapActions
     {
         private @MainInputActions m_Wrapper;
         public ActionMapActions(@MainInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_ActionMap_Move;
+        public InputAction @PointerEvents => m_Wrapper.m_ActionMap_PointerEvents;
         public InputActionMap Get() { return m_Wrapper.m_ActionMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -196,6 +219,9 @@ public partial class @MainInputActions: IInputActionCollection2, IDisposable
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
+            @PointerEvents.started += instance.OnPointerEvents;
+            @PointerEvents.performed += instance.OnPointerEvents;
+            @PointerEvents.canceled += instance.OnPointerEvents;
         }
 
         private void UnregisterCallbacks(IActionMapActions instance)
@@ -203,6 +229,9 @@ public partial class @MainInputActions: IInputActionCollection2, IDisposable
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
+            @PointerEvents.started -= instance.OnPointerEvents;
+            @PointerEvents.performed -= instance.OnPointerEvents;
+            @PointerEvents.canceled -= instance.OnPointerEvents;
         }
 
         public void RemoveCallbacks(IActionMapActions instance)
@@ -223,5 +252,6 @@ public partial class @MainInputActions: IInputActionCollection2, IDisposable
     public interface IActionMapActions
     {
         void OnMove(InputAction.CallbackContext context);
+        void OnPointerEvents(InputAction.CallbackContext context);
     }
 }

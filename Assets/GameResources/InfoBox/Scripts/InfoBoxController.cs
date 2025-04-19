@@ -14,31 +14,37 @@ namespace Features.InfoBox
         [SerializeField]
         protected BaseCreatorInfoBox infoBoxPrefab = default;
 
-        protected BaseCreatorInfoBox infoBox = default;
+        protected static BaseCreatorInfoBox infoBox = default;
 
         protected virtual void OnMouseUp()
         {
             if (!EventSystem.current.IsPointerOverGameObject())
             {
                 SpawnInfoBox();
-                return;
             }
         }
 
         protected virtual void SpawnInfoBox()
         {
-            DestroyInfoBox();
-            infoBox = Instantiate(infoBoxPrefab);
+            if (infoBox == null)
+            {
+                infoBox = Instantiate(infoBoxPrefab);
+            }
+            else
+            {
+                StopListenInfoBox();
+            }
+            infoBox.gameObject.SetActive(true);
             infoBox.InitData(creator, creator.SpawnerData);
-            infoBox.onBoxClose += DestroyInfoBox;
+            infoBox.onBoxClose += CloseInfoBox;
         }
 
-        protected virtual void DestroyInfoBox()
+        protected virtual void CloseInfoBox()
         {
             StopListenInfoBox();
             if (infoBox != null)
             {
-                Destroy(infoBox.gameObject);
+                infoBox.gameObject.SetActive(false);
             }
         }
 
@@ -46,11 +52,11 @@ namespace Features.InfoBox
         {
             if (infoBox != null)
             {
-                infoBox.onBoxClose -= DestroyInfoBox;
+                infoBox.onBoxClose -= CloseInfoBox;
             }
         }
 
-        protected virtual void OnDestroy()
+        protected virtual void OnDisable()
             => StopListenInfoBox();
     }
 }
