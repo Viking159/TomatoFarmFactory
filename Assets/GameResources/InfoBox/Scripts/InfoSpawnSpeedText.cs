@@ -25,7 +25,7 @@ namespace Features.InfoBox
         }
 
         protected virtual void SetText()
-            => SetView(Math.Round(GlobalData.SPEED_CONVERT_RATIO/data.GetSpeed(baseCreatorInfoBox.SpawnerData.Level), digitsCount));
+            => SetView(baseCreatorInfoBox.SpawnerData == null ? 0 : Math.Round(GlobalData.SPEED_CONVERT_RATIO/data.GetSpeed(baseCreatorInfoBox.SpawnerData.Level), digitsCount));
 
         protected virtual void OnDisable()
             => baseCreatorInfoBox.onDataChange -= SetText;

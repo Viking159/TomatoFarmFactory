@@ -86,7 +86,13 @@ namespace Features.InputSystem
 
         private void PointerUpHandler(InputAction.CallbackContext context) => _isOverUI = true;
 
-        private void PointerDownHandler(InputAction.CallbackContext context) => _isOverUI = IsPointerOverUI(Mouse.current.position.ReadValue());
+        private void PointerDownHandler(InputAction.CallbackContext context) => _isOverUI = IsPointerOverUI(
+#if (!UNITY_EDITOR && (UNITY_IOS || UNITY_ANDROID))
+            Touchscreen.current.primaryTouch.position.ReadValue()       
+#else
+            Mouse.current.position.ReadValue()
+#endif
+            );
 
         private void MovePreformed(InputAction.CallbackContext context)
         {

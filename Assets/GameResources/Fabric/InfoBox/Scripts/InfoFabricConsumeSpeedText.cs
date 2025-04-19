@@ -26,17 +26,15 @@ namespace Features.Fabric.InfoBox
         }
 
         protected virtual void SetText()
-            => SetView(string.Format(mask,
-                Math.Round
+            => SetView(baseCreatorInfoBox.SpawnerData == null ? 0
+                : Math.Round
                 (
                     GlobalData.SPEED_CONVERT_RATIO
                     / fabricData.GetConsumeSpeed(baseCreatorInfoBox.SpawnerData.Rang)
                     / GlobalData.FABRIC_HAND_ANIMATION_SPEED_CONVERT_RATIO,
                     digitsCount
-                )));
+                ));
 
-        protected virtual void Ondisable() => baseCreatorInfoBox.onDataChange -= SetText;
-
-       
+        protected virtual void OnDisable() => baseCreatorInfoBox.onDataChange -= SetText;
     }
 }
