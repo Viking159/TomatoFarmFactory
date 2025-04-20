@@ -23,7 +23,17 @@ namespace Features.AdsControl
         /// <summary>
         /// Show interstitial
         /// </summary>
-        public void Present() => _interstitialAd.Present();
+        public void Present()
+        {
+            if (_interstitialAd.isAdReady)
+            {
+                _interstitialAd.Present();
+            }
+            else
+            {
+                NotifyOnShowFailed(AdsController.NOT_READY_ERROR);
+            }
+        }
 
         private void Awake()
         {
