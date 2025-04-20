@@ -2,7 +2,6 @@ namespace Features.InfoBox
 {
     using Features.Data;
     using Features.Extensions.View;
-    using Features.Shop.Data;
     using UnityEngine;
 
     /// <summary>
@@ -14,8 +13,6 @@ namespace Features.InfoBox
         protected BaseCreatorInfoBox baseCreatorInfoBox = default;
         [SerializeField]
         protected DoubleStoreableSO data = default;
-        [SerializeField]
-        protected MoneyData moneyData = default;
 
         protected override void OnButtonClick()
         {
@@ -23,12 +20,11 @@ namespace Features.InfoBox
             {
                 return;
             }
-            moneyData.SetCoins(moneyData.Coins - data.GetUpdateRangPrice(baseCreatorInfoBox.SpawnerData.Rang));
             baseCreatorInfoBox.Creator.SetRang(baseCreatorInfoBox.SpawnerData.Rang + 1);
         }
 
         protected virtual bool CheckConditions()
-            => baseCreatorInfoBox.SpawnerData != null && moneyData.Coins >= data.GetUpdateRangPrice(baseCreatorInfoBox.SpawnerData.Rang)
+            => baseCreatorInfoBox.SpawnerData != null 
             && baseCreatorInfoBox.SpawnerData.Rang < data.MaxRang;
     }
 }
