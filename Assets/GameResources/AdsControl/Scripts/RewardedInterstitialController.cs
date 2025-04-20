@@ -24,7 +24,17 @@
         /// <summary>
         /// Show rewarded video
         /// </summary>
-        public void Present() => _rewardedAd.Present();
+        public void Present()
+        {
+            if (_rewardedAd.isAdReady)
+            {
+                _rewardedAd.Present();
+            }
+            else
+            {
+                NotifyOnShowFailed(AdsController.NOT_READY_ERROR);
+            }
+        }
 
         private void Awake()
         {

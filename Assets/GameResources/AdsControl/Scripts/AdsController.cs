@@ -9,6 +9,8 @@ namespace Features.AdsControl
     [RequireComponent(typeof(ManagerAdObject))]
     public class AdsController : MonoBehaviour
     {
+        public const string NOT_READY_ERROR = "Ads is not ready!";
+
         public event Action onInit = delegate { };
         public event Action<string> onInitFailed = delegate { };
 
