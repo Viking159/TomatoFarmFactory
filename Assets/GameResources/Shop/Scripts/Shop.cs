@@ -22,6 +22,8 @@ namespace Features.Shop
         protected ISaleable saleable = default;
         protected uint price = 0;
 
+        protected virtual void Awake() => moneyData.LoadData();
+
         protected virtual void OnTriggerEnter2D(Collider2D collision)
         {
             saleable = collision.GetComponent<ISaleable>();

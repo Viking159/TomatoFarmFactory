@@ -1250,7 +1250,7 @@ GameObject:
   - component: {fileID: 454441352123686045}
   - component: {fileID: 108034527756604631}
   - component: {fileID: 2370393312222020395}
-  - component: {fileID: 2885357215105756987}
+  - component: {fileID: 3432594688485691452}
   m_Layer: 5
   m_Name: UpdateRangButton
   m_TagString: Untagged
@@ -1360,7 +1360,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &2885357215105756987
+--- !u!114 &3432594688485691452
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1369,12 +1369,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4347281028638972536}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f42e002e9f52fa4aa3d44c1ea16a495, type: 3}
+  m_Script: {fileID: 11500000, guid: fdf66ca074f9dc740a858447bf4b74cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   baseCreatorInfoBox: {fileID: 1828200322396738145}
   data: {fileID: 11400000, guid: df6506e3796e9a0459b9e91d43a6a2f1, type: 2}
-  moneyData: {fileID: 11400000, guid: 50726c37122b13c45b3f827b3cf9bcef, type: 2}
 --- !u!1 &5236482678656986927
 GameObject:
   m_ObjectHideFlags: 0
