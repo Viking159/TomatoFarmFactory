@@ -17,6 +17,8 @@
 
         public static RewardedInterstitialController Instance { get; private set; } = default;
 
+        public bool IsReady => _rewardedAd.isAdReady;
+
         [SerializeField]
         private bool _showLogs = true;
         private RewardedAdObject _rewardedAd = default;

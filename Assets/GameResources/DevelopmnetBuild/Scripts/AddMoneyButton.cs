@@ -10,7 +10,7 @@ namespace Features.DevelopmentBuild
     /// <remarks>
     /// Only for development build
     /// </remarks>
-    public class DBAddMoneyButton : AbstractButtonView
+    public class AddMoneyButton : AbstractButtonView
     {
         [SerializeField]
         protected MoneyData moneyData = default;

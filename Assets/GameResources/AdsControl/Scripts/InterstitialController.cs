@@ -16,6 +16,8 @@ namespace Features.AdsControl
 
         public static InterstitialController Instance { get; private set; } = default;
 
+        public bool IsReady => _interstitialAd.isAdReady;
+
         [SerializeField]
         private bool _showLogs = true;
         private InterstitialAdObject _interstitialAd = default;

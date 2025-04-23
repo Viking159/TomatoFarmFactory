@@ -1,10 +1,13 @@
 namespace Features.AdsControl
 {
+    using System;
     using System.Collections;
     using UnityEngine;
 
     public  class TimerInterstitialController : AbstractAdsProvider
     {
+        protected const float MIN_AWAIT = 30;
+
         [SerializeField, Min(1)]
         protected float awaitSeconds = 10;
         [SerializeField]
@@ -14,8 +17,13 @@ namespace Features.AdsControl
         protected override void OnEnable()
         {
             base.OnEnable();
-            InterstitialController.Instance.onClose += StartTimer;
-            if (restartTimeOnReward)
+            if (InterstitialController.Instance != null)
+            {
+                InterstitialController.Instance.onClose += StartTimer;
+                InterstitialController.Instance.onFailedShow += HandleFail;
+                InterstitialController.Instance.onFailedLoad += HandleFail;
+            }
+            if (RewardedInterstitialController.Instance != null && restartTimeOnReward)
             {
                 RewardedInterstitialController.Instance.onReward += StartTimer;
             }
@@ -24,15 +32,26 @@ namespace Features.AdsControl
         protected override void OnDisable()
         {
             base.OnDisable();
-            InterstitialController.Instance.onClose -= StartTimer;
-            RewardedInterstitialController.Instance.onReward -= StartTimer;
+            if (InterstitialController.Instance != null)
+            {
+                InterstitialController.Instance.onClose -= StartTimer;
+                InterstitialController.Instance.onFailedShow -= HandleFail;
+                InterstitialController.Instance.onFailedLoad -= HandleFail;
+            }
+            if (RewardedInterstitialController.Instance != null && restartTimeOnReward)
+            {
+                RewardedInterstitialController.Instance.onReward -= StartTimer;
+            }
             StopCoroutine();
         }
 
-        protected virtual IEnumerator ShowAfterTimer()
+        protected virtual IEnumerator ShowAfterTimer(float awaitTime)
         {
             yield return new WaitForSeconds(awaitSeconds);
-            InterstitialController.Instance.Present();
+            if (InterstitialController.Instance != null)
+            {
+                InterstitialController.Instance.Present();
+            }
         }
 
         protected override void HandleAdsInit() => StartTimer();
@@ -42,7 +61,13 @@ namespace Features.AdsControl
         protected virtual void StartTimer()
         {
             StopCoroutine();
-            timerCoroutine = StartCoroutine(ShowAfterTimer());
+            timerCoroutine = StartCoroutine(ShowAfterTimer(awaitSeconds));
+        }
+
+        private void HandleFail(string errorText)
+        {
+            StopCoroutine();
+            timerCoroutine = StartCoroutine(ShowAfterTimer(MIN_AWAIT));
         }
 
         protected virtual void StopCoroutine()

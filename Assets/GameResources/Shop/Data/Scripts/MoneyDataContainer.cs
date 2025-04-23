@@ -29,7 +29,10 @@ namespace Features.Shop.Data
         protected MoneyData moneyData = default;
 
         public override void Init()
-            => moneyData.onMoneyCountChange += OnMoneyCountChanged;
+        {
+            moneyData.onMoneyCountChange += OnMoneyCountChanged;
+            moneyData.LoadData();
+        }
 
         public override void Dispose()
             => moneyData.onMoneyCountChange -= OnMoneyCountChanged;

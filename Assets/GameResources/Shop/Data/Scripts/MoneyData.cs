@@ -35,8 +35,8 @@ namespace Features.Shop.Data
 
         public virtual void LoadData()
         {
-            coins = PlayerPrefs.GetInt(ppKey + nameof(coins), coins);
-            gems = PlayerPrefs.GetInt(ppKey + nameof(gems), gems);
+            SetCoins(PlayerPrefs.GetInt(ppKey + nameof(coins), coins));
+            SetGems(PlayerPrefs.GetInt(ppKey + nameof(gems), gems));
         }
 
         public virtual void SaveData()
