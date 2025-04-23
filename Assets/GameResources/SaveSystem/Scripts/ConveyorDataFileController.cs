@@ -189,6 +189,10 @@ namespace Features.SaveSystem
         public virtual void UpdateLineControllerData(LineControllerData lineControllerData, int linesControllerIndex, int lineControllerIndex, bool saveAfter = true)
             => UpdateData(() =>
             {
+                if (linesControllerIndex >= conveyorSaveData.LinesControllers.Count)
+                {
+                    conveyorSaveData.LinesControllers.Add(new LinesControllerData());
+                }
                 if (lineControllerIndex >= conveyorSaveData.LinesControllers[linesControllerIndex].LineControllers.Count)
                 {
                     conveyorSaveData.LinesControllers[linesControllerIndex].LineControllers.Add(new LineControllerData());
@@ -208,6 +212,14 @@ namespace Features.SaveSystem
         public virtual void UpdateSpawnerData(SpawnerData data, int linesControllerIndex, int lineControllerIndex, int spawnerIndex, bool saveAfter = true)
             => UpdateData(() => 
             {
+                if (linesControllerIndex >= conveyorSaveData.LinesControllers.Count)
+                {
+                    conveyorSaveData.LinesControllers.Add(new LinesControllerData());
+                }
+                if (lineControllerIndex >= conveyorSaveData.LinesControllers[linesControllerIndex].LineControllers.Count)
+                {
+                    conveyorSaveData.LinesControllers[linesControllerIndex].LineControllers.Add(new LineControllerData());
+                }
                 if (spawnerIndex >= conveyorSaveData.LinesControllers[linesControllerIndex].LineControllers[lineControllerIndex].Spawners.Count)
                 {
                     conveyorSaveData.LinesControllers[linesControllerIndex].LineControllers[lineControllerIndex].Spawners.Add(new SpawnerData());

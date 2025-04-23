@@ -2,9 +2,8 @@
 {
     using System.Collections.Generic;
     using UnityEngine;
-    using UnityEngine.Purchasing;
 
-    public class NonConsumableObjectSwitcher : MonoBehaviour
+    public abstract class AbstractNonCunsumableSwitcher : MonoBehaviour
     {
         [SerializeField]
         protected List<GameObject> enableObjects = new List<GameObject>();
@@ -13,17 +12,11 @@
         [SerializeField]
         protected string productId = "no_ads";
 
+        protected abstract bool SwitchCondition();
 
         protected virtual void OnEnable()
         {
-            Product product = UIAPStore.Instance.GetProduct(productId);
-            Debug.Log(product);
-            if (product != null )
-            {
-                Debug.Log(product.availableToPurchase);
-                Debug.Log(product.hasReceipt);
-            }            
-            SetView(product != null && product.availableToPurchase && !product.hasReceipt);
+            SetView(SwitchCondition());
             UIAPStore.Instance.onPurchaseSuccess += HandlePurchace;
         }
 

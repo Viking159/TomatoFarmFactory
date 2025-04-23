@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd2f38c563828458c8e900006c010cd2, type: 3}
   m_Name: CASSettingsAndroid
   m_EditorClassIdentifier: 
-  testAdMode: 1
+  testAdMode: 0
   managerIds:
-  - demo
+  - tomato.factory.tycoon.idle.game
   allowedAdFlags: 6
   audienceTagged: 2
   bannerSize: 0

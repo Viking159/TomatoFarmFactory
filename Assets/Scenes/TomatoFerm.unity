@@ -3593,7 +3593,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1348976814}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ed8a8ea06db9e5469e26a40d6ab492f, type: 3}
+  m_Script: {fileID: 11500000, guid: 22cf26922b4a1e84c852c25164508862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enableObjects:
@@ -4480,6 +4480,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1841901181}
+  - component: {fileID: 1841901182}
   m_Layer: 0
   m_Name: Controllers
   m_TagString: Untagged
@@ -4504,6 +4505,22 @@ Transform:
   - {fileID: 1983289878}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1841901182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1841901180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ed8a8ea06db9e5469e26a40d6ab492f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enableObjects:
+  - {fileID: 1983289877}
+  disableObjects: []
+  productId: no_ads
 --- !u!1 &1849635012
 GameObject:
   m_ObjectHideFlags: 0
