@@ -1,6 +1,5 @@
 namespace Features.Shop.Data
 {
-    using Extensions.Data;
     using System;
     using UnityEngine;
 
@@ -36,14 +35,15 @@ namespace Features.Shop.Data
 
         public virtual void LoadData()
         {
-            coins = CryptPlayerPrefs.GetInt(ppKey + nameof(coins), coins);
-            gems = CryptPlayerPrefs.GetInt(ppKey + nameof(gems), gems);
+            SetCoins(PlayerPrefs.GetInt(ppKey + nameof(coins), coins));
+            SetGems(PlayerPrefs.GetInt(ppKey + nameof(gems), gems));
         }
 
         public virtual void SaveData()
         {
-            CryptPlayerPrefs.SetInt(ppKey + nameof(coins), coins);
-            CryptPlayerPrefs.SetInt(ppKey + nameof(gems), gems);
+            PlayerPrefs.SetInt(ppKey + nameof(coins), coins);
+            PlayerPrefs.SetInt(ppKey + nameof(gems), gems);
+            PlayerPrefs.Save();
         }
 
         public virtual void SetCoins(int coinsVal)

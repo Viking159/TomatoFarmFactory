@@ -57,7 +57,7 @@ namespace Features.SaveSystem
                         {
                             lineController.AddSpawner(ConveyorDataFileController.Instance.ConveyorSaveData.LinesControllers[i].LineControllers[j].Spawners[l].Index);
                         }
-                        lineController.Spawners[l].InitData(loadedLineController.Spawners[l]);
+                        lineController.Spawners[l].InitData(conveyorController.ConveyorLinesControllers[i].ConveyorLines[j], loadedLineController.Spawners[l]);
                     }
                 }
             }

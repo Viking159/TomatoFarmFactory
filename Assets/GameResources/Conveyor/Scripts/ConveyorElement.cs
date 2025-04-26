@@ -59,11 +59,13 @@ namespace Features.Conveyor
         public ConveyorLineController LineController => lineController;
         protected ConveyorLineController lineController = default;
 
+        public ConveyorController ConveyorController => conveyorController;
+        protected ConveyorController conveyorController = default;
+
         [SerializeField]
         protected List<Transform> pathPoints = new List<Transform>();
 
         protected List<ConveyorRider> riders = new List<ConveyorRider>();
-        protected ConveyorController conveyorController = default;
         
         protected ConveyorRider rider = default;
 

@@ -22,8 +22,8 @@ namespace Features.Fabric.InfoBox
         }
 
         protected virtual void SetText()
-            => SetView(string.Format(mask, productData.GetPrice(0) * productData.GetFruitsCount(baseCreatorInfoBox.SpawnerData.Rang)));
+            => SetView(baseCreatorInfoBox.SpawnerData == null ? 0 : string.Format(mask, productData.GetPrice(0) * productData.GetFruitsCount(baseCreatorInfoBox.SpawnerData.Rang)));
 
-        protected virtual void Ondisable() => baseCreatorInfoBox.onDataChange -= SetText;
+        protected virtual void OnDisable() => baseCreatorInfoBox.onDataChange -= SetText;
     }
 }

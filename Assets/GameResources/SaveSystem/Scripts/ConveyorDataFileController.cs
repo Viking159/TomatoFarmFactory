@@ -5,6 +5,7 @@ namespace Features.SaveSystem
     using System;
     using System.Collections.Generic;
     using System.IO;
+    using System.Threading.Tasks;
     using UnityEngine;
 
     /// <summary>
@@ -12,6 +13,8 @@ namespace Features.SaveSystem
     /// </summary>
     public class ConveyorDataFileController : AbstractDataFileController
     {
+        protected const int SAVE_AWAIT_TIME = 2;
+
         /// <summary>
         /// Conveyor save data
         /// </summary>
@@ -35,6 +38,9 @@ namespace Features.SaveSystem
         protected string dataJson = string.Empty;
         protected string folderPath = default;
         protected string path = default;
+
+        protected bool queuedSave = false;
+        protected float lastSaveTime = -1;
 
         /// <summary>
         /// Load game data
@@ -71,6 +77,18 @@ namespace Features.SaveSystem
         {
             try
             {
+                if (Time.time - lastSaveTime < SAVE_AWAIT_TIME)
+                {
+                    if (!queuedSave)
+                    {
+                        queuedSave = true;
+                        await Task.Delay(TimeSpan.FromSeconds(SAVE_AWAIT_TIME));
+                        SaveData();
+                    }
+                    return;
+                }
+                queuedSave = false;
+                lastSaveTime = Time.time;
                 if (!Directory.Exists(folderPath))
                 {
                     Directory.CreateDirectory(folderPath);
@@ -171,6 +189,10 @@ namespace Features.SaveSystem
         public virtual void UpdateLineControllerData(LineControllerData lineControllerData, int linesControllerIndex, int lineControllerIndex, bool saveAfter = true)
             => UpdateData(() =>
             {
+                if (linesControllerIndex >= conveyorSaveData.LinesControllers.Count)
+                {
+                    conveyorSaveData.LinesControllers.Add(new LinesControllerData());
+                }
                 if (lineControllerIndex >= conveyorSaveData.LinesControllers[linesControllerIndex].LineControllers.Count)
                 {
                     conveyorSaveData.LinesControllers[linesControllerIndex].LineControllers.Add(new LineControllerData());
@@ -190,6 +212,14 @@ namespace Features.SaveSystem
         public virtual void UpdateSpawnerData(SpawnerData data, int linesControllerIndex, int lineControllerIndex, int spawnerIndex, bool saveAfter = true)
             => UpdateData(() => 
             {
+                if (linesControllerIndex >= conveyorSaveData.LinesControllers.Count)
+                {
+                    conveyorSaveData.LinesControllers.Add(new LinesControllerData());
+                }
+                if (lineControllerIndex >= conveyorSaveData.LinesControllers[linesControllerIndex].LineControllers.Count)
+                {
+                    conveyorSaveData.LinesControllers[linesControllerIndex].LineControllers.Add(new LineControllerData());
+                }
                 if (spawnerIndex >= conveyorSaveData.LinesControllers[linesControllerIndex].LineControllers[lineControllerIndex].Spawners.Count)
                 {
                     conveyorSaveData.LinesControllers[linesControllerIndex].LineControllers[lineControllerIndex].Spawners.Add(new SpawnerData());

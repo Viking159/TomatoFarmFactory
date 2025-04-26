@@ -1,12 +1,6 @@
 namespace Features.Fabric
 {
-    using DG.Tweening;
-    using Features.Data;
-    using System.Collections;
-    using System.Collections.Generic;
     using UnityEngine;
-    using System.Linq;
-    using Features.Conveyor;
 
     /// <summary>
     /// Consume animated hand
@@ -16,106 +10,53 @@ namespace Features.Fabric
         [SerializeField]
         protected FabricFruitsConsumer fabricFruitsConsumer = default;
         [SerializeField]
-        protected List<Transform> pathOutPoints = new List<Transform>();
+        protected FabricAnimationEvents fabricAnimationEvents = default;
         [SerializeField]
-        protected List<Transform> pathInPoints = new List<Transform>();
-
-        protected Tween pathHandTween = default;
-        protected Tween pathObjectTween = default;
-        protected Coroutine animationCoroutine = default;
-
-        protected Vector3[] pathOutVectors = default;
-        protected Vector3[] pathInVectors = default;
-
-        protected float animationDuration = default;
+        protected Animator animator = default;
+        [SerializeField]
+        protected string consumeTrigger = "ConsumeTrigger";
+        [SerializeField]
+        protected Vector3 consumablePosition = Vector3.zero;
 
         protected virtual void OnEnable()
         {
-            OnConsumerDataChanged();
-            fabricFruitsConsumer.onConsumerDataChange += OnConsumerDataChanged;
-            fabricFruitsConsumer.onConsume += AnimatedConsume;
-        }
-
-        protected virtual void OnConsumerDataChanged()
-        {
-            InitPositions();
             SetAnimationTime();
+            fabricFruitsConsumer.onConsumerDataChange += SetAnimationTime;
+            fabricFruitsConsumer.onConsume += AnimatedConsume;
+            fabricAnimationEvents.onHandDown += HandDownHandler;
+            fabricAnimationEvents.onConsumeEnd += ConsumeEndHandler;
         }
 
         protected virtual void SetAnimationTime()
-            => animationDuration = fabricFruitsConsumer.ConsumeTime / GlobalData.FABRIC_HAND_ANIMATION_SPEED_CONVERT_RATIO;
-
-        protected virtual void InitPositions()
         {
-            pathOutVectors = pathOutPoints.Select(point => point.position).ToArray();
-            pathInVectors = pathInPoints.Select(point => point.position).ToArray();
+            animator.speed = 1 / fabricFruitsConsumer.ConsumeTime;
         }
 
-        protected virtual void AnimatedConsume()
+        protected virtual void AnimatedConsume() => animator.SetTrigger(consumeTrigger);
+
+        protected virtual void HandDownHandler()
         {
-            StopAnimations();
-            animationCoroutine = StartCoroutine(StartAnimation());
+            if (fabricFruitsConsumer.ConsumableObject != null)
+            {
+                fabricFruitsConsumer.ConsumableObject.transform.SetParent(transform);
+                fabricFruitsConsumer.ConsumableObject.transform.localPosition = consumablePosition;
+            }
         }
 
-        protected virtual IEnumerator StartAnimation()
+        protected virtual void ConsumeEndHandler()
         {
-            AnimateConsumableObject();
-            AnimateHandPath(pathOutVectors);
-            yield return new WaitForSeconds(animationDuration);
-            fabricFruitsConsumer.ConsumableObject.transform.SetParent(transform);
-            AnimateHandPath(pathInVectors);
-            yield return new WaitForSeconds(animationDuration);
-            Destroy(fabricFruitsConsumer.ConsumableObject);
-        }
-
-        protected virtual void AnimateConsumableObject()
-        {
-            if (pathObjectTween != null)
+            if (fabricFruitsConsumer.ConsumableObject != null)
             {
-                pathObjectTween.Kill();
-            }
-            pathObjectTween = fabricFruitsConsumer.ConsumableObject.transform.DOPath
-                (
-                    new Vector3[2] { fabricFruitsConsumer.ConsumableObject.transform.position, pathOutVectors.Last() },
-                    animationDuration,
-                    PathType.Linear
-                );
-        }
-
-        protected virtual void AnimateHandPath(Vector3[] points)
-        {
-            if (pathHandTween != null)
-            {
-                pathHandTween.Kill();
-            }
-            pathHandTween = transform.DOPath
-            (
-                points,
-                animationDuration,
-                PathType.Linear
-            );
-        }
-
-        protected virtual void StopAnimations()
-        {
-            if (animationCoroutine != null)
-            {
-                StopCoroutine(animationCoroutine);
-            }
-            if (pathHandTween != null)
-            {
-                pathHandTween.Kill();
-            }
-            if (pathObjectTween != null)
-            {
-                pathObjectTween.Kill();
-            }
+                Destroy(fabricFruitsConsumer.ConsumableObject);
+            } 
         }
 
         protected virtual void OnDisable()
         {
-            fabricFruitsConsumer.onConsume -= OnConsumerDataChanged;
-            StopAnimations();
+            fabricFruitsConsumer.onConsume -= AnimatedConsume;
+            fabricFruitsConsumer.onConsumerDataChange -= SetAnimationTime;
+            fabricAnimationEvents.onHandDown -= HandDownHandler;
+            fabricAnimationEvents.onConsumeEnd -= ConsumeEndHandler;
         }
     }
 }

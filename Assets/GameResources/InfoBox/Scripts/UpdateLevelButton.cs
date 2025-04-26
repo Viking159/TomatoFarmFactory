@@ -28,6 +28,7 @@ namespace Features.InfoBox
         }
 
         protected virtual bool CheckConditions()
-            => moneyData.Coins >= data.GetUpdateLevelPrice(baseCreatorInfoBox.SpawnerData.Level);
+            => baseCreatorInfoBox.SpawnerData != null && moneyData.Coins >= data.GetUpdateLevelPrice(baseCreatorInfoBox.SpawnerData.Level)
+            && baseCreatorInfoBox.SpawnerData.Level < data.MaxLevel;
     }
 }

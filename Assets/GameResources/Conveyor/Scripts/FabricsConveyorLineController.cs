@@ -1,6 +1,5 @@
 namespace Features.Conveyor
 {
-    using Features.Extensions.BaseDataTypes;
     using System.Linq;
     using UnityEngine;
 

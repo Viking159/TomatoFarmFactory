@@ -16,7 +16,7 @@ TagManager:
   - 
   - Conveyor
   - 
-  - 
+  - Building
   - 
   - 
   - 
@@ -46,4 +46,7 @@ TagManager:
     locked: 0
   - name: Conveyor
     uniqueID: 1137309855
+    locked: 0
+  - name: Bg
+    uniqueID: 363296695
     locked: 0

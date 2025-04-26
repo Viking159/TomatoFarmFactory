@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!114 &11400000
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 32
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -18,5 +18,5 @@ MonoBehaviour:
     ParamValue: 10
     Ratio: 1.01
   speed:
-    ParamValue: 2.25
+    ParamValue: 4
     Ratio: 0.1999

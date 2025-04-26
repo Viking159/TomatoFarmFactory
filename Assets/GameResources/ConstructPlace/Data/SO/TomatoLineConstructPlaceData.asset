@@ -15,5 +15,5 @@ MonoBehaviour:
   placeName: Tomato ferm line
   discription: Conveyor line with 2 tomato ferms
   image: {fileID: 0}
-  constructPrefab: {fileID: 0}
+  constructPrefab: {fileID: 3770592927955229254, guid: 20835c09f1dc58b49ac0804092eae7d1, type: 3}
   price: 300

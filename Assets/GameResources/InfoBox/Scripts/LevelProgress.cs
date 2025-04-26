@@ -26,7 +26,7 @@ namespace Features.InfoBox
         }
 
         protected virtual void SetSlider()
-            => slider.value = baseCreatorInfoBox.SpawnerData.Level / (float)data.MaxLevel;
+            => slider.value = (baseCreatorInfoBox.SpawnerData == null ? 0 : baseCreatorInfoBox.SpawnerData.Level) / (float)data.MaxLevel;
 
         protected virtual void OnDisable()
             => baseCreatorInfoBox.onDataChange -= SetSlider;

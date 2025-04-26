@@ -1,4 +1,4 @@
-namespace Features.ScrollViewController
+namespace Features.InputSystem
 {
     using Features.Conveyor;
     using System;
@@ -7,6 +7,7 @@ namespace Features.ScrollViewController
     using UnityEngine.InputSystem;
     using System.Linq;
     using Features.Extensions.BaseDataTypes;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Scroll game view controller
@@ -15,6 +16,11 @@ namespace Features.ScrollViewController
     public sealed class CameraMoveController : MonoBehaviour
     {
         private const int CAMERA_HALF_HEIGHT = 5;
+
+        /// <summary>
+        /// Move event (Vector2 is delta)
+        /// </summary>
+        public event Action<Vector3> onMove = delegate { };
 
         [SerializeField]
         private Transform _topPosition = default;
@@ -28,13 +34,26 @@ namespace Features.ScrollViewController
         private MainInputActions _inputActions = default;
         private float _bottomYPosition = default;
         private Vector3 _newPosition = Vector3.zero;
+        private Vector3 _positionDelta = Vector3.zero;
+        private List<RaycastResult> _results = new List<RaycastResult>();
+        private PointerEventData _pointerEventData = default;
+        private bool _isOverUI = true;
 
-        private void Awake() => _inputActions = new MainInputActions();
+        private void Awake()
+        {
+            _inputActions = new MainInputActions();
+            _pointerEventData = new PointerEventData(EventSystem.current);
+        }
 
         private void OnEnable()
         {
             _inputActions.Enable();
+            _inputActions.ActionMap.Enable();
+            _inputActions.ActionMap.Move.Enable();
             _inputActions.ActionMap.Move.performed += MovePreformed;
+            _inputActions.ActionMap.PointerEvents.Enable();
+            _inputActions.ActionMap.PointerEvents.started += PointerDownHandler;
+            _inputActions.ActionMap.PointerEvents.canceled += PointerUpHandler;
             SetBottomPosition();
             _conveyorController.onLineAddEnd += OnLineAdded;
         }
@@ -58,9 +77,26 @@ namespace Features.ScrollViewController
             _bottomYPosition = _topPosition.position.y;
         }
 
+        private bool IsPointerOverUI(Vector2 position)
+        {
+            _pointerEventData.position = position;
+            EventSystem.current.RaycastAll(_pointerEventData, _results);
+            return _results.Count > 0;
+        }
+
+        private void PointerUpHandler(InputAction.CallbackContext context) => _isOverUI = true;
+
+        private void PointerDownHandler(InputAction.CallbackContext context) => _isOverUI = IsPointerOverUI(
+#if (!UNITY_EDITOR && (UNITY_IOS || UNITY_ANDROID))
+            Touchscreen.current.primaryTouch.position.ReadValue()       
+#else
+            Mouse.current.position.ReadValue()
+#endif
+            );
+
         private void MovePreformed(InputAction.CallbackContext context)
         {
-            if (!EventSystem.current.IsPointerOverGameObject())
+            if (!_isOverUI)
             {
                 MoveCamera(context.ReadValue<float>());
             }
@@ -72,7 +108,9 @@ namespace Features.ScrollViewController
             ClampNewPosition();
             if (_newPosition != transform.position)
             {
+                _positionDelta = _newPosition - transform.position;
                 transform.position = _newPosition;
+                onMove(_positionDelta);
             }
         }
 
@@ -91,7 +129,12 @@ namespace Features.ScrollViewController
 
         private void OnDisable()
         {
+            _inputActions.ActionMap.PointerEvents.started -= PointerDownHandler;
+            _inputActions.ActionMap.PointerEvents.canceled -= PointerUpHandler;
+            _inputActions.ActionMap.PointerEvents.Disable();
             _inputActions.ActionMap.Move.performed -= MovePreformed;
+            _inputActions.ActionMap.Move.Disable();
+            _inputActions.ActionMap.Disable();
             _inputActions.Disable();
             _conveyorController.onLineAddEnd -= OnLineAdded;
         }

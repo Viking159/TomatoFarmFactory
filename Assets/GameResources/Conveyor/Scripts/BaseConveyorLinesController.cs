@@ -4,6 +4,7 @@ namespace Features.Conveyor
     using System.Collections.Generic;
     using Features.Extensions.BaseDataTypes;
     using System.Linq;
+    using System;
 
     /// <summary>
     /// Base conveyor line controller
@@ -12,6 +13,8 @@ namespace Features.Conveyor
     {
         protected const int MIN_ELEMENTS_COUNT = 1;
         protected const int HALF_DENOMINATOR = 2;
+
+        public event Action onLinesCountChanged = delegate { };
 
         /// <summary>
         /// Is valid controller
@@ -65,6 +68,7 @@ namespace Features.Conveyor
             {
                 conveyorLine.InitConveyorLine(this);
             }
+            NotfiyOnLinesCountChanged();
         }
 
         /// <summary>
@@ -74,6 +78,7 @@ namespace Features.Conveyor
         {
             conveyorLines.Add(Instantiate(conveyorLinePrefab, lineTransform));
             SetLastLinePosition();
+            NotfiyOnLinesCountChanged();
         }
 
         protected virtual void SetLastLinePosition()
@@ -113,5 +118,7 @@ namespace Features.Conveyor
             );
 
         protected virtual void SetFirstPosition(ConveyorLineController newElement) => newElement.transform.localPosition = startPosition;
+
+        protected virtual void NotfiyOnLinesCountChanged() => onLinesCountChanged();
     }
 }

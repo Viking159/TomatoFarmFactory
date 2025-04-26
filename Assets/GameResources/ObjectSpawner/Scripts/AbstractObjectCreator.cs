@@ -1,6 +1,8 @@
 namespace Features.Spawner
 {
+    using Features.Conveyor;
     using Features.Data;
+    using Features.SaveSystem;
     using System;
     using System.Collections;
     using UnityEngine;
@@ -70,6 +72,9 @@ namespace Features.Spawner
         public SaveSystem.SpawnerData SpawnerData => spawnerData;
         protected SaveSystem.SpawnerData spawnerData = new SaveSystem.SpawnerData();
 
+        public ConveyorLineController ConveyorLineController => conveyorLineController;
+        protected ConveyorLineController conveyorLineController = default;
+
         public virtual bool IsSpawning => isSpawning;
         [SerializeField]
         protected bool isSpawning = true;
@@ -80,21 +85,20 @@ namespace Features.Spawner
         public float SpawnTime => spawnTime;
         protected float spawnTime = default;
 
-
         [SerializeField]
         protected Transform spawnPosition = default;
 
-        
         protected Coroutine spawnCoroutine = default;
+        protected Coroutine countTimeCoroutine = default;
 
-        
         protected float curTime = default;
 
         /// <summary>
         /// Init creator data
         /// </summary>
-        public virtual void InitData(SaveSystem.SpawnerData spawnerData)
+        public virtual void InitData(ConveyorLineController conveyorLineController, SaveSystem.SpawnerData spawnerData)
         {
+            this.conveyorLineController = conveyorLineController;
             this.spawnerData = spawnerData;
             SetSpawnTime();
             NotifyOnDataChange();
@@ -106,15 +110,20 @@ namespace Features.Spawner
         public virtual void SetLevel(int level)
         {
             spawnerData.Level = level;
+            ConveyorDataFileController.Instance.UpdateSpawnerData(spawnerData, conveyorLineController.LinesController.Index, conveyorLineController.Index, Index);
             NotifyOnDataChange();
         }
 
         /// <summary>
         /// Set rang
         /// </summary>
-        public virtual void SetRang(int rang)
+        public virtual void SetRang(int rang, bool saveAfter = true)
         {
             spawnerData.Rang = rang;
+            if (saveAfter)
+            {
+                ConveyorDataFileController.Instance.UpdateSpawnerData(spawnerData, conveyorLineController.LinesController.Index, conveyorLineController.Index, Index);
+            }
             NotifyOnDataChange();
         }
 
@@ -145,7 +154,12 @@ namespace Features.Spawner
         {
             while (isActiveAndEnabled)
             {
-                yield return CountTime();
+                if (countTimeCoroutine != null)
+                {
+                    StopCoroutine(countTimeCoroutine);
+                }
+                countTimeCoroutine = StartCoroutine(CountTime());
+                yield return countTimeCoroutine;
                 Spawn();
             }
         }
@@ -192,6 +206,10 @@ namespace Features.Spawner
             if (spawnCoroutine != null)
             {
                 StopCoroutine(spawnCoroutine);
+            }
+            if (countTimeCoroutine != null)
+            {
+                StopCoroutine(countTimeCoroutine);
             }
             spawnCoroutine = null;
             SetProgress(MIN_PROGRESS_VALUE);

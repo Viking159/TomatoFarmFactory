@@ -51,13 +51,13 @@ namespace Features.Spawner
             }
         }
 
-        public override void SetRang(int rang)
+        public override void SetRang(int rang, bool saveAfter = true)
         {
             int newRang = Mathf.Clamp(rang, 0, data.MaxRang);
             if (Rang != newRang)
             {
-                spawnerData.Level = 0;
-                base.SetRang(newRang);
+                base.SetRang(newRang, false);
+                SetLevel(0);
             }
         }
 

@@ -21,7 +21,7 @@ namespace Features.InfoBox
         }
 
         protected virtual void SetText()
-            => SetView(data.GetUpdateLevelPrice(baseCreatorInfoBox.SpawnerData.Level));
+            => SetView(baseCreatorInfoBox.SpawnerData == null ? 0 : data.GetUpdateLevelPrice(baseCreatorInfoBox.SpawnerData.Level));
 
         protected virtual void OnDisable()
             => baseCreatorInfoBox.onDataChange -= SetText;
