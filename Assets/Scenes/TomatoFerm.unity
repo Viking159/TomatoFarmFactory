@@ -3145,6 +3145,7 @@ MonoBehaviour:
   _infoBoxContainer: {fileID: 11400000, guid: 7d6b727298db57a43af17604e03f6584, type: 2}
   _moneyData: {fileID: 11400000, guid: 50726c37122b13c45b3f827b3cf9bcef, type: 2}
   _maxIncome: 500
+  _productId: no_ads
 --- !u!114 &1117885811
 MonoBehaviour:
   m_ObjectHideFlags: 0
