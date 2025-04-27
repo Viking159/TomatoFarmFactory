@@ -273,6 +273,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   conveyorElement: {fileID: 5520498347428806926}
+  ratio: 0.5
 --- !u!1 &6367057435198194351
 GameObject:
   m_ObjectHideFlags: 0
@@ -839,7 +840,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1750647560898459240, guid: 3acaac1afc724b24e8e1117c655ccf4a, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 1.0009775
+      value: 1.0009596
       objectReference: {fileID: 0}
     - target: {fileID: 1750647560898459240, guid: 3acaac1afc724b24e8e1117c655ccf4a, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
@@ -873,6 +874,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: p01
       objectReference: {fileID: 0}
+    - target: {fileID: 8876487285059702656, guid: 3acaac1afc724b24e8e1117c655ccf4a, type: 3}
+      propertyPath: conveyorElement
+      value: 
+      objectReference: {fileID: 5520498347428806926}
     - target: {fileID: 9179782083388646432, guid: 3acaac1afc724b24e8e1117c655ccf4a, type: 3}
       propertyPath: m_Name
       value: p02

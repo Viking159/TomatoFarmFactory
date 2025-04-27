@@ -11,7 +11,14 @@ namespace Features.InfoBox
         [SerializeField]
         protected InfoBox infoBox = default;
 
-        protected override void OnButtonClick() 
-            => infoBox.CloseBox();
+        protected override void OnButtonClick()
+        {
+            if (infoBox == null)
+            {
+                Debug.LogError($"{nameof(CloseInfoBoxButton)}: infobox is null");
+                infoBox = GetComponentInParent<InfoBox>();
+            }
+            infoBox.CloseBox();
+        }
     }
 }

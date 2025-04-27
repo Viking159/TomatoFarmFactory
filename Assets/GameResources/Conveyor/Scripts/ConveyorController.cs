@@ -11,6 +11,7 @@ namespace Features.Conveyor
     /// <summary>
     /// Conveyor controller
     /// </summary>
+    [DefaultExecutionOrder(-100)]
     public class ConveyorController : MonoBehaviour
     {
         protected const int MIN_LIST_INDEX = 0;
@@ -143,6 +144,7 @@ namespace Features.Conveyor
             {
                 conveyorLinesController.InitLines(this);
             }
+            NotifyOnLineAddEnd();
         }
 
         /// <summary>

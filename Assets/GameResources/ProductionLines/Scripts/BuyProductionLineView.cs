@@ -34,11 +34,17 @@ namespace Features.BuyProductionLineView
 
         protected virtual void OnLineAddEnded()
         {
-            currentLineController = conveyorController.ConveyorLinesControllers[lineIndex].ConveyorLines.LastOrDefault();
-            SetView();
-            ListenLineController();
+            if (conveyorController.ConveyorLinesControllers.Count > lineIndex)
+            {
+                currentLineController = conveyorController.ConveyorLinesControllers[lineIndex].ConveyorLines.LastOrDefault();
+                SetView();
+                ListenLineController();
+            }
+            else
+            {
+                DisableView();
+            }
         }
-
 
         protected virtual void ListenLineController()
         {
@@ -57,7 +63,7 @@ namespace Features.BuyProductionLineView
         protected virtual bool IsMaxLineCount() => conveyorController.ConveyorLinesControllers[lineIndex].ConveyorLines.Count >= maxLinesCount;
 
         protected virtual bool LastLineFinished() => currentLineController == null
-                || currentLineController.Spawners.Count == currentLineController.MaxSpawnersCount;
+                || currentLineController.Spawners.Count >= currentLineController.MaxSpawnersCount;
 
         protected virtual void StopListenLineController()
         {
