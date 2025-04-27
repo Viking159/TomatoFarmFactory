@@ -11,7 +11,7 @@ namespace Features.Product
     {
         public virtual string Name => data == null ? string.Empty : data.Name;
 
-        public virtual int Price => data == null ? default : Count * data.GetPrice(priceLevel);
+        public virtual int Price => data == null ? default : data.GetPrice(priceLevel);
 
         public virtual int Count => data == null ? default : data.GetFruitsCount(level);
 

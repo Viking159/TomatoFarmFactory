@@ -47,6 +47,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: p1
       objectReference: {fileID: 0}
+    - target: {fileID: 3674926599231672469, guid: bd477faf9a291134ba1b368f2eb029cd, type: 3}
+      propertyPath: conveyorElement
+      value: 
+      objectReference: {fileID: 6749042050403203670}
     - target: {fileID: 3766160098370057794, guid: bd477faf9a291134ba1b368f2eb029cd, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.9112817
@@ -137,7 +141,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5880545307176364413, guid: bd477faf9a291134ba1b368f2eb029cd, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 1.0009775
+      value: 1.0009596
       objectReference: {fileID: 0}
     - target: {fileID: 5880545307176364415, guid: bd477faf9a291134ba1b368f2eb029cd, type: 3}
       propertyPath: m_Name

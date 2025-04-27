@@ -25,7 +25,7 @@
         }
 
         protected virtual bool CheckConditions()
-            => infoBox.ConveyorController != null && moneyData.Coins >= data.GetUpdateLevelPrice(infoBox.ConveyorController.Level)
+            => infoBox != null && infoBox.ConveyorController != null && moneyData.Coins >= data.GetUpdateLevelPrice(infoBox.ConveyorController.Level)
             && infoBox.ConveyorController.Level < data.MaxLevel;
     }
 }
