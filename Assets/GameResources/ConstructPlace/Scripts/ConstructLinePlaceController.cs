@@ -16,7 +16,14 @@ namespace Features.ConstructPlace
         /// <summary>
         /// Create consturction 
         /// </summary>
-        public override void ConstructPlace() => CreateConstruction();
+        public override void ConstructPlace()
+        {
+            if (IsValidTime)
+            {
+                lastConstructTime = Time.time;
+                CreateConstruction();
+            }
+        }
 
         protected override void CreateConstruction() => conveyorController.AddLines(lineIndex);
     }

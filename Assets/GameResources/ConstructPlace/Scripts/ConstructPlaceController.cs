@@ -8,6 +8,8 @@ namespace Features.ConstructPlace
     /// </summary>
     public class ConstructPlaceController : MonoBehaviour
     {
+        protected const float MIN_AWAIT = 0.5f;
+
         /// <summary>
         /// Construct Place Data container
         /// </summary>
@@ -19,16 +21,23 @@ namespace Features.ConstructPlace
         protected Transform parentTranform = default;
         [SerializeField]
         protected Transform constractionPlaceTranform = default;
-        
+
+        protected float lastConstructTime = default;
         protected GameObject construction = default;
+
+        protected bool IsValidTime => Time.time - lastConstructTime > MIN_AWAIT;
 
         /// <summary>
         /// Create consturction
         /// </summary>
         public virtual void ConstructPlace()
         {
-            CreateConstruction();
-            SelfDestroy();
+            if (IsValidTime)
+            {
+                lastConstructTime = Time.time;
+                CreateConstruction();
+                SelfDestroy();
+            }
         }
 
         protected virtual void CreateConstruction()

@@ -109,7 +109,10 @@ namespace Features.Conveyor
         {
             if (pathTween != null)
             {
-                pathTween.Kill();
+                if (pathTween.IsActive())
+                {
+                    pathTween.Kill();
+                }
                 pathTween = null;
             }
         }
@@ -123,6 +126,10 @@ namespace Features.Conveyor
 
         protected virtual void OnEnable()
         {
+            if (!gameObject.activeInHierarchy || !isActiveAndEnabled)
+            {
+                return;
+            }
             ResumeRiding(PauseWeight.DEFAULT);
             ConveyorController.AddLineAddingStartListener(OnLineAddStarted);
             ConveyorController.AddLineAddingEndListener(OnLineAddEnded);
@@ -235,10 +242,6 @@ namespace Features.Conveyor
             ConveyorController.RemoveLineAddingEndListener(OnLineAddEnded);
         }
 
-        protected virtual void OnDestroy()
-        {
-            PauseRiding(PauseWeight.FORCE);
-            ResetConveyorElement();
-        }
+        protected virtual void OnDestroy() => ResetConveyorElement();
     }
 }

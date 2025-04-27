@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!114 &11400000
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 32
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -13,18 +13,14 @@ MonoBehaviour:
   m_Name: KetchupProductData
   m_EditorClassIdentifier: 
   dataName: Ketchup
-  level: 2
   maxLevel: 25
   updateLevelPrice:
     ParamValue: 10
     Ratio: 1.2
-  ppKey: ketchapLevelPPKey
   spritesData: {fileID: 11400000, guid: e9d7dbdfa575ba54c95f6fc1a29bf114, type: 2}
   fruitsCount:
     ParamValue: 10
-    Ratio: 1.1
+    Ratio: 1.5
   priceRatio:
     ParamValue: 2
     Ratio: 1
-  priceLevel: 0
-  fruitData: {fileID: 11400000, guid: d89ec0ea50e9d41428e94be37ccff648, type: 2}
