@@ -55,7 +55,7 @@
                 DateTime parsedTime = DateTime.ParseExact(savedTime, TIME_FORMAT, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.AssumeUniversal | System.Globalization.DateTimeStyles.AdjustToUniversal);
                 return parsedTime;
             }
-            catch (FormatException ex)
+            catch (Exception)
             {
                 PlayerPrefs.DeleteKey(TIME_KEY);
                 PlayerPrefs.Save();
@@ -86,7 +86,7 @@
                 }
                 return seconds;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 PlayerPrefs.DeleteKey(TIME_KEY);
                 PlayerPrefs.Save();

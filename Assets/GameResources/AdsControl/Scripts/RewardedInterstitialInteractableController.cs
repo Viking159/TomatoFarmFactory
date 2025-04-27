@@ -10,19 +10,13 @@ namespace Features.AdsControl
         private Selectable _selectable = default;
         private Coroutine _coroutine = default;
 
-        private void OnEnable()
-        {
-            if (RewardedInterstitialController.Instance != null)
-            {
-                _coroutine = StartCoroutine(ReadyCheck());
-            }
-        }
+        private void OnEnable() => _coroutine = StartCoroutine(ReadyCheck());
 
         private IEnumerator ReadyCheck()
         {
-            while (isActiveAndEnabled && RewardedInterstitialController.Instance != null)
+            while (isActiveAndEnabled)
             {
-                _selectable.interactable = RewardedInterstitialController.Instance.IsReady;
+                _selectable.interactable = RewardedInterstitialController.Instance != null && RewardedInterstitialController.Instance.IsReady;
                 yield return null;
             }
         }
