@@ -54,8 +54,12 @@ namespace Features.SaveSystem
             {
                 try
                 {
-                    dataJson = await File.ReadAllTextAsync(path);
-                    conveyorSaveData = JsonUtility.FromJson<ConveyorSaveData>(dataJson);
+                    if (!Directory.Exists(folderPath))
+                    {
+                        Directory.CreateDirectory(folderPath);
+                    }
+                    ConveyorValidator conveyorValidator = new ConveyorValidator(path);
+                    conveyorSaveData = JsonUtility.FromJson<ConveyorSaveData>(conveyorValidator.GetJsonString());
                     IsInited = true;
                     NotifyOnDataInit();
                     return;
