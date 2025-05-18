@@ -21,6 +21,14 @@ namespace Features.InfoBox
         {
             if (!CheckConditions())
             {
+                if (baseCreatorInfoBox != null )
+                {
+                    Debug.Log($"UpdateLevelButton: CheckConditions false. baseCreatorInfoBox.SpawnerData == null ?: {baseCreatorInfoBox.SpawnerData == null}");
+                }
+                else
+                {
+                    Debug.Log($"UpdateLevelButton: CheckConditions false. baseCreatorInfoBox is null");
+                }
                 return;
             }
             moneyData.SetCoins(moneyData.Coins - data.GetUpdateLevelPrice(baseCreatorInfoBox.SpawnerData.Level));

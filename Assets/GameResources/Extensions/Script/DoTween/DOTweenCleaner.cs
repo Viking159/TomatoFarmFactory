@@ -5,6 +5,6 @@ namespace Features.Extensions.DoTween
 
     public class DOTweenCleaner : MonoBehaviour
     {
-        private void OnDestroy() => DOTween.KillAll();
+        private void OnDisable() => DOTween.KillAll();
     }
 }
