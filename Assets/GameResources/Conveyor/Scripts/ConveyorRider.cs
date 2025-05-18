@@ -109,7 +109,7 @@ namespace Features.Conveyor
         {
             if (pathTween != null)
             {
-                if (pathTween.IsActive())
+                if (pathTween.IsActive() && pathTween.active)
                 {
                     pathTween.Kill();
                 }

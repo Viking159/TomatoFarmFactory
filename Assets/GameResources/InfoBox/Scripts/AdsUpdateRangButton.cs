@@ -34,7 +34,6 @@
                 RewardedInterstitialController.Instance.onFailedLoad -= HandleFail;
                 RewardedInterstitialController.Instance.onFailedShow -= HandleFail;
             }
-            
         }
 
         protected virtual void OnDisable() => Unsubcribe();
