@@ -18,13 +18,21 @@ namespace Features.InfoBox
         {
             if (!CheckConditions())
             {
+                if (baseCreatorInfoBox != null)
+                {
+                    Debug.Log($"UpdateRangButton: CheckConditions false. baseCreatorInfoBox.SpawnerData == null ?: {baseCreatorInfoBox.SpawnerData == null}");
+                }
+                else
+                {
+                    Debug.Log($"UpdateRangButton: CheckConditions false. baseCreatorInfoBox is null");
+                }
                 return;
             }
             baseCreatorInfoBox.Creator.SetRang(baseCreatorInfoBox.SpawnerData.Rang + 1);
         }
 
         protected virtual bool CheckConditions()
-            => baseCreatorInfoBox.SpawnerData != null 
+            => baseCreatorInfoBox != null && baseCreatorInfoBox.SpawnerData != null 
             && baseCreatorInfoBox.SpawnerData.Rang < data.MaxRang;
     }
 }

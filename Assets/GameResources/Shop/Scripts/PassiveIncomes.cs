@@ -1,8 +1,8 @@
 namespace Features.Shop
 {
-    using Features.Conveyor;
     using Features.InfoBox;
     using Features.Shop.Data;
+    using Features.Store;
     using System.Collections.Generic;
     using UnityEngine;
 
@@ -18,6 +18,8 @@ namespace Features.Shop
         private MoneyData _moneyData = default;
         [SerializeField]
         private int _maxIncome = 500;
+        [SerializeField]
+        private string _productId = "no_ads";
         private int _totalIncome = default;
         private int _detlaSeconds = default;
 
@@ -38,6 +40,10 @@ namespace Features.Shop
             }
             if (_totalIncome > 0)
             {
+                if (UIAPStore.Instance.IsBought(_productId))
+                {
+                    _maxIncome *= 2;
+                }
                 if (_totalIncome > _maxIncome)
                 {
                     _totalIncome = _maxIncome;
@@ -58,7 +64,7 @@ namespace Features.Shop
                 StopListenInfoBox();
             }
             _infoBoxContainer.InfoBox.gameObject.SetActive(true);
-            (_infoBoxContainer.InfoBox as IncomeInfoBox).Init(_totalIncome.ToString());
+            (_infoBoxContainer.InfoBox as IncomeInfoBox).Init(_totalIncome);
             _infoBoxContainer.InfoBox.onBoxClose += CloseInfoBox;
         }
 

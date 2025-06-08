@@ -55,16 +55,13 @@ namespace Features.Spawner
                 }
                 GetClosest(colliders).TryGetComponent(out conveyorElement);
             }
+            catch (OperationCanceledException)
+            {
+                Debug.Log($"{nameof(SpawnPointController)}: Token cancel requested");
+            }
             catch (Exception ex)
             {
-                if (cancelationTokenSource.IsCancellationRequested)
-                {
-                    Debug.Log($"{nameof(SpawnPointController)}: Token cancel requested");
-                }
-                else
-                {
-                    Debug.LogError($"{nameof(SpawnPointController)}: InitConveyorElement error: {ex.Message}\n{ex.StackTrace}");
-                }
+                Debug.LogError($"{nameof(SpawnPointController)}: InitConveyorElement error: {ex.Message}\n{ex.StackTrace}");
             }
         }
 
