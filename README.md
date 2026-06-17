@@ -10,8 +10,6 @@ Tomato Factory Tycoon is a casual idle game where the player builds and upgrades
 
 The project was developed as an indie release and published on Google Play.
 
-🔗 Google Play:<br/>
-[https://play.google.com/store/apps/details?id=tomato.factory.tycoon.idle.game](https://play.google.com/store/apps/details?id=tomato.factory.tycoon.idle.game)
 ---
 ## 🧩 My Responsibilities
 
@@ -24,7 +22,6 @@ The project was developed as an indie release and published on Google Play.
 ## 💰 Monetization
 
 - In-App Purchases
-- Purchase validation handling
 - Ads SDK integration
 ---
 ## 📊 Analytics
@@ -39,10 +36,6 @@ The project was developed as an indie release and published on Google Play.
 - Ads SDK
 - Firebase
 - Platform: Android
----
-## 🚧 Notes
-
-- This project is an early-stage indie release and is not actively maintained.
 ---
 ## 🎥 Demo
 ![tomato1](https://github.com/user-attachments/assets/6d7eed77-210f-4b6f-aa38-8304ebe1eaf0)
